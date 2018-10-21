@@ -216,7 +216,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form-izin">
+                <form method="POST" id="form-izin" onsubmit="printfunction()">
                     <div class="form-group">
                         <label class=" form-control-label">Nama dispen</label>
                         <input name="nama_dispen" type="text" class="form-control" placeholder="Misalnya : Pulang ke rumah, Barang tertinggal, dsb" required/>
@@ -282,9 +282,11 @@
         $id_dispen = $koneksi->insert_id;
         ?>
          <script type="text/javascript">
+         function printfunction() {
          window.location.href="?halaman=piket&aksi=pindai&nis=<?php echo $pindai;?>";
-         window.open('halaman/admin/piket/cetak.php?id=<?php echo $id_dispen; ?>
-         &guru=<?php echo $id_guru;?>', 'mywindow', 'toolbar=0,scrollbars=1,statusbar=0,menubar=0,resizable=0,height=500,width=420');
+         window.open('halaman/admin/piket/cetak.php?id=<?php echo $id_dispen; ?>&guru=<?php echo $id_guru;?>', 'mywindow', 'toolbar=0,scrollbars=1,statusbar=0,menubar=0,resizable=0,height=500,width=420');
+         
+        }
          </script>
          <?php
     }
