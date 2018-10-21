@@ -233,8 +233,6 @@
                         <label class="form-control-label">Sampai jam</label>
                         <input name="sampai_kapan" id="dispen-end" type="time" class="form-control" required />
                     </div>
-                    <label class="form-control-label">Print</label>
-                    <input name="print-check" id="printcheck" type="checkbox" class="form-control" />
                 </form>
             </div>
             <div class="modal-footer">
@@ -285,8 +283,7 @@
         ?>
          <script type="text/javascript">
          window.location.href="?halaman=piket&aksi=pindai&nis=<?php echo $pindai;?>";
-         window.open('halaman/admin/piket/cetak.php?id=<?php echo $id_dispen; ?>
-         &guru=<?php echo $id_guru;?>', 'mywindow', 'toolbar=0,scrollbars=1,statusbar=0,menubar=0,resizable=0,height=500,width=420');
+         window.open('halaman/admin/piket/cetak.php?id=<?php echo $id_dispen; ?>&guru=<?php echo $id_guru;?>', 'mywindow', 'toolbar=0,scrollbars=1,statusbar=0,menubar=0,resizable=0,height=500,width=420');
          </script>
          <?php
     }
