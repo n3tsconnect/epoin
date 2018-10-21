@@ -32,7 +32,7 @@
                             <h5 class="card-title">Piket</h5>
                             <p class="card-text">Digunakan untuk menambahkan pelanggaran dan pencatatan izin keluar masuk sekolah.</p>
                             <div style="text-align:center;">
-                            <a href="http://n3ts-lms.tk:2018/index.php?halaman=piket" class="btn btn-primary"><i class="fa fa-sign-in"></i> Piket</a>
+                            <a href="http://n3ts-lms.tk:2018/index.php?halaman=piket" class="btn btn-info"><i class="fa fa-edit"></i> Piket</a>
                             </div>
                           </div>
                         </div>
@@ -44,9 +44,9 @@
                             <h5 class="card-title">Admin</h5>
                             <p class="card-text">Digunakan untuk menambahkan user, jenis pelanggaran, dan fitur management database lainnya.</p>
                             <div style="text-align:center;">
-                            <a href="http://n3ts-lms.tk:2018/index.php?halaman=guru" class="btn btn-primary"><i class="fa fa-sign-in"></i> Guru</a>
-                            <a href="http://n3ts-lms.tk:2018/index.php?halaman=pelajar" class="btn btn-primary"><i class="fa fa-sign-in"></i> Pelajar</a>
-                            <a href="http://n3ts-lms.tk:2018/index.php?halaman=pelanggaran" class="btn btn-primary"><i class="fa fa-sign-in"></i> Pelanggaran</a>
+                            <a href="http://n3ts-lms.tk:2018/index.php?halaman=guru" class="btn btn-success"><i class="fa fa-users"></i> Guru</a>
+                            <a href="http://n3ts-lms.tk:2018/index.php?halaman=pelajar" class="btn btn-warning"><i class="fa fa-user"></i> Pelajar</a>
+                            <a href="http://n3ts-lms.tk:2018/index.php?halaman=pelanggaran" class="btn btn-danger"><i class="fa fa-warning"></i> Pelanggaran</a>
                           </div>
                         </div>
                           </div>
