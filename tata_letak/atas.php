@@ -80,15 +80,14 @@
                 <div class="col-sm-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                     <div class="header-left">
-                    <div class="dropdown for-notification">
-                          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="modal" data-target="#authorModal">
-                            <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">1</span>
-                          </button>
-                          </div>
-                            <b>Terakhir masuk</b> <?php echo $data['terakhir_masuk'];?>
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button">
+                                <i class="fa fa-bell"></i>
+                            </button>
                         </div>
+                        <b>Terakhir masuk</b> <?php echo $data['terakhir_masuk'];?>
                     </div>
+                </div>
 
                 <!-- Rafi Priatna -->
                 <div class="modal fade" id="authorModal" tabindex="-1" role="dialog" aria-labelledby="authorModalLabel" aria-hidden="true">
