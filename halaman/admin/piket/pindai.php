@@ -233,6 +233,8 @@
                         <label class="form-control-label">Sampai jam</label>
                         <input name="sampai_kapan" id="dispen-end" type="time" class="form-control" required />
                     </div>
+                    <label class="form-control-label">Print</label>
+                    <input name="print-check" id="printcheck" type="checkbox" class="form-control" />
                 </form>
             </div>
             <div class="modal-footer">
