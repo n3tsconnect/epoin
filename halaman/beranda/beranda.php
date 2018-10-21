@@ -109,7 +109,7 @@
                                   <th>No</th>
                                   <th>Siswa/i</th>
                                   <th>Izin</th>
-                                  <th>Izin</th>
+                                  <th>Keterangan</th>
                                   <th>Dari</th>
                                   <th>Sampai</th>
                                   <th>Tanggal</th>
