@@ -89,9 +89,6 @@ include ('tata_letak/atas.php');
                 if ($aksi == "pindai"){
                     include "halaman/admin/piket/pindai.php";
                 }
-                if ($aksi == "terimainput"){
-                    include "halaman/admin/piket/terima_input.php";
-                }
             }
             ?>
 
