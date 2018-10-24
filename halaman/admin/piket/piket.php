@@ -64,7 +64,7 @@
 
 		<div class="row">
 				<div class="col-sm-12">
-					<div class="card" style="overflow:auto;">
+					<div class="card">
 							<div class="card-header">
 									<strong class="card-title">Izin Valid</strong>
 							</div>
