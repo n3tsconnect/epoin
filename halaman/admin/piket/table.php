@@ -1,5 +1,5 @@
 <?php include ('../../../konfigurasi/koneksi.php'); ?>
-<table id="bootstrap-data-table2" class="table table-striped table-bordered" style="overflow:auto;">
+<table id="bootstrap-data-table2" class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>No</th>

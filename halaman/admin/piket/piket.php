@@ -63,7 +63,7 @@
     </div>
 
 		<div class="row">
-				<div class="col-sm-12">
+				<div class="col-sm-12" style="overflow:auto;">
 					<div class="card">
 							<div class="card-header">
 									<strong class="card-title">Izin Valid</strong>
