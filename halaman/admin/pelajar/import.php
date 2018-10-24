@@ -56,11 +56,19 @@ if(isset($_POST['simpan'])){
     $uploadPath = $currentDir . $uploadDirectory . basename($fileName); 
 
         if (! in_array($fileExtension,$fileExtensions)) {
+<<<<<<< HEAD
             $errors[] = "This file extension is not allowed. Please upload a CSV file";
         }
 
         if ($fileSize > 10000000) {
             $errors[] = "This file is more than 10MB. Sorry, it has to be less than or equal to 10MB";
+=======
+            $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
+        }
+
+        if ($fileSize > 10000000) {
+            $errors[] = "This file is more than 10MB. Sorry, it has to be less than or equal to 2MB";
+>>>>>>> 8f6b9c8ee55bff0325ad2c7068e20ff974e348c1
         }
 
         if (empty($errors)) {

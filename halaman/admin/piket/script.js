@@ -14,9 +14,14 @@ function fill(Value) {
 
 $(document).ready(function() {
 
-   //On pressing a key on "Search box" in "search.php" file. This function will be called.
+  $("#izin-dynamic").load("halaman/admin/piket/table.php");
+  var refreshId = setInterval(function() {
+     $("#izin-dynamic").load('halaman/admin/piket/table.php');
+  }, 100);
+  $.ajaxSetup({ cache: false });
 
-   $("#namapelajar").keyup(function() {
+
+$("#namapelajar").keyup(function() {
 
        //Assigning search box value to javascript variable named as "name".
 

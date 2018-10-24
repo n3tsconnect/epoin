@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" type="text/css" href="jquery.ajaxcomplete.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
@@ -60,4 +61,16 @@
             </div>
         </div>
     </div>
-</div>
+
+		<div class="row">
+				<div class="col-sm-12">
+					<div class="card" style="overflow:auto;">
+							<div class="card-header">
+									<strong class="card-title">Izin Terbaru</strong>
+							</div>
+							<div class="card-body card-block" id="izin-dynamic">
+
+							</div>
+					</div>
+				</div>
+		</div>
