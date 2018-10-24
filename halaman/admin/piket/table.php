@@ -36,7 +36,7 @@
         <td><?php echo date("Y-m-d", strtotime($pelanggaran["tgl_dibuat"]))?></td>
         <td><?php echo $pelanggaran['nama_pengguna']?></td>
         <td><?php echo gmdate("H:i:s", strtotime($pelanggaran["sampai_kapan"]) - time()) ?></td>
-        <td><?php echo "<p style="color:green"><b>Aktif</b></p>" ?></td>
+        <td><?php echo "<p style='color:green'><b>Aktif</b></p>" ?></td>
       </tr>
         <?php } ?>
     </tbody>
