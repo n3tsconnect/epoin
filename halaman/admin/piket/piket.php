@@ -1,4 +1,4 @@
-<?php include ('konfigurasi/koneksi.php'); ?>
+
 <link rel="stylesheet" type="text/css" href="jquery.ajaxcomplete.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
@@ -84,6 +84,7 @@
 									</thead>
 									<tbody>
 											<?php
+											include ('konfigurasi/koneksi.php');
 											$no   = 1;
 											$x  = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna, tb_pelajar
 											WHERE tb_datapelanggar.id_pelajar =  tb_pelajar.id_pelajar
