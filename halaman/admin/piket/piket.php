@@ -104,7 +104,7 @@
 											<td><?php echo date("H:i", strtotime($pelanggaran["sampai_kapan"]))?></td>
 											<td><?php echo date("Y-m-d", strtotime($pelanggaran["tgl_dibuat"]))?></td>
 											<td><?php echo $pelanggaran['nama_pengguna']?></td>
-											<td><?php if (time() > $pelanggaran["dari_kapan"] || time() < $pelanggaran["sampai_kapan"]) { echo "Aktif" }</td>
+											<td><?php $time = time(); if ($time > $pelanggaran["dari_kapan"] and $time < $pelanggaran["sampai_kapan"]) { echo "Aktif" }?></td>
 										</tr>
 											<?php } ?>
 									</tbody>
