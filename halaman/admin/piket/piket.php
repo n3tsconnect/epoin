@@ -69,7 +69,6 @@
 									<strong class="card-title">Izin Valid</strong>
 							</div>
 							<div class="card-body card-block" id="izin-dynamic">
-
 							</div>
 					</div>
 				</div>
