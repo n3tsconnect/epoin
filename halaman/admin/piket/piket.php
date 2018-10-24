@@ -1,3 +1,4 @@
+<?php include ('konfigurasi/koneksi.php'); ?>
 <link rel="stylesheet" type="text/css" href="jquery.ajaxcomplete.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
