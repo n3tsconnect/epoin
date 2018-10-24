@@ -87,7 +87,10 @@
 											$no   = 1;
 											$y  = $koneksi->query("SELECT * FROM tb_datadispen, tb_pengguna, tb_pelajar
 											WHERE tb_datadispen.id_pelajar = tb_pelajar.id_pelajar
-											AND tb_datadispen.id_guru = tb_pengguna.id_pengguna ORDER by tgl_dibuat DESC LIMIT 10");
+											AND tb_datadispen.id_guru = tb_pengguna.id_pengguna
+											AND NOW() > tb_datadispen.dari_kapan
+											AND NOW() < tb_datadispen.sampai_kapan
+											ORDER by tgl_dibuat DESC LIMIT 10");
 											while ($pelanggaran = $y->fetch_assoc()){
 											?>
 										<tr>
