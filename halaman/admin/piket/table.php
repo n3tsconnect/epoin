@@ -11,6 +11,7 @@
         <th>Tanggal</th>
         <th>Petugas</th>
         <th>Status</th>
+        <th>Waktu Tersisa</th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
         <td><?php echo date("Y-m-d", strtotime($pelanggaran["tgl_dibuat"]))?></td>
         <td><?php echo $pelanggaran['nama_pengguna']?></td>
         <td><?php echo "Aktif" ?></td>
+        <td><?php echo date("H:i:s", strtotime($pelanggaran["sampai_kapan"]) - time()) ?>
       </tr>
         <?php } ?>
     </tbody>
