@@ -66,7 +66,7 @@
 				<div class="col-sm-12">
 					<div class="card" style="overflow:auto;">
 							<div class="card-header">
-									<strong class="card-title">Izin Terbaru</strong>
+									<strong class="card-title">Izin Valid</strong>
 							</div>
 							<div class="card-body card-block" id="izin-dynamic">
 
