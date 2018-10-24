@@ -68,13 +68,42 @@
 								<strong class="card-title">Izin Aktif</strong>
 							</div>
 
-							<div class="card-body">
-								Card Content Here
+							<div class="card-body card-block" style="overflow:auto;">
+							<table id="bootstrap-data-table" class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>Pelanggar</th>
+											<th>Pelanggaran</th>
+											<th>Keterangan</th>
+											<th>Poin</th>
+											<th>Tanggal</th>
+											<th>Petugas</th>
+										</tr>
+									</thead>
+									<tbody>
+											<?php
+											$no   = 1;
+											$x  = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna, tb_pelajar
+											WHERE tb_datapelanggar.id_pelajar =  tb_pelajar.id_pelajar
+											AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
+											AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna ORDER by tanggal_pelanggaran DESC LIMIT 20");
+											while ($pelanggaran = $x->fetch_assoc()) {
+											?>
+									<tr>
+											<td><?php echo $no++;?></td>
+											<td><?php echo $pelanggaran['nama_pelajar']?></td>
+											<td><?php echo $pelanggaran['nama_pelanggaran']?></td>
+											<td><?php echo $pelanggaran['keterangan_pelanggaran']?></td>
+											<td><?php echo $pelanggaran['poin_pelanggaran']?></td>
+											<td><?php echo $pelanggaran['tanggal_pelanggaran']?></td>
+											<td><?php echo $pelanggaran['nama_pengguna']?></td>
+										</tr>
+											<?php } ?>
+									</tbody>
+								</table>
 							</div>
 
-							<div class="card-footer">
-								Card Footer Here
-							</div>
 					</div>
 				</div>
 		</div>
