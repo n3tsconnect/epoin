@@ -80,6 +80,7 @@
 											<th>Sampai</th>
 											<th>Tanggal</th>
 											<th>Petugas</th>
+											<th>Status</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -103,6 +104,7 @@
 											<td><?php echo date("H:i", strtotime($pelanggaran["sampai_kapan"]))?></td>
 											<td><?php echo date("Y-m-d", strtotime($pelanggaran["tgl_dibuat"]))?></td>
 											<td><?php echo $pelanggaran['nama_pengguna']?></td>
+											<td><?php if (time() > $pelanggaran["dari_kapan"] || time() < $pelanggaran["sampai_kapan"]) { echo "Aktif" }</td>
 										</tr>
 											<?php } ?>
 									</tbody>
