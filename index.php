@@ -63,6 +63,9 @@ include ('tata_letak/atas.php');
                 if ($aksi == "tambah"){
                     include "halaman/admin/pelajar/tambah.php";
                 }
+                if ($aksi == "import"){
+                    include "halaman/admin/pelajar/import.php";
+                }
                 if ($aksi == "hapus"){
                     include "halaman/admin/pelajar/hapus.php";
                 }

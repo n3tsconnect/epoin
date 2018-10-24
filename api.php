@@ -18,7 +18,7 @@ if (!isset($_SESSION['id'])) {
             if ($aksi == "terimainput"){
                 include "halaman/admin/piket/terima_input.php";
             }
-        }
+        } 
     }
 }
 ?>
