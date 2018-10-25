@@ -68,7 +68,7 @@ if(isset($_POST['simpan'])){
 
             if ($didUpload) {
                 echo "The file " . basename($fileName) . " has been uploaded\n";
-                $koneksi->query("LOAD DATA LOCAL INFILE '$uploadPath' INTO TABLE tb_pelajar FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES (nis_pelajar, nama_pelajar, kelas_pelajar);");
+                $koneksi->query("LOAD DATA LOCAL INFILE '$uploadPath' INTO TABLE tb_pelajar FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES (nis_pelajar, nama_pelajar, kelas_pelajar, poin_pelajar) SET level_pelajar = 'Pelajar';");
                 if(!empty(mysqli_error($koneksi))){
                     echo "SQL ERROR: \n";
                     echo var_dump(mysqli_error($koneksi));
