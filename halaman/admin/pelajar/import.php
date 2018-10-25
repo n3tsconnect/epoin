@@ -56,26 +56,26 @@ if(isset($_POST['simpan'])){
     $uploadPath = $currentDir . $uploadDirectory . basename($fileName); 
 
         if (! in_array($fileExtension,$fileExtensions)) {
-<<<<<<< HEAD
             $errors[] = "This file extension is not allowed. Please upload a CSV file";
         }
 
         if ($fileSize > 10000000) {
             $errors[] = "This file is more than 10MB. Sorry, it has to be less than or equal to 10MB";
-=======
-            $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
-        }
-
-        if ($fileSize > 10000000) {
-            $errors[] = "This file is more than 10MB. Sorry, it has to be less than or equal to 2MB";
->>>>>>> 8f6b9c8ee55bff0325ad2c7068e20ff974e348c1
         }
 
         if (empty($errors)) {
             $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
             if ($didUpload) {
-                echo "The file " . basename($fileName) . " has been uploaded";
+                echo "The file " . basename($fileName) . " has been uploaded\n";
+                $koneksi->query("LOAD DATA LOCAL INFILE '$uploadPath' INTO TABLE tb_pelajar FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES (nis_pelajar, nama_pelajar, kelas_pelajar);");
+                if(!empty(mysqli_error($koneksi))){
+                    echo "SQL ERROR: \n";
+                    echo var_dump(mysqli_error($koneksi));
+                } else {
+                    echo "\nImport sukses!";
+                }
+                
             } else {
                 echo "An error occurred somewhere. Try again or contact the admin\n";
                 echo print_r(error_get_last());
