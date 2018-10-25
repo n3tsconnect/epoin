@@ -38,7 +38,7 @@
         <td><?php echo $pelanggaran['nama_pengguna']?></td>
         <td><?php echo gmdate("H:i:s", strtotime($pelanggaran["sampai_kapan"]) - time()) ?></td>
         <td><?php echo "<p style='color:green'><b>Valid</b></p>" ?></td> 
-        <td><?php echo "<button class='btn btn-danger'>Revoke</button> ?></td>
+        <td><?php echo "<button class='btn btn-danger'>Revoke</button>" ?></td>
       </tr>
         <?php } ?>
     </tbody>
