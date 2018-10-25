@@ -22,7 +22,7 @@
         WHERE tb_datadispen.id_pelajar = tb_pelajar.id_pelajar
         AND tb_datadispen.id_guru = tb_pengguna.id_pengguna
         AND CURTIME() > tb_datadispen.dari_kapan
-        AND CURTIME() < ADDTIME("tb_datadispen.sampai_kapan", "7200") 
+        AND CURTIME() < ADDTIME(tb_datadispen.sampai_kapan, "7200") 
         AND DATE(tb_datadispen.tgl_dibuat) = CURDATE()
         ORDER by tgl_dibuat DESC LIMIT 10");
         while ($pelanggaran = $y->fetch_assoc()){
