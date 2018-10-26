@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" type="text/css" href="jquery.ajaxcomplete.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
@@ -25,7 +26,7 @@
                 </div>
                 <div class="card-body">
                     Silakan pindai kartu pelajar atau ketik manual NIS.<br /><br />
-                    <form id="inputnis" method="POST" action="index.php?halaman=piket&aksi=terimainput" class="col-sm-4">
+                    <form id="inputnis" method="POST" action="api.php?halaman=piket&aksi=terimainput" class="col-sm-4">
                         <div class="form-group">
                             <input name="pindai" type="number" class="form-control" required autofocus />
                         </div>
@@ -45,7 +46,7 @@
                 </div>
                 <div class="card-body">
                     Cari siswa berdasarkan Nama<br /><br />
-                    <form id="inputnama" method="POST" action="index.php?halaman=piket&aksi=terimainput" class="col-sm-6">
+                    <form id="inputnama" method="POST" action="api.php?halaman=piket&aksi=terimainput" class="col-sm-6">
                         <div class="form-group">
                             <input name="nama_pelajar" id="namapelajar" class="form-control" placeholder="Cari nama" autocomplete="off">
                         </div>
@@ -60,4 +61,15 @@
             </div>
         </div>
     </div>
-</div>
+
+		<div class="row">
+				<div class="col-sm-12" style="overflow:auto;">
+					<div class="card">
+							<div class="card-header">
+									<strong class="card-title">Izin Valid</strong>
+							</div>
+							<div class="card-body card-block" id="izin-dynamic">
+							</div>
+					</div>
+				</div>
+		</div>

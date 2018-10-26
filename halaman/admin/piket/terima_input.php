@@ -10,7 +10,7 @@ if(isset($_POST["simpan"])){
     if($cek){
         ?>
             <script type="text/javascript">
-                window.location.href = "?halaman=piket&aksi=pindai&nis=<?php echo $tujuan;?>";
+                window.location.href = "index.php?halaman=piket&aksi=pindai&nis=<?php echo $tujuan;?>";
             </script>
         <?php
     } else{
@@ -34,7 +34,7 @@ if(isset($_POST["namasiswa"])){
     if($cek){
         ?>
             <script type="text/javascript">
-                window.location.href = "?halaman=piket&aksi=pindai&nis=<?php echo $tujuan;?>";
+                window.location.href = "index.php?halaman=piket&aksi=pindai&nis=<?php echo $tujuan;?>";
             </script>
         <?php
     } else{
