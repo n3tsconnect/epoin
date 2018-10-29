@@ -1,5 +1,5 @@
 <?php
-    $id_pelajar     = (int) $_GET['id'];
+    $id_pelajar     = esc((int) $_GET['id']);
     $sql            = $koneksi->query("SELECT * FROM tb_pelajar WHERE id_pelajar = '$id_pelajar'");
     $pelajar        = $sql->fetch_assoc();
 ?>
@@ -71,11 +71,11 @@
                                 </form>
 <?php
 if(isset($_POST['simpan'])){
-    $nis        = $_POST['nis'];
-    $nama       = $_POST['nama'];
-    $surel      = $_POST['surel'];
-    $telp       = $_POST['notelp'];
-    $status     = $_POST['status'];
+    $nis        = esc($_POST['nis']);
+    $nama       = esc($_POST['nama']);
+    $surel      = esc($_POST['surel']);
+    $telp       = esc($_POST['notelp']);
+    $status     = esc($_POST['status']);
     $foto       = $_FILES['gantifoto']['name'];
     $file       = $_FILES['gantifoto']['tmp_name'];
     $size       = $_FILES['gantifoto']['size'];
