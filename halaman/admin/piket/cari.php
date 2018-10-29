@@ -1,6 +1,6 @@
 <?php
     include ('../../../konfigurasi/koneksi.php');
-    $search = $_POST['search'];
+    $search = esc($_POST['search']);
     $sql     = $koneksi->query("SELECT nama_pelajar FROM tb_pelajar WHERE LOWER(nama_pelajar) LIKE '%$search%' ORDER BY nama_pelajar ASC");
     $cek     = $sql->num_rows;
     $daftarNama = array();

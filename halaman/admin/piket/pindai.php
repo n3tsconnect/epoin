@@ -3,6 +3,8 @@
     $sql    = $koneksi->query("SELECT * FROM tb_pelajar WHERE nis_pelajar = '$pindai'");
     $x      = $sql->fetch_assoc();
     $id     = $x['id_pelajar'];
+    $esc_id = esc($id);
+
     // NIS bisa diganti dari URL nya.
     // Cek nis lagi.
     $cek    = $sql->num_rows;
@@ -100,7 +102,7 @@
                                 <?php
                                     $no = 1;
                                     $data = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna
-                                    WHERE tb_datapelanggar.id_pelajar = '$id'
+                                    WHERE tb_datapelanggar.id_pelajar = '$esc_id'
                                     AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
                                     AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna");
 
@@ -138,7 +140,7 @@
                                 <?php
                                     $no = 1;
                                     $data = $koneksi->query("SELECT * FROM tb_datadispen, tb_pengguna
-                                    WHERE tb_datadispen.id_pelajar = '$id'
+                                    WHERE tb_datadispen.id_pelajar = '$esc_id'
                                     AND tb_datadispen.id_guru = tb_pengguna.id_pengguna");
 
                                     while($izin = $data->fetch_assoc()){
@@ -245,9 +247,9 @@
 
 <?php
     if(isset($_POST['tambah-pelanggaran'])){
-        $id_pelanggaran = $_POST['jenis-pelanggaran'];
-        $keterangan = $_POST['keterangan'];
-        $id_guru        = $_SESSION['id'];
+        $id_pelanggaran = esc($_POST['jenis-pelanggaran']);
+        $keterangan = esc($_POST['keterangan']);
+        $id_guru        = esc($_SESSION['id']);
         $setting        = new DateTime('NOW', new DateTimeZone('Asia/Jakarta'));
         $tanggal        = $setting->format('Y-m-d H:i:s');
         // Cek poin.
@@ -268,11 +270,11 @@
          <?php
     }
     if(isset($_POST['tambah-izin'])){
-        $nama           = $_POST['nama_dispen'];
-        $desk           = $_POST['deskripsi_dispen'];
-        $darikapan      = $_POST['dari_kapan'];
-        $sampaikapan    = $_POST['sampai_kapan'];
-        $id_guru        = $_SESSION['id'];
+        $nama           = esc($_POST['nama_dispen']);
+        $desk           = esc($_POST['deskripsi_dispen']);
+        $darikapan      = esc($_POST['dari_kapan']);
+        $sampaikapan    = esc($_POST['sampai_kapan']);
+        $id_guru        = esc($_SESSION['id']);
         $setting        = new DateTime('NOW', new DateTimeZone('Asia/Jakarta'));
         $tanggal        = $setting->format('Y-m-d H:i:s');
         // Data dimasukan ke table data dispensasi.
@@ -282,11 +284,8 @@
         $id_dispen = $koneksi->insert_id;
         ?>
          <script type="text/javascript">
-         function printfunction() {
          window.location.href="?halaman=piket&aksi=pindai&nis=<?php echo $pindai;?>";
          window.open('halaman/admin/piket/cetak.php?id=<?php echo $id_dispen; ?>&guru=<?php echo $id_guru;?>', 'mywindow', 'toolbar=0,scrollbars=1,statusbar=0,menubar=0,resizable=0,height=500,width=420');
-         
-        }
          </script>
          <?php
     }
