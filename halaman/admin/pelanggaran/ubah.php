@@ -1,5 +1,5 @@
 <?php
-    $id_pelanggaran = (int) $_GET['id'];
+    $id_pelanggaran = esc((int) $_GET['id']);
     $ambil          = $koneksi->query("SELECT * FROM tb_pelanggaran WHERE id_pelanggaran = '$id_pelanggaran'");
     $lihat          = $ambil->fetch_assoc();
 ?>
@@ -53,9 +53,9 @@
                                 </form>
 <?php
 if(isset($_POST['simpan'])){
-    $nama       = $_POST['nama_pelanggaran'];
-    $desk       = $_POST['deskripsi_pelanggaran'];
-    $poin       = $_POST['poin_pelanggaran'];
+    $nama       = esc($_POST['nama_pelanggaran']);
+    $desk       = esc($_POST['deskripsi_pelanggaran']);
+    $poin       = esc($_POST['poin_pelanggaran']);
     // Simpan di table pelanggaran.
     $sql    = $koneksi->query("UPDATE tb_pelanggaran SET nama_pelanggaran = '$nama',
     deskripsi_pelanggaran = '$desk', poin_pelanggaran = '$poin' WHERE id_pelanggaran = '$id_pelanggaran'");

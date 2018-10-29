@@ -48,9 +48,9 @@
                                 </form>
 <?php
 if(isset($_POST['simpan'])){
-    $nama       = $_POST['nama_pelanggaran'];
-    $desk       = $_POST['deskripsi_pelanggaran'];
-    $poin       = $_POST['poin_pelanggaran'];
+    $nama       = esc($_POST['nama_pelanggaran']);
+    $desk       = esc($_POST['deskripsi_pelanggaran']);
+    $poin       = esc($_POST['poin_pelanggaran']);
     // Simpan di table pelanggaran.
     $sql    = $koneksi->query("INSERT INTO tb_pelanggaran (nama_pelanggaran, deskripsi_pelanggaran, poin_pelanggaran)
     VALUES ('$nama', '$desk', '$poin')");
