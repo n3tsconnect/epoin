@@ -3,8 +3,8 @@
 	// Proses masuk.
 	// Ribet banget ini codenya wkwk.
 	if(isset($_POST['masuk'])){
-		$username 		= mysqli_real_escape_string($koneksi, trim($_POST['username']));
-		$password 		= mysqli_real_escape_string($koneksi, trim($_POST['katasandi']));
+		$username 		= esc_trim($_POST['username']);
+		$password 		= esc_trim($_POST['katasandi']);
 		// Cek username dari database.
 		$cek 			= $koneksi->query("SELECT * FROM tb_pengguna WHERE (username_pengguna = '".$username."' OR surel_pengguna = '".$username."')");
 		$pelajar 		= $koneksi->query("SELECT * FROM tb_pelajar WHERE nis_pelajar = '".$username."'");
