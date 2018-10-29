@@ -1,7 +1,7 @@
 <?php
-    $rafi = $_GET['id'];
+    $id = esc($_GET['id']);
 // Hapus id pelajarnya.
-    $koneksi->query("DELETE FROM tb_pengguna WHERE id_pengguna = '$rafi'");
+    $koneksi->query("DELETE FROM tb_pengguna WHERE id_pengguna = '$id'");
 ?>
          <script type="text/javascript">
             alert("Data berhasil dihapus!");

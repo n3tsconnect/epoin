@@ -1,5 +1,5 @@
 <?php
-    $id_pelajar     = esc((int) $_GET['id']);
+    $id_pelajar     = (int) esc($_GET['id']);
     $sql            = $koneksi->query("SELECT * FROM tb_pelajar WHERE id_pelajar = '$id_pelajar'");
     $pelajar        = $sql->fetch_assoc();
 ?>

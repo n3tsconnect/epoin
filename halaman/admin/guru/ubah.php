@@ -1,5 +1,5 @@
 <?php
-    $id_pengguna    = (int) $_GET['id'];
+    $id_pengguna    = (int) esc($_GET['id']);
     $sql            = $koneksi->query("SELECT * FROM tb_pengguna WHERE id_pengguna = '$id_pengguna'");
     $pengguna       = $sql->fetch_assoc();
 ?>
@@ -59,9 +59,9 @@
                                 </form>
 <?php
 if(isset($_POST['simpan'])){
-    $nama       = $_POST['nama'];
-    $username   = $_POST['username'];
-    $surel      = $_POST['surel'];
+    $nama       = esc($_POST['nama']);
+    $username   = esc($_POST['username']);
+    $surel      = esc($_POST['surel']);
     $foto       = $_FILES['gantifoto']['name'];
     $file       = $_FILES['gantifoto']['tmp_name'];
     $size       = $_FILES['gantifoto']['size'];

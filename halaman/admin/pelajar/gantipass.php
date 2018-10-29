@@ -1,5 +1,5 @@
 <?php
-    $id_pelajar     = (int) $_GET['id'];
+    $id_pelajar     = (int) esc($_GET['id']);
     $sql            = $koneksi->query("SELECT * FROM tb_pelajar WHERE id_pelajar = '$id_pelajar'");
     $pelajar        = $sql->fetch_assoc();
 ?>
@@ -48,8 +48,8 @@
                                 </form>
 <?php
 if(isset($_POST['simpan'])){
-    $pass_baru    = $_POST['baru'];
-    $konfirmpass  = $_POST['konfirm'];
+    $pass_baru    = esc($_POST['baru']);
+    $konfirmpass  = esc($_POST['konfirm']);
     // Hash katasandi yang baru.
     $passfix        = password_hash($pass_baru, PASSWORD_DEFAULT);
     // Cek panjang karakter, harus 6 atau lebih.
