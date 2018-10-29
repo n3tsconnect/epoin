@@ -71,94 +71,96 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data pelanggaran</strong>
+                                <strong class="card-title"> Riwayat Pelanggaran</strong>
                             </div>
-                            <div class="card-body card-block">
-                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                <thead>
-                                  <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Deskripsi</th>
-                                    <th>Poin</th>
-                                    <th>Tanggal</th>
-                                    <th>Petugas</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $no   = 1;
-                                    $x  = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna
-                                    WHERE tb_datapelanggar.id_pelajar = '$id_pelajar'
-                                    AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
-                                    AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna");
-                                    while ($pelanggaran = $x->fetch_assoc()){
-                                    ?>
-                                <tr>
-                                    <td><?php echo $no++;?></td>
-                                    <td><?php echo $pelanggaran['nama_pelanggaran']?></td>
-                                    <td><?php echo $pelanggaran['deskripsi_pelanggaran']?></td>
-                                    <td><?php echo $pelanggaran['poin_pelanggaran']?></td>
-                                    <td><?php echo $pelanggaran['tanggal_pelanggaran']?></td>
-                                    <td><?php echo $pelanggaran['nama_pengguna']?></td>
-                                  </tr>
-                                    <?php } ?>
-                                </tbody>
-                              </table>
+                            <div class="card-body">
+                                <table id="tabel-pelanggaran" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th><th>Pelanggaran</th><th>Keterangan</th><th>Poin</th><th>Timestamp</th><th>Petugas</th>
+                                        </tr>
+                                        <tbody>
+                                            <?php
+                                                $no = 1;
+                                                $data = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna
+                                                WHERE tb_datapelanggar.id_pelajar = '$id_pelajar'
+                                                AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
+                                                AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna");
+
+                                                while($pelanggaran = $data->fetch_assoc()){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $no++; ?></td>
+                                                        <td><?php echo $pelanggaran['nama_pelanggaran']; ?></td>
+                                                        <td><?php echo $pelanggaran['keterangan_pelanggaran']?></td>
+                                                        <td><?php echo $pelanggaran['poin_pelanggaran']?></td>
+                                                        <td><?php echo $pelanggaran['tanggal_pelanggaran']?></td>
+                                                        <td><?php echo $pelanggaran['nama_pengguna']?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data dispensasi</strong>
+                                <strong class="card-title">Riwayat Izin</strong>
                             </div>
-                            <div class="card-body card-block">
-                            <table id="bootstrap-data-table2" class="table table-striped table-bordered">
-                                <thead>
-                                  <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Deskripsi</th>
-                                    <th>Tanggal</th>
-                                    <th>Petugas</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $no   = 1;
-                                    $y  = $koneksi->query("SELECT * FROM tb_datadispen, tb_pengguna
-                                    WHERE tb_datadispen.id_pelajar = '$id_pelajar'
-                                    AND tb_datadispen.id_guru = tb_pengguna.id_pengguna");
-                                    while ($pelanggaran = $y->fetch_assoc()){
-                                    ?>
-                                <tr>
-                                    <td><?php echo $no++;?></td>
-                                    <td><?php echo $pelanggaran['nama_dispen']?></td>
-                                    <td><?php echo $pelanggaran['deskripsi_dispen']?></td>
-                                    <td><?php echo $pelanggaran['tgl_dibuat']?></td>
-                                    <td><?php echo $pelanggaran['nama_pengguna']?></td>
-                                  </tr>
-                                    <?php } ?>
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data penghargaan</strong>
-                            </div>
-                            <div class="card-body card-block">
-                            Segera hadir!
+                            <div class="card-body">
+                                <table id="tabel-izin" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th><th>Izin</th><th>Keterangan</th><th>Dari</th><th>Sampai</th><th>Petugas</th>
+                                        </tr>
+                                        <tbody>
+                                            <?php
+                                                $no = 1;
+                                                $data = $koneksi->query("SELECT * FROM tb_datadispen, tb_pengguna
+                                                WHERE tb_datadispen.id_pelajar = '$id_pelajar'
+                                                AND tb_datadispen.id_guru = tb_pengguna.id_pengguna");
+
+                                                while($izin = $data->fetch_assoc()){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $no++; ?></td>
+                                                        <td><?php echo $izin['nama_dispen']; ?></td>
+                                                        <td><?php echo $izin['deskripsi_dispen']?></td>
+                                                        <td><?php echo date("H:i", strtotime($izin["dari_kapan"]))?>
+                                                        <?php echo date("Y-m-d", strtotime($izin["tgl_dibuat"]))?></td>
+                                                        <td><?php echo date("H:i", strtotime($izin["sampai_kapan"]))?>
+                                                        <?php echo date("Y-m-d", strtotime($izin["tgl_dibuat"]))?></td>
+                                                        <td><?php echo $izin['nama_pengguna']?></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
+
+<script src="web/js/lib/data-table/datatables.min.js"></script>
+<script src="web/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="web/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="web/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="web/js/lib/data-table/jszip.min.js"></script>
+<script src="web/js/lib/data-table/pdfmake.min.js"></script>
+<script src="web/js/lib/data-table/vfs_fonts.js"></script>
+<script src="web/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="web/js/lib/data-table/buttons.print.min.js"></script>
+<script src="web/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="web/js/lib/data-table/datatables-init.js"></script>
 <script type="text/javascript">
 var status = document.getElementById('status').innerHTML;
 if (status == "Aktif"){
@@ -167,4 +169,13 @@ if (status == "Aktif"){
 if(status == "Nonaktif"){
 document.getElementById('status').style.color = "#e74c3c";
 }
+
+$(document).ready(function() {
+        $('#tabel-pelanggaran').DataTable({
+            order: [[0, "desc"]]
+        });
+        $('#tabel-izin').DataTable({
+            order: [[0, "desc"]]
+        });
+    });
 </script>
