@@ -23,21 +23,24 @@
             <strong class="card-title">Data pelajar</strong>
         </div>
         <div class="card-body card-block">
-            <form method="POST" enctype="multipart/form-data">
+            <form id="form-upload" method="POST" enctype="multipart/form-data">
                 <div class="col-lg-3">
                     <div class="form-group">
                         <label class=" form-control-label">File data</label>
                         <input name="importData" type="file" class="form-control" required>
                     </div>
                 </div>
+            </form>
         </div>
         <div class="card-footer">
-            <button name="simpan" type="submit" class="btn btn-primary btn-sm">
+            <button form="form-upload" name="simpan" type="submit" class="btn btn-primary btn-sm">
                 <i class="fa fa-dot-circle-o"></i> Simpan
+            </button>
+            <button name="download-template" type="button" class="btn btn-info btn-sm">
+                <i class="fa fa-download"></i> Template
             </button>
         </div>
     </div>
-    </form>
     <?php
 if(isset($_POST['simpan'])){
     $currentDir = getcwd();
