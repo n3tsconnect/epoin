@@ -52,6 +52,7 @@
                     </li>
                     <h3 class="menu-title">Guru</h3><!-- /.menu-title -->
                     <li><a href="?halaman=piket"> <i class="menu-icon fa fa-pencil"></i> Piket</a></li>
+                    <li><a href="?halaman=piket"> <i class="menu-icon fa fa-pencil"></i> Bulk Insert</a></li>
                     <h3 class="menu-title">Admin</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Pengguna</a>
