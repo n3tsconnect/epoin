@@ -93,6 +93,9 @@ include ('tata_letak/atas.php');
                 if ($aksi == "pindai"){
                     include "halaman/admin/piket/pindai.php";
                 }
+                if ($aksi == "bulkinsert"){
+                    include "halaman/admin/piket/bulk_insert.php";
+                }
             }
             ?>
 
