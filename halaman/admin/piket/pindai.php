@@ -1,9 +1,7 @@
 <?php
-    $pindai = (float) $_GET['nis'];
-    $sql    = $koneksi->query("SELECT * FROM tb_pelajar WHERE nis_pelajar = '$pindai'");
+    $id = (float) esc($_GET['id']);
+    $sql    = $koneksi->query("SELECT * FROM tb_pelajar WHERE id_pelajar = '$id'");
     $x      = $sql->fetch_assoc();
-    $id     = $x['id_pelajar'];
-    $esc_id = esc($id);
 
     // NIS bisa diganti dari URL nya.
     // Cek nis lagi.
@@ -102,7 +100,7 @@
                                 <?php
                                     $no = 1;
                                     $data = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna
-                                    WHERE tb_datapelanggar.id_pelajar = '$esc_id'
+                                    WHERE tb_datapelanggar.id_pelajar = '$id'
                                     AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
                                     AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna");
 
@@ -140,7 +138,7 @@
                                 <?php
                                     $no = 1;
                                     $data = $koneksi->query("SELECT * FROM tb_datadispen, tb_pengguna
-                                    WHERE tb_datadispen.id_pelajar = '$esc_id'
+                                    WHERE tb_datadispen.id_pelajar = '$id'
                                     AND tb_datadispen.id_guru = tb_pengguna.id_pengguna");
 
                                     while($izin = $data->fetch_assoc()){
@@ -265,7 +263,7 @@
         ?>
          <script type="text/javascript">
          alert("Data berhasil disimpan!");
-         window.location.href="?halaman=piket&aksi=pindai&nis=<?php echo $pindai;?>";
+         window.location.href="?halaman=piket&aksi=pindai&id=<?php echo $id;?>";
          </script>
          <?php
     }
@@ -284,7 +282,7 @@
         $id_dispen = $koneksi->insert_id;
         ?>
          <script type="text/javascript">
-         window.location.href="?halaman=piket&aksi=pindai&nis=<?php echo $pindai;?>";
+         window.location.href="?halaman=piket&aksi=pindai&id=<?php echo $id;?>";
          window.open('halaman/admin/piket/cetak.php?id=<?php echo $id_dispen; ?>&guru=<?php echo $id_guru;?>', 'mywindow', 'toolbar=0,scrollbars=1,statusbar=0,menubar=0,resizable=0,height=500,width=420');
          </script>
          <?php
