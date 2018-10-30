@@ -24,7 +24,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="mx-auto d-block">
-                                    <img class="rounded-circle mx-auto d-block" style="width:85px; height:85px;" src="gambar/profil/guru/<?php echo $data['foto_pengguna']?>" alt="Card image cap">
+                                    <img class="rounded-circle mx-auto d-block" style="width:85px; height:85px;" src="<?php
+                                        if (file_exists('gambar/profil/guru/'.$data['foto_pengguna'].'')) { echo 'gambar/profil/guru/'.$data['foto_pengguna'].''; } else {echo 'http://placekitten.com/g/200/200';}
+                                    ?>" alt="Card image cap">
                                     <h5 class="text-sm-center mt-2 mb-1"><?php echo $data['nama_pengguna']?></h5>
                                     <div class="location text-sm-center"><i class="fa fa-lightbulb-o"></i> <?php echo $data['level_pengguna']?></div>
                                 </div>
