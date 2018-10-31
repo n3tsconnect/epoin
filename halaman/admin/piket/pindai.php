@@ -96,29 +96,6 @@
                             <tr>
                                 <th>No</th><th>Pelanggaran</th><th>Keterangan</th><th>Poin</th><th>Timestamp</th><th>Petugas</th><th><i class="fa fa-cogs"></i></th>
                             </tr>
-                            <tbody>
-                                <?php
-                                    $no = 1;
-                                    $data = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna
-                                    WHERE tb_datapelanggar.id_pelajar = '$id'
-                                    AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
-                                    AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna");
-
-                                    while($pelanggaran = $data->fetch_assoc()){
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $no++; ?></td>
-                                            <td><?php echo $pelanggaran['nama_pelanggaran']; ?></td>
-                                            <td><?php echo $pelanggaran['keterangan_pelanggaran'];?></td>
-                                            <td><?php echo $pelanggaran['poin_pelanggaran'];?></td>
-                                            <td><?php echo $pelanggaran['tanggal_pelanggaran'];?></td>
-                                            <td><?php echo $pelanggaran['nama_pengguna'];?></td>
-                                            <td><a href="#"><i class="fa fa-cog"></i></a>    <a onclick="deletePelanggaran(<?php echo $pelanggaran['id']; ?>)" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>
-                                        </tr>
-                                        <?php
-                                    }
-                                ?>
-                            </tbody>
                         </thead>
                     </table>
                 </div>
@@ -329,10 +306,12 @@
     // Initialize data tables
     $(document).ready(function() {
         $('#tabel-pelanggaran').DataTable({
+            "ajax": 'api.php?halaman=piket&aksi=pindai&data_tabel-pelanggaran=1&id_pelajar=<?php echo $id ?>',
             order: [[4, "desc"]],
             "columnDefs": [{
                 "targets": 6,
-                "orderable": false
+                "orderable": false,
+                "defaultContent": '<td><a href="#"><i class="fa fa-cog"></i></a>    <a onclick="deletePelanggaran(<?php echo $pelanggaran['id']; ?>)" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>'
             }]
         });
         $('#tabel-izin').DataTable({

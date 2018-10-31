@@ -1,21 +1,23 @@
 <?php
     if(isset($_GET['data_tabel-pelanggaran'])){
         $id_pelajar = esc($_GET['id_pelajar']);
-        $no = 0;
+        $rowNo = 0;
         $data = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna
         WHERE tb_datapelanggar.id_pelajar = '$id_pelajar'
         AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
         AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna");
         $result = array();
+        $result['data'] = array();
         while($pelanggaran = $data->fetch_assoc()){
-            $result[$no] = array();
-            $result[$no]['no'] = $no + 1;
-            $result[$no]['nama'] = $pelanggaran['nama_pelanggaran'];
-            $result[$no]['keterangan'] = $pelanggaran['keterangan_pelanggaran'];
-            $result[$no]['poin'] = $pelanggaran['poin_pelanggaran'];
-            $result[$no]['tanggal'] = $pelanggaran['tanggal_pelanggaran'];
-            $result[$no]['nama_piket'] = $pelanggaran['nama_pengguna'];
-            $no++;
+            $result['data'][$rowNo] = array();
+            $result['data'][$rowNo][0] = $rowNo + 1;
+            $result['data'][$rowNo][1] = $pelanggaran['nama_pelanggaran'];
+            $result['data'][$rowNo][2] = $pelanggaran['keterangan_pelanggaran'];
+            $result['data'][$rowNo][3] = $pelanggaran['poin_pelanggaran'];
+            $result['data'][$rowNo][4] = $pelanggaran['tanggal_pelanggaran'];
+            $result['data'][$rowNo][5] = $pelanggaran['nama_pengguna'];
+            $result['data'][$rowNo][6] = null;
+            $rowNo++;
         }
 
         echo json_encode($result);
