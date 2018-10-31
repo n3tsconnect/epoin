@@ -109,11 +109,11 @@
                                         <tr>
                                             <td><?php echo $no++; ?></td>
                                             <td><?php echo $pelanggaran['nama_pelanggaran']; ?></td>
-                                            <td><?php echo $pelanggaran['keterangan_pelanggaran']?></td>
-                                            <td><?php echo $pelanggaran['poin_pelanggaran']?></td>
-                                            <td><?php echo $pelanggaran['tanggal_pelanggaran']?></td>
-                                            <td><?php echo $pelanggaran['nama_pengguna']?></td>
-                                            <td><a href="#"><i class="fa fa-cog"></i></a>    <a href="#"><i class="fa fa-trash" style="color:red"></i></a></td>
+                                            <td><?php echo $pelanggaran['keterangan_pelanggaran'];?></td>
+                                            <td><?php echo $pelanggaran['poin_pelanggaran'];?></td>
+                                            <td><?php echo $pelanggaran['tanggal_pelanggaran'];?></td>
+                                            <td><?php echo $pelanggaran['nama_pengguna'];?></td>
+                                            <td><a href="#"><i class="fa fa-cog"></i></a>    <a onclick="deletePelanggaran(<?php echo $pelanggaran['id']; ?>)" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>
                                         </tr>
                                         <?php
                                     }
@@ -307,6 +307,21 @@
     function previewPoin(element) {
         var poin = element.options[element.selectedIndex].getAttribute("data-poin");
         document.getElementById("previewPoin").innerHTML = poin;
+    }
+    
+    function deletePelanggaran(id_pelanggaran){
+        $.ajax({
+            type: "POST",
+            url: "api.php?halaman=piket&aksi=poin",
+            data: {
+                delete_pelanggaran: 1,
+                id_pelanggaran: id_pelanggaran
+            },
+            success: function(html){
+                alert("Pelanggaran dengan id " + id_pelanggaran + " telah dihapus.");
+                location.reload();
+            }
+        });
     }
 
     // Initialize data tables

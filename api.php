@@ -18,6 +18,9 @@ if (!isset($_SESSION['id'])) {
             if ($aksi == "terimainput"){
                 include "halaman/admin/piket/terima_input.php";
             }
+            if ($aksi == "poin"){
+                include "halaman/admin/piket/poin.api.php";
+            }
         } 
     }
 }
