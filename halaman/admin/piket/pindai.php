@@ -94,7 +94,7 @@
                     <table id="tabel-pelanggaran" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>No</th><th>Pelanggaran</th><th>Keterangan</th><th>Poin</th><th>Timestamp</th><th>Petugas</th>
+                                <th>No</th><th>Pelanggaran</th><th>Keterangan</th><th>Poin</th><th>Timestamp</th><th>Petugas</th><th><i class="fa fa-cogs"></i></th>
                             </tr>
                             <tbody>
                                 <?php
@@ -113,6 +113,7 @@
                                             <td><?php echo $pelanggaran['poin_pelanggaran']?></td>
                                             <td><?php echo $pelanggaran['tanggal_pelanggaran']?></td>
                                             <td><?php echo $pelanggaran['nama_pengguna']?></td>
+                                            <td><a href="#"><i class="fa fa-cog"></i></a>    <a href="#"><i class="fa fa-trash" style="color:red"></i></a></td>
                                         </tr>
                                         <?php
                                     }
@@ -311,7 +312,11 @@
     // Initialize data tables
     $(document).ready(function() {
         $('#tabel-pelanggaran').DataTable({
-            order: [[0, "desc"]]
+            order: [[4, "desc"]],
+            "columnDefs": [{
+                "targets": 6,
+                "orderable": false
+            }]
         });
         $('#tabel-izin').DataTable({
             order: [[0, "desc"]]
