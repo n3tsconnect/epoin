@@ -310,18 +310,20 @@
     }
     
     function deletePelanggaran(id_pelanggaran){
-        $.ajax({
-            type: "POST",
-            url: "api.php?halaman=piket&aksi=poin",
-            data: {
-                delete_pelanggaran: 1,
-                id_pelanggaran: id_pelanggaran
-            },
-            success: function(html){
-                alert("Pelanggaran dengan id " + id_pelanggaran + " telah dihapus.");
-                location.reload();
-            }
-        });
+        if(confirm("Delete pelanggaran dengan id " + id_pelanggaran + "?")){
+            $.ajax({
+                type: "POST",
+                url: "api.php?halaman=piket&aksi=poin",
+                data: {
+                    delete_pelanggaran: 1,
+                    id_pelanggaran: id_pelanggaran
+                },
+                success: function(html){
+                    alert("Pelanggaran dengan id " + id_pelanggaran + " telah dihapus.");
+                    location.reload();
+                }
+            });
+        }
     }
 
     // Initialize data tables
