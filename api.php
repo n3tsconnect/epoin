@@ -21,6 +21,9 @@ if (!isset($_SESSION['id'])) {
             if ($aksi == "poin"){
                 include "halaman/admin/piket/poin.api.php";
             }
+            if ($aksi == "pindai"){
+                include "halaman/admin/piket/pindai.api.php";
+            }
         } 
     }
 }
