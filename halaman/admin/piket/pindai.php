@@ -110,31 +110,8 @@
                     <table id="tabel-izin" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>No</th><th>Izin</th><th>Keterangan</th><th>Dari</th><th>Sampai</th><th>Petugas</th>
+                                <th>ID</th><th>Izin</th><th>Keterangan</th><th>Dari</th><th>Sampai</th><th>Petugas</th><th><i class="fa fa-cogs"></i></th>
                             </tr>
-                            <tbody>
-                                <?php
-                                    $no = 1;
-                                    $data = $koneksi->query("SELECT * FROM tb_datadispen, tb_pengguna
-                                    WHERE tb_datadispen.id_pelajar = '$id'
-                                    AND tb_datadispen.id_guru = tb_pengguna.id_pengguna");
-
-                                    while($izin = $data->fetch_assoc()){
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $no++; ?></td>
-                                            <td><?php echo $izin['nama_dispen']; ?></td>
-                                            <td><?php echo $izin['deskripsi_dispen']?></td>
-                                            <td><?php echo date("H:i", strtotime($izin["dari_kapan"]))?>
-                                            <?php echo date("Y-m-d", strtotime($izin["tgl_dibuat"]))?></td>
-                                            <td><?php echo date("H:i", strtotime($izin["sampai_kapan"]))?>
-                                            <?php echo date("Y-m-d", strtotime($izin["tgl_dibuat"]))?></td>
-                                            <td><?php echo $izin['nama_pengguna']?></td>
-                                        </tr>
-                                        <?php
-                                    }
-                                ?>
-                            </tbody>
                         </thead>
                     </table>
                 </div>
@@ -315,7 +292,13 @@
             }]
         });
         var tabel_izin = $('#tabel-izin').DataTable({
-            order: [[0, "desc"]]
+            "ajax": 'api.php?halaman=piket&aksi=pindai&data_tabel-izin=1&id_pelajar=<?php echo $id ?>',
+            order: [[0, "desc"]],
+            "columnDefs": [{
+                "targets": 6,
+                "orderable": false,
+                "defaultContent": '<td><a href="#"><i class="fa fa-cog"></i></a>    <a class="deleteIzin" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>'
+            }]
         });
         $('#tabel-pelanggaran tbody').on('click', '.deletePelanggaran', function(){
             var rowData = tabel_pelanggaran.row($(this).parents('tr')).data();
