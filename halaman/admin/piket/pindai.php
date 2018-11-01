@@ -94,7 +94,7 @@
                     <table id="tabel-pelanggaran" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>No</th><th>Pelanggaran</th><th>Keterangan</th><th>Poin</th><th>Timestamp</th><th>Petugas</th><th><i class="fa fa-cogs"></i></th>
+                                <th>ID</th><th>Pelanggaran</th><th>Keterangan</th><th>Poin</th><th>Timestamp</th><th>Petugas</th><th><i class="fa fa-cogs"></i></th>
                             </tr>
                         </thead>
                     </table>
@@ -305,17 +305,22 @@
 
     // Initialize data tables
     $(document).ready(function() {
-        $('#tabel-pelanggaran').DataTable({
+        var tabel_pelanggaran = $('#tabel-pelanggaran').DataTable({
             "ajax": 'api.php?halaman=piket&aksi=pindai&data_tabel-pelanggaran=1&id_pelajar=<?php echo $id ?>',
             order: [[4, "desc"]],
             "columnDefs": [{
                 "targets": 6,
                 "orderable": false,
-                "defaultContent": '<td><a href="#"><i class="fa fa-cog"></i></a>    <a onclick="deletePelanggaran(<?php echo $pelanggaran['id']; ?>)" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>'
+                "defaultContent": '<td><a href="#"><i class="fa fa-cog"></i></a>    <a class="deletePelanggaran" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>'
             }]
         });
-        $('#tabel-izin').DataTable({
+        var tabel_izin = $('#tabel-izin').DataTable({
             order: [[0, "desc"]]
         });
+        $('#tabel-pelanggaran tbody').on('click', '.deletePelanggaran', function(){
+            var rowData = tabel_pelanggaran.row($(this).parents('tr')).data();
+            deletePelanggaran(rowData[0]);
+        });
     });
+   
 </script>

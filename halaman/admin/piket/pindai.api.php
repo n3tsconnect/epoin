@@ -10,7 +10,7 @@
         $result['data'] = array();
         while($pelanggaran = $data->fetch_assoc()){
             $result['data'][$rowNo] = array();
-            $result['data'][$rowNo][0] = $rowNo + 1;
+            $result['data'][$rowNo][0] = $pelanggaran['id'];
             $result['data'][$rowNo][1] = $pelanggaran['nama_pelanggaran'];
             $result['data'][$rowNo][2] = $pelanggaran['keterangan_pelanggaran'];
             $result['data'][$rowNo][3] = $pelanggaran['poin_pelanggaran'];
