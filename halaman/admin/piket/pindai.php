@@ -279,12 +279,29 @@
             });
         }
     }
+    
+    function deleteIzin(id_izin){
+        if(confirm("Delete izin dengan id " + id_izin + "?")){
+            $.ajax({
+                type: "POST",
+                url: "api.php?halaman=piket&aksi=poin",
+                data: {
+                    delete_izin: 1,
+                    id_izin: id_izin
+                },
+                success: function(html){
+                    alert("Izin dengan id " + id_izin + " telah dihapus.");
+                    location.reload();
+                }
+            });
+        }
+    }
 
     // Initialize data tables
     $(document).ready(function() {
         var tabel_pelanggaran = $('#tabel-pelanggaran').DataTable({
             "ajax": 'api.php?halaman=piket&aksi=pindai&data_tabel-pelanggaran=1&id_pelajar=<?php echo $id ?>',
-            order: [[4, "desc"]],
+            order: [[0, "desc"]],
             "columnDefs": [{
                 "targets": 6,
                 "orderable": false,
@@ -300,9 +317,15 @@
                 "defaultContent": '<td><a href="#"><i class="fa fa-cog"></i></a>    <a class="deleteIzin" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>'
             }]
         });
+
+        // Definisi action tombol delete untuk tabel pelanggaran dan izin
         $('#tabel-pelanggaran tbody').on('click', '.deletePelanggaran', function(){
             var rowData = tabel_pelanggaran.row($(this).parents('tr')).data();
             deletePelanggaran(rowData[0]);
+        });
+        $('#tabel-izin tbody').on('click', '.deleteIzin', function(){
+            var rowData = tabel_izin.row($(this).parents('tr')).data();
+            deleteIzin(rowData[0]);
         });
     });
    
