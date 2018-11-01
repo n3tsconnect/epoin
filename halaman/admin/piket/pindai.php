@@ -274,7 +274,7 @@
                 },
                 success: function(html){
                     alert("Pelanggaran dengan id " + id_pelanggaran + " telah dihapus.");
-                    location.reload();
+                    $("#tabel-pelanggaran").DataTable().ajax.reload();
                 }
             });
         }
@@ -291,7 +291,7 @@
                 },
                 success: function(html){
                     alert("Izin dengan id " + id_izin + " telah dihapus.");
-                    location.reload();
+                    $("#tabel-izin").DataTable().ajax.reload();
                 }
             });
         }
