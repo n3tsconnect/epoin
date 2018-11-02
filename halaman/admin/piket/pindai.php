@@ -208,28 +208,28 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form-izin">
+                <form method="POST" id="form-edit-izin">
                     <div class="form-group">
                         <label class="form-control-label">Nama Izin</label>
-                        <input name="nama_dispen" type="text" class="form-control" placeholder="Misalnya : Pulang ke rumah, Barang tertinggal, dsb" required/>
+                        <input id="edit_nama-dispen" name="nama_dispen" type="text" class="form-control" placeholder="Misalnya : Pulang ke rumah, Barang tertinggal, dsb" required/>
                     </div>
                     <div class="form-group">
-                        <label class=" form-control-label">Deskripsi</label>
-                        <textarea class="form-control" rows="4" cols="50" name="deskripsi_dispen" placeholder="Misalnya : Ada barang yang tertinggal dirumah." required></textarea>
+                        <label class="form-control-label">Deskripsi</label>
+                        <textarea id="edit_deskripsi-dispen" class="form-control" rows="4" cols="50" name="deskripsi_dispen" placeholder="Misalnya : Ada barang yang tertinggal dirumah." required></textarea>
                     </div>
                     <div class="form-group">
                         <label class="form-control-label">Dari jam</label>
-                        <input name="dari_kapan" id="dispen-start" type="time" class="form-control" required />
+                        <input id="edit_start-dispen" name="dari_kapan" id="dispen-start" type="time" class="form-control" required />
                     </div>
                     <div class="form-group">
                         <label class="form-control-label">Sampai jam</label>
-                        <input name="sampai_kapan" id="dispen-end" type="time" class="form-control" required />
+                        <input id="edit_finish-dispen" name="sampai_kapan" id="dispen-end" type="time" class="form-control" required />
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button form="form-izin" type="submit" name="tambah-izin" class="btn btn-primary">Tambah</button>
+                <button form="form-izin" type="submit" name="tambah-izin" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
@@ -300,7 +300,16 @@
         document.getElementById("previewPoin").innerHTML = poin;
     }
 
-    function displayEditIzin(id_izin){
+    function displayEditIzin(izin){
+        $('#edit_nama-dispen').val(izin[1]);
+        $('#edit_deskripsi-dispen').val(izin[2]);
+        
+        // Ambil dalam format 00:00
+        var dari_jam = izin[3].substring(0,5);
+        var sampai_jam = izin[4].substring(0,5);
+
+        $('#edit_start-dispen').val(dari_jam);
+        $('#edit_finish-dispen').val(sampai_jam);
         jQuery('#modal-edit-izin').modal('show');
     }
     
@@ -372,7 +381,7 @@
         // Definisi action tombol edit untuk tabel pelanggaran dan izin
         $('#tabel-izin tbody').on('click', '.editIzin', function(){
             var rowData = tabel_izin.row($(this).parents('tr')).data();
-            displayEditIzin(rowData[0]);
+            displayEditIzin(rowData);
         });
     });
    
