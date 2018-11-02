@@ -198,6 +198,43 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-edit-izin" tabindex="-1" role="dialog" aria-labelledby="editIzinLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editIzinLabel">Edit Izin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="form-izin">
+                    <div class="form-group">
+                        <label class="form-control-label">Nama Izin</label>
+                        <input name="nama_dispen" type="text" class="form-control" placeholder="Misalnya : Pulang ke rumah, Barang tertinggal, dsb" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class=" form-control-label">Deskripsi</label>
+                        <textarea class="form-control" rows="4" cols="50" name="deskripsi_dispen" placeholder="Misalnya : Ada barang yang tertinggal dirumah." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Dari jam</label>
+                        <input name="dari_kapan" id="dispen-start" type="time" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Sampai jam</label>
+                        <input name="sampai_kapan" id="dispen-end" type="time" class="form-control" required />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button form="form-izin" type="submit" name="tambah-izin" class="btn btn-primary">Tambah</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
     if(isset($_POST['tambah-pelanggaran'])){
         $id_pelanggaran = esc($_POST['jenis-pelanggaran']);
@@ -262,6 +299,10 @@
         var poin = element.options[element.selectedIndex].getAttribute("data-poin");
         document.getElementById("previewPoin").innerHTML = poin;
     }
+
+    function displayEditIzin(id_izin){
+        jQuery('#modal-edit-izin').modal('show');
+    }
     
     function deletePelanggaran(id_pelanggaran){
         if(confirm("Delete pelanggaran dengan id " + id_pelanggaran + "?")){
@@ -305,7 +346,7 @@
             "columnDefs": [{
                 "targets": 6,
                 "orderable": false,
-                "defaultContent": '<td><a href="#"><i class="fa fa-cog"></i></a>    <a class="deletePelanggaran" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>'
+                "defaultContent": '<td><a href="#!"><i class="fa fa-cog"></i></a>    <a class="deletePelanggaran" href="#!"><i class="fa fa-trash" style="color:red"></i></a></td>'
             }]
         });
         var tabel_izin = $('#tabel-izin').DataTable({
@@ -314,7 +355,7 @@
             "columnDefs": [{
                 "targets": 6,
                 "orderable": false,
-                "defaultContent": '<td><a href="#"><i class="fa fa-cog"></i></a>    <a class="deleteIzin" href="#"><i class="fa fa-trash" style="color:red"></i></a></td>'
+                "defaultContent": '<td><a class="editIzin" href="#!"><i class="fa fa-cog"></i></a>    <a class="deleteIzin" href="#!"><i class="fa fa-trash" style="color:red"></i></a></td>'
             }]
         });
 
@@ -326,6 +367,12 @@
         $('#tabel-izin tbody').on('click', '.deleteIzin', function(){
             var rowData = tabel_izin.row($(this).parents('tr')).data();
             deleteIzin(rowData[0]);
+        });
+
+        // Definisi action tombol edit untuk tabel pelanggaran dan izin
+        $('#tabel-izin tbody').on('click', '.editIzin', function(){
+            var rowData = tabel_izin.row($(this).parents('tr')).data();
+            displayEditIzin(rowData[0]);
         });
     });
    
