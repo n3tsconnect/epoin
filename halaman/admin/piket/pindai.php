@@ -209,6 +209,8 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-edit-izin">
+                    <input  type="hidden" name="edit_izin" value=1 />
+                    <input id="edit_id-dispen" type="hidden" name="id_izin" />
                     <div class="form-group">
                         <label class="form-control-label">Nama Izin</label>
                         <input id="edit_nama-dispen" name="nama_dispen" type="text" class="form-control" placeholder="Misalnya : Pulang ke rumah, Barang tertinggal, dsb" required/>
@@ -229,7 +231,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button form="form-izin" type="submit" name="tambah-izin" class="btn btn-primary">Submit</button>
+                <button form="form-izin" onclick='editIzin("#form-edit-izin")' type="button" name="tambah-izin" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
@@ -300,7 +302,21 @@
         document.getElementById("previewPoin").innerHTML = poin;
     }
 
+    function editIzin(formId){
+        var form = $(formId);
+        $.ajax({
+            type: 'POST',
+            url: 'api.php?halaman=piket&aksi=poin',
+            data: form.serialize(),
+            success: function(data){
+                jQuery('#modal-edit-izin').modal('hide');
+                $("#tabel-izin").DataTable().ajax.reload();
+            }
+        })
+    }
+
     function displayEditIzin(izin){
+        $('#edit_id-dispen').val(izin[0]);
         $('#edit_nama-dispen').val(izin[1]);
         $('#edit_deskripsi-dispen').val(izin[2]);
         
