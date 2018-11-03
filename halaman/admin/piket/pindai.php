@@ -76,10 +76,10 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button name="pelanggaran" type="submit" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-pelanggaran">
+                    <button name="pelanggaran" type="submit" class="btn btn-danger btn-sm" onclick='showModal("#modal-pelanggaran")'>
                         <i class="fa fa-plus"></i> Pelanggaran
                     </button>
-                    <button name="izin" type="submit" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-izin">
+                    <button name="izin" type="submit" class="btn btn-success btn-sm" onclick='showModal("#modal-izin")'>
                         <i class="fa fa-plus"></i> Izin
                     </button>
                 </div>
@@ -131,7 +131,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="api.php?halaman=piket&aksi=poin" method="POST" id="form-pelanggaran">
+                <form method="POST" id="form-pelanggaran">
+                    <input type="hidden" name="tambah-pelanggaran" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
                         <label class="form-control-label">Jenis Pelanggaran</label>
@@ -155,8 +156,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button form="form-pelanggaran" type="submit" name="tambah-pelanggaran" class="btn btn-primary">Tambah</button>
+                <button id="dismiss-modal-pelanggaran" type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button onclick='tambahPelanggaran("#form-pelanggaran")' type="button" name="tambah-pelanggaran" class="btn btn-primary">Tambah</button>
             </div>
         </div>
     </div>
@@ -172,7 +173,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="api.php?halaman=piket&aksi=poin" method="POST" id="form-izin" onsubmit="printfunction()">
+                <form method="POST" id="form-izin" onsubmit="printfunction()">
+                    <input type="hidden" name="tambah-izin" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
                         <label class=" form-control-label">Nama dispen</label>
@@ -194,7 +196,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button form="form-izin" type="submit" name="tambah-izin" class="btn btn-primary">Tambah</button>
+                <button onclick='tambahIzin("#form-izin")' form="form-izin" type="button" name="tambah-izin" class="btn btn-primary">Tambah</button>
             </div>
         </div>
     </div>
@@ -290,11 +292,46 @@
 <script src="web/js/lib/data-table/datatables-init.js"></script>
 
 <script type="text/javascript">
+
+    // Modal yang ditrigger lewat data-toggle dan data-target tidak bisa diclose
+    // sempurna dengan javascript. Saat diclose lewat js dan dibuka lagi lewat button,
+    // modal tampil dengan style display: none. Jadi semua show/hide modal harus dengan js.
+    function showModal(modalId){
+        jQuery(modalId).modal("show");
+    }
+
     // Ambil poin
     function previewPoin(element) {
         var poin = element.options[element.selectedIndex].getAttribute("data-poin");
         document.getElementById("previewPoin").innerHTML = poin;
     }
+
+    function tambahPelanggaran(formId){
+        var form = $(formId);
+        $.ajax({
+            type: 'POST',
+            url: 'api.php?halaman=piket&aksi=poin',
+            data: form.serialize(),
+            success: function(data){
+                jQuery('#modal-pelanggaran').modal('hide');
+                $("#tabel-pelanggaran").DataTable().ajax.reload();
+            }
+        });
+    }
+
+    function tambahIzin(formId){
+        var form = $(formId);
+        $.ajax({
+            type: 'POST',
+            url: 'api.php?halaman=piket&aksi=poin',
+            data: form.serialize(),
+            success: function(data){
+                jQuery('#modal-izin').modal('hide');
+                $("#tabel-izin").DataTable().ajax.reload();
+            }
+        });
+    }
+
 
     function editIzin(formId){
         var form = $(formId);
@@ -306,7 +343,7 @@
                 jQuery('#modal-edit-izin').modal('hide');
                 $("#tabel-izin").DataTable().ajax.reload();
             }
-        })
+        });
     }
 
     function editPelanggaran(formId){
@@ -319,7 +356,7 @@
                 jQuery('#modal-edit-pelanggaran').modal('hide');
                 $("#tabel-pelanggaran").DataTable().ajax.reload();
             }
-        })
+        });
     }
 
     function displayEditPelanggaran(pelanggaran){

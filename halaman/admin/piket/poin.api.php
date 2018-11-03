@@ -16,12 +16,6 @@
         id_guru, tanggal_pelanggaran, keterangan_pelanggaran) VALUES ('$id_pelajar', '$id_pelanggaran', '$poin', '$id_guru', '$tanggal', '$keterangan')");
         // Tambah poin di table pelajar.
         $koneksi->query("UPDATE tb_pelajar SET poin_pelajar=(poin_pelajar + $poin) WHERE id_pelajar='$id'");
-        ?>
-         <script type="text/javascript">
-         alert("Data berhasil disimpan!");
-         window.location.href="?halaman=piket&aksi=pindai&id=<?php echo $id_pelajar;?>";
-         </script>
-         <?php
     }
 
     if(isset($_POST['tambah-izin'])){
@@ -37,13 +31,6 @@
         $koneksi->query("INSERT INTO tb_datadispen (id_pelajar, nama_dispen, deskripsi_dispen,
         id_guru, dari_kapan, sampai_kapan, tgl_dibuat)
         VALUES ('$id_pelajar', '$nama', '$desk', '$id_guru', '$darikapan', '$sampaikapan', '$tanggal')");
-        $id_dispen = $koneksi->insert_id;
-        ?>
-         <script type="text/javascript">
-         window.location.href="?halaman=piket&aksi=pindai&id=<?php echo $id_pelajar;?>";
-         window.open('halaman/admin/piket/cetak.php?id=<?php echo $id_dispen; ?>&guru=<?php echo $id_guru;?>', 'mywindow', 'toolbar=0,scrollbars=1,statusbar=0,menubar=0,resizable=0,height=500,width=420');
-         </script>
-         <?php
     }
     
 
