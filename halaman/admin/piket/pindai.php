@@ -209,16 +209,16 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-edit-pelanggaran">
-                    <input type="hidden" name="edit_izin" value=1 />
-                    <input id="edit_id-pelanggaran" type="hidden" name="id_izin" />
+                    <input type="hidden" name="edit_pelanggaran" value=1 />
+                    <input id="edit_id-pelanggaran" type="hidden" name="id-pelanggaran" />
                     <div class="form-group">
                         <label class="form-control-label">Jenis Pelanggaran</label>
-                        <input id="edit_jenis-pelanggaran" name="jenis-pelanggaran" class="form-control" disabled />
+                        <input id="edit_jenis-pelanggaran" class="form-control" disabled />
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="form-control-label">Keterangan</label>
-                        <textarea id="edit_keterangan-pelanggaran" class="form-control" rows="4" cols="50" name="keterangan"></textarea>
+                        <textarea id="edit_keterangan-pelanggaran" class="form-control" rows="4" cols="50" name="keterangan-pelanggaran"></textarea>
                     </div>
                     <div class="form-group">
                         <label class="form-control-label">Poin</label>
@@ -228,7 +228,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button form="form-edit-pelanggaran" type="button" name="tambah-pelanggaran" class="btn btn-primary">Submit</button>
+                <button onclick='editPelanggaran("#form-edit-pelanggaran")' type="button" name="tambah-pelanggaran" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
@@ -267,7 +267,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button form="form-izin" onclick='editIzin("#form-edit-izin")' type="button" name="tambah-izin" class="btn btn-primary">Submit</button>
+                <button onclick='editIzin("#form-edit-izin")' type="button" name="tambah-izin" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
@@ -347,6 +347,19 @@
             success: function(data){
                 jQuery('#modal-edit-izin').modal('hide');
                 $("#tabel-izin").DataTable().ajax.reload();
+            }
+        })
+    }
+
+    function editPelanggaran(formId){
+        var form = $(formId);
+        $.ajax({
+            type: 'POST',
+            url: 'api.php?halaman=piket&aksi=poin',
+            data: form.serialize(),
+            success: function(data){
+                jQuery('#modal-edit-pelanggaran').modal('hide');
+                $("#tabel-pelanggaran").DataTable().ajax.reload();
             }
         })
     }

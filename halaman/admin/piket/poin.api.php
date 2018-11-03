@@ -20,4 +20,11 @@
         $koneksi->query("UPDATE tb_datadispen SET nama_dispen = '$nama', deskripsi_dispen = '$desk', 
         dari_kapan = '$darikapan', sampai_kapan = '$sampaikapan' WHERE id_dispen = '$id_izin'");
     }
+
+    if(isset($_POST['edit_pelanggaran'])){
+        $id_pelanggaran = esc($_POST['id-pelanggaran']);
+        $keterangan_pelanggaran = esc($_POST['keterangan-pelanggaran']);
+        // Data dimasukan ke table data pelanggar.
+        $koneksi->query("UPDATE tb_datapelanggar SET keterangan_pelanggaran = '$keterangan_pelanggaran' WHERE id = '$id_pelanggaran'");
+    }
 ?>
