@@ -198,6 +198,42 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-edit-pelanggaran" tabindex="-1" role="dialog" aria-labelledby="editPelanggaranLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPelanggaranLabel">Edit Pelanggaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="form-edit-pelanggaran">
+                    <input type="hidden" name="edit_izin" value=1 />
+                    <input id="edit_id-pelanggaran" type="hidden" name="id_izin" />
+                    <div class="form-group">
+                        <label class="form-control-label">Jenis Pelanggaran</label>
+                        <input id="edit_jenis-pelanggaran" name="jenis-pelanggaran" class="form-control" disabled />
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Keterangan</label>
+                        <textarea id="edit_keterangan-pelanggaran" class="form-control" rows="4" cols="50" name="keterangan"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Poin</label>
+                        <p name="poin" id="edit_poin-pelanggaran"></p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button form="form-edit-pelanggaran" type="button" name="tambah-pelanggaran" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="modal-edit-izin" tabindex="-1" role="dialog" aria-labelledby="editIzinLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -209,7 +245,7 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-edit-izin">
-                    <input  type="hidden" name="edit_izin" value=1 />
+                    <input type="hidden" name="edit_izin" value=1 />
                     <input id="edit_id-dispen" type="hidden" name="id_izin" />
                     <div class="form-group">
                         <label class="form-control-label">Nama Izin</label>
@@ -315,6 +351,15 @@
         })
     }
 
+    function displayEditPelanggaran(pelanggaran){
+        $('#edit_id-pelanggaran').val(pelanggaran[0]);
+        $('#edit_jenis-pelanggaran').val(pelanggaran[1]);
+        $('#edit_keterangan-pelanggaran').val(pelanggaran[2]);
+        $('#edit_poin-pelanggaran').text(pelanggaran[3]);
+
+        jQuery('#modal-edit-pelanggaran').modal('show');
+    }
+
     function displayEditIzin(izin){
         $('#edit_id-dispen').val(izin[0]);
         $('#edit_nama-dispen').val(izin[1]);
@@ -371,7 +416,7 @@
             "columnDefs": [{
                 "targets": 6,
                 "orderable": false,
-                "defaultContent": '<td><a href="#!"><i class="fa fa-cog"></i></a>    <a class="deletePelanggaran" href="#!"><i class="fa fa-trash" style="color:red"></i></a></td>'
+                "defaultContent": '<td><a class="editPelanggaran" href="#!"><i class="fa fa-cog"></i></a>    <a class="deletePelanggaran" href="#!"><i class="fa fa-trash" style="color:red"></i></a></td>'
             }]
         });
         var tabel_izin = $('#tabel-izin').DataTable({
@@ -398,6 +443,10 @@
         $('#tabel-izin tbody').on('click', '.editIzin', function(){
             var rowData = tabel_izin.row($(this).parents('tr')).data();
             displayEditIzin(rowData);
+        });
+        $('#tabel-pelanggaran tbody').on('click', '.editPelanggaran', function(){
+            var rowData = tabel_pelanggaran.row($(this).parents('tr')).data();
+            displayEditPelanggaran(rowData);
         });
     });
    
