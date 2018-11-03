@@ -131,7 +131,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form-pelanggaran">
+                <form action="api.php?halaman=piket&aksi=poin" method="POST" id="form-pelanggaran">
+                    <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
                         <label class="form-control-label">Jenis Pelanggaran</label>
                         <select name="jenis-pelanggaran" class="form-control" onClick="previewPoin(this)">
@@ -171,7 +172,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form-izin" onsubmit="printfunction()">
+                <form action="api.php?halaman=piket&aksi=poin" method="POST" id="form-izin" onsubmit="printfunction()">
+                    <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
                         <label class=" form-control-label">Nama dispen</label>
                         <input name="nama_dispen" type="text" class="form-control" placeholder="Misalnya : Pulang ke rumah, Barang tertinggal, dsb" required/>
@@ -197,6 +199,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="modal fade" id="modal-edit-pelanggaran" tabindex="-1" role="dialog" aria-labelledby="editPelanggaranLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -273,51 +276,6 @@
     </div>
 </div>
 
-<?php
-    if(isset($_POST['tambah-pelanggaran'])){
-        $id_pelanggaran = esc($_POST['jenis-pelanggaran']);
-        $keterangan = esc($_POST['keterangan']);
-        $id_guru        = esc($_SESSION['id']);
-        $setting        = new DateTime('NOW', new DateTimeZone('Asia/Jakarta'));
-        $tanggal        = $setting->format('Y-m-d H:i:s');
-        // Cek poin.
-        $lihat          = $koneksi->query("SELECT * FROM tb_pelanggaran
-        WHERE id_pelanggaran = '$id_pelanggaran'");
-        $data           = $lihat->fetch_assoc();
-        $poin           = $data['poin_pelanggaran'];
-        // Data dimasukan ke table data pelanggar.
-        $koneksi->query("INSERT INTO tb_datapelanggar (id_pelajar, id_pelanggaran, poin_pelanggaran,
-        id_guru, tanggal_pelanggaran, keterangan_pelanggaran) VALUES ('$id', '$id_pelanggaran', '$poin', '$id_guru', '$tanggal', '$keterangan')");
-        // Tambah poin di table pelajar.
-        $koneksi->query("UPDATE tb_pelajar SET poin_pelajar=(poin_pelajar + $poin) WHERE id_pelajar='$id'");
-        ?>
-         <script type="text/javascript">
-         alert("Data berhasil disimpan!");
-         window.location.href="?halaman=piket&aksi=pindai&id=<?php echo $id;?>";
-         </script>
-         <?php
-    }
-    if(isset($_POST['tambah-izin'])){
-        $nama           = esc($_POST['nama_dispen']);
-        $desk           = esc($_POST['deskripsi_dispen']);
-        $darikapan      = esc($_POST['dari_kapan']);
-        $sampaikapan    = esc($_POST['sampai_kapan']);
-        $id_guru        = esc($_SESSION['id']);
-        $setting        = new DateTime('NOW', new DateTimeZone('Asia/Jakarta'));
-        $tanggal        = $setting->format('Y-m-d H:i:s');
-        // Data dimasukan ke table data dispensasi.
-        $koneksi->query("INSERT INTO tb_datadispen (id_pelajar, nama_dispen, deskripsi_dispen,
-        id_guru, dari_kapan, sampai_kapan, tgl_dibuat)
-        VALUES ('$id', '$nama', '$desk', '$id_guru', '$darikapan', '$sampaikapan', '$tanggal')");
-        $id_dispen = $koneksi->insert_id;
-        ?>
-         <script type="text/javascript">
-         window.location.href="?halaman=piket&aksi=pindai&id=<?php echo $id;?>";
-         window.open('halaman/admin/piket/cetak.php?id=<?php echo $id_dispen; ?>&guru=<?php echo $id_guru;?>', 'mywindow', 'toolbar=0,scrollbars=1,statusbar=0,menubar=0,resizable=0,height=500,width=420');
-         </script>
-         <?php
-    }
-?>
 
 <script src="web/js/lib/data-table/datatables.min.js"></script>
 <script src="web/js/lib/data-table/dataTables.bootstrap.min.js"></script>
@@ -365,6 +323,7 @@
     }
 
     function displayEditPelanggaran(pelanggaran){
+        // Isi form dengan data awal
         $('#edit_id-pelanggaran').val(pelanggaran[0]);
         $('#edit_jenis-pelanggaran').val(pelanggaran[1]);
         $('#edit_keterangan-pelanggaran').val(pelanggaran[2]);
@@ -374,6 +333,7 @@
     }
 
     function displayEditIzin(izin){
+        // Isi form dengan data awal
         $('#edit_id-dispen').val(izin[0]);
         $('#edit_nama-dispen').val(izin[1]);
         $('#edit_deskripsi-dispen').val(izin[2]);
