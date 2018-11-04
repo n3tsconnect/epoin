@@ -292,10 +292,26 @@
 <script src="web/js/lib/data-table/datatables-init.js"></script>
 
 <script type="text/javascript">
+    // Untuk reset form yang ada di modal tambah pelanggaran/izin.
+    // Kalau tidak ada, setiap kali form dalam modal diisi kemudian ditutup
+    // dan dibuka lagi, data form sebelumnya masih bertahan.
+    // Modal edit tidak perlu karena setiap dimunculkan sudah dimasukkan
+    // data awal.
+    $(document).ready(function() {
+        jQuery('#modal-pelanggaran').on('hidden.bs.modal', function() {
+            $('#form-pelanggaran').trigger('reset');
+        });
+
+        jQuery('#modal-izin').on('hidden.bs.modal', function() {
+            $('#form-izin').trigger('reset');
+        });
+    });
+
 
     // Modal yang ditrigger lewat data-toggle dan data-target tidak bisa diclose
     // sempurna dengan javascript. Saat diclose lewat js dan dibuka lagi lewat button,
-    // modal tampil dengan style display: none. Jadi semua show/hide modal harus dengan js.
+    // modal tampil dengan style display: none (modal muncul sejenak kemudian hilang).
+    // Jadi semua show/hide modal harus dengan js.
     function showModal(modalId){
         jQuery(modalId).modal("show");
     }
@@ -305,6 +321,7 @@
         var poin = element.options[element.selectedIndex].getAttribute("data-poin");
         document.getElementById("previewPoin").innerHTML = poin;
     }
+
 
     function tambahPelanggaran(formId){
         var form = $(formId);
@@ -358,6 +375,7 @@
             }
         });
     }
+
 
     function displayEditPelanggaran(pelanggaran){
         // Isi form dengan data awal
