@@ -331,6 +331,7 @@
             data: form.serialize(),
             success: function(data){
                 jQuery('#modal-pelanggaran').modal('hide');
+                $('#poin-pelajar').text(data);
                 $("#tabel-pelanggaran").DataTable().ajax.reload();
             }
         });
@@ -411,9 +412,9 @@
                     delete_pelanggaran: 1,
                     id_pelanggaran: id_pelanggaran
                 },
-                success: function(html){
+                success: function(data){
                     alert("Pelanggaran dengan id " + id_pelanggaran + " telah dihapus.");
-                    $('#poin-pelajar').text(html);
+                    $('#poin-pelajar').text(data);
                     $("#tabel-pelanggaran").DataTable().ajax.reload();
                 }
             });
@@ -429,7 +430,7 @@
                     delete_izin: 1,
                     id_izin: id_izin
                 },
-                success: function(html){
+                success: function(data){
                     alert("Izin dengan id " + id_izin + " telah dihapus.");
                     $("#tabel-izin").DataTable().ajax.reload();
                 }

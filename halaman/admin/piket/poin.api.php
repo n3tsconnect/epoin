@@ -15,7 +15,10 @@
         $koneksi->query("INSERT INTO tb_datapelanggar (id_pelajar, id_pelanggaran, poin_pelanggaran,
         id_guru, tanggal_pelanggaran, keterangan_pelanggaran) VALUES ('$id_pelajar', '$id_pelanggaran', '$poin', '$id_guru', '$tanggal', '$keterangan')");
         // Tambah poin di table pelajar.
-        $koneksi->query("UPDATE tb_pelajar SET poin_pelajar=(poin_pelajar + $poin) WHERE id_pelajar='$id'");
+        $koneksi->query("UPDATE tb_pelajar SET poin_pelajar=(poin_pelajar + $poin) WHERE id_pelajar='$id_pelajar'");
+
+        $currentPoin = $koneksi->query("SELECT poin_pelajar FROM tb_pelajar WHERE id_pelajar='$id_pelajar'");
+        echo $currentPoin->fetch_assoc()['poin_pelajar'];
     }
 
     if(isset($_POST['tambah-izin'])){
@@ -48,6 +51,7 @@
 
         $sql = $koneksi->query("DELETE FROM tb_datapelanggar WHERE id = '$id_pelanggaran'");
         $koneksi->query("UPDATE tb_pelajar SET poin_pelajar = (poin_pelajar - '$poin') WHERE id_pelajar='$id_pelajar'");
+
         $currentPoin = $koneksi->query("SELECT poin_pelajar FROM tb_pelajar WHERE id_pelajar='$id_pelajar'");
         echo $currentPoin->fetch_assoc()['poin_pelajar'];
     }
