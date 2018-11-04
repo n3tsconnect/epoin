@@ -12,17 +12,17 @@
                     <form id="form-insert">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <select id='kelas-select' name="kelas" class="form-control">
+                                <select id='kelas-select' name="kelas_pelajar" class="form-control">
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                            <input name="nama" id="input-nama" class="form-control" placeholder="Nama" autocomplete="off">
+                            <input name="nama_pelajar" id="input-nama" class="form-control" placeholder="Nama" autocomplete="off">
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <select name="jenis-pelanggaran" class="form-control">
+                            <select id="pelanggaran-select" name="jenis-pelanggaran" class="form-control">
                                 <?php
                                     $data = $koneksi->query("SELECT * FROM tb_pelanggaran ORDER BY id_pelanggaran");
                                     while ($pelanggaran = $data->fetch_assoc()){
@@ -32,7 +32,7 @@
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-success">
+                            <button onclick='tambahPelanggaran("#form-insert")' type="button" class="btn btn-success">
                             <i class="fa fa-plus"></i>  Tambah</button>
                         </div>
                     </form>
@@ -50,34 +50,12 @@
                 </div>
                 <div class="card-body">
                     <table id="tabel-pelanggaran" class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>No</th><th>Nama</th><th>Pelanggaran</th><th>Keterangan</th><th>Poin</th><th>Timestamp</th>
-                                </tr>
-                                <tbody>
-                                    <?php
-                                        $no = 1;
-                                        $data = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna
-                                        WHERE tb_datapelanggar.id_pelajar = '$id'
-                                        AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
-                                        AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna");
-
-                                        while($pelanggaran = $data->fetch_assoc()){
-                                            ?>
-                                            <tr>
-                                                <td><?php echo $no++; ?></td>
-                                                <td><?php echo $pelanggaran['nama_pelanggaran']; ?></td>
-                                                <td><?php echo $pelanggaran['id_pelajar']; ?></td>
-                                                <td><?php echo $pelanggaran['keterangan_pelanggaran']?></td>
-                                                <td><?php echo $pelanggaran['poin_pelanggaran']?></td>
-                                                <td><?php echo $pelanggaran['tanggal_pelanggaran']?></td>
-                                            </tr>
-                                            <?php
-                                        }
-                                    ?>
-                                </tbody>
-                            </thead>
-                        </table>
+                        <thead>
+                            <tr>
+                                <th>No</th><th>Nama</th><th>Pelanggaran</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
@@ -97,10 +75,45 @@
 <script src="web/js/lib/data-table/datatables-init.js"></script>
 
 <script type="text/javascript">
-    // Initialize data tables
+    // Array data untuk disubmit ke api.
+    var tempData = [];
+
+    // Array display untuk data source ke tabel pelanggaran.
+    var tempDisplay = [];
+
+    function tambahPelanggaran(formId){
+        var form = $(formId);
+        var formData = form.serializeArray();
+        var pelanggaranData = [];
+        var pelanggaranDisplay = [];
+        
+        pelanggaranData[0] = formData[0]['value'];
+        pelanggaranData[1] = formData[1]['value'];
+        pelanggaranData[2] = formData[2]['value'];
+
+        pelanggaranDisplay[0] = jQuery('#kelas-select').select2('data')[0]['text'];
+        pelanggaranDisplay[1] = formData[1]['value'];
+        pelanggaranDisplay[2] = $('#pelanggaran-select option:selected').text();
+
+        tempData.push(pelanggaranData);
+        tempDisplay.push(pelanggaranDisplay);
+
+        $('#tabel-pelanggaran').DataTable().ajax.reload();
+    }
+    
+    // Inisialisasi DataTable dengan data source ajax yang merujuk
+    // ke local array agar bisa menggunakan fungsi ajax.reload().
     $(document).ready(function() {
         $('#tabel-pelanggaran').DataTable({
-            order: [[0, "desc"]]
+            order: [[0, "desc"]],
+            ajax: function(data, callback, settings){
+                callback({ data: tempDisplay });
+            },
+            columns: [
+                { title: "Kelas" },
+                { title: "Nama Pelajar" },
+                { title: "Pelanggaran"}
+            ]
         });
     });
 
