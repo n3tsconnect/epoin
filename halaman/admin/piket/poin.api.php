@@ -36,7 +36,20 @@
 
     if(isset($_POST['delete_pelanggaran'])){
         $id_pelanggaran = esc($_POST['id_pelanggaran']);
+        $sqlPelanggaran = $koneksi->query("SELECT * FROM tb_datapelanggar WHERE id = '$id_pelanggaran'");
+        $dataPelanggaran = $sqlPelanggaran->fetch_assoc();
+        $id_pelajar = $dataPelanggaran['id_pelajar'];
+        $jenis_pelanggaran = $dataPelanggaran['id_pelanggaran'];
+    
+        // Cek poin.
+        $lihat          = $koneksi->query("SELECT poin_pelanggaran FROM tb_pelanggaran WHERE id_pelanggaran = '$jenis_pelanggaran'");
+        $data           = $lihat->fetch_assoc();
+        $poin           = $data['poin_pelanggaran'];
+
         $sql = $koneksi->query("DELETE FROM tb_datapelanggar WHERE id = '$id_pelanggaran'");
+        $koneksi->query("UPDATE tb_pelajar SET poin_pelajar = (poin_pelajar - '$poin') WHERE id_pelajar='$id_pelajar'");
+        $currentPoin = $koneksi->query("SELECT poin_pelajar FROM tb_pelajar WHERE id_pelajar='$id_pelajar'");
+        echo $currentPoin->fetch_assoc()['poin_pelajar'];
     }
 
     if(isset($_POST['delete_izin'])){

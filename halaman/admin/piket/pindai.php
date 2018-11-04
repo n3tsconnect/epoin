@@ -63,7 +63,7 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             <label class="form-control-label">Poin</label>
-                            <p><?php echo $x['poin_pelajar'];?></p>
+                            <p id="poin-pelajar"><?php echo $x['poin_pelajar'];?></p>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">No. Telp</label>
@@ -413,6 +413,7 @@
                 },
                 success: function(html){
                     alert("Pelanggaran dengan id " + id_pelanggaran + " telah dihapus.");
+                    $('#poin-pelajar').text(html);
                     $("#tabel-pelanggaran").DataTable().ajax.reload();
                 }
             });
