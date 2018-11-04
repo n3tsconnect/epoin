@@ -173,7 +173,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form-izin" onsubmit="printfunction()">
+                <form method="POST" id="form-izin">
                     <input type="hidden" name="tambah-izin" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
@@ -350,7 +350,6 @@
         });
     }
 
-
     function editIzin(formId){
         var form = $(formId);
         $.ajax({
@@ -455,7 +454,7 @@
             "columnDefs": [{
                 "targets": 6,
                 "orderable": false,
-                "defaultContent": '<td><a class="editIzin" href="#!"><i class="fa fa-cog"></i></a>    <a class="deleteIzin" href="#!"><i class="fa fa-trash" style="color:red"></i></a></td>'
+                "defaultContent": '<td><a class="editIzin" href="#!"><i class="fa fa-cog"></i></a>    <a class="printIzin" href="#!"><i class="fa fa-print"></i></a>    <a class="deleteIzin" href="#!"><i class="fa fa-trash" style="color:red"></i></a></td>'
             }]
         });
 
@@ -477,6 +476,11 @@
         $('#tabel-pelanggaran tbody').on('click', '.editPelanggaran', function(){
             var rowData = tabel_pelanggaran.row($(this).parents('tr')).data();
             displayEditPelanggaran(rowData);
+        });
+
+        $('#tabel-izin tbody').on('click', '.printIzin', function(){
+            var rowData = tabel_izin.row($(this).parents('tr')).data();
+            window.open("halaman/admin/piket/cetak.php?id=" + rowData[0], '_blank');
         });
     });
    
