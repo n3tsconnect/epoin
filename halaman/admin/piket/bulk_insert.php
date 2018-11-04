@@ -1,3 +1,6 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="web/css/select2.bootstrap4.min.css">
+
 <div class="content mt-3">
     <div class="row">
         <div class="col-md-12">
@@ -9,7 +12,8 @@
                     <form id="form-insert">
                         <div class="col-md-2">
                             <div class="form-group">
-                            <input name="kelas" id="input-kelas" class="form-control" placeholder="Kelas" autocomplete="off">
+                                <select id='kelas-select' name="kelas" class="form-control">
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -97,6 +101,27 @@
     $(document).ready(function() {
         $('#tabel-pelanggaran').DataTable({
             order: [[0, "desc"]]
+        });
+    });
+
+    // Inisialisasi Select2 data kelas menggunakan array,
+    // karena kalau pakai ajax langsung ketika search
+    // selalu membuat request ke url source data.
+    $(document).ready(function() {      
+        $.ajax({
+            type: "GET",
+            url: "api.php?halaman=piket&aksi=bulkinsert",
+            data: {
+                data_kelas: 1
+            },
+            success: function(data){
+                kelasData = JSON.parse(data);
+                jQuery('#kelas-select').select2({
+                    theme: "bootstrap4",
+                    data: kelasData
+                });
+                jQuery('#kelas-select').select2('focus');
+            }
         });
     });
 </script>

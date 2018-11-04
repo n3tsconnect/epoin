@@ -24,6 +24,9 @@ if (!isset($_SESSION['id'])) {
             if ($aksi == "pindai"){
                 include "halaman/admin/piket/pindai.api.php";
             }
+            if ($aksi == "bulkinsert"){
+                include "halaman/admin/piket/bulk_insert.api.php";
+            }
         } 
     }
 }
