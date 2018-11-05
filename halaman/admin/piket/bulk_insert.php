@@ -82,6 +82,7 @@
     // Array display untuk data source ke tabel pelanggaran.
     var tempDisplay = [];
 
+
     function tambahPelanggaran(formId){
         var form = $(formId);
         var formData = form.serializeArray();
@@ -115,6 +116,30 @@
             }
         });
     }
+
+    // Setiap kali kita memilih pada option kelas, opsi nama
+    // siswa berubah sesuai kelas yang dipilih.
+    $(document).ready(function() {
+        jQuery('#kelas-select').on('select2:select', function (e) {
+            $.ajax({
+                type: "GET",
+                url: "api.php?halaman=piket&aksi=bulkinsert",
+                data: {
+                    data_nama: 1,
+                    kelas: e.params.data.id
+                },
+                success: function(data){
+                    currentNamaData = JSON.parse(data);
+                    // Delete semua instance opsi nama sebelumnya
+                    $("#nama-select option").remove();
+                    jQuery('#nama-select').select2({
+                        theme: "bootstrap4",
+                        data: currentNamaData
+                    });
+                }
+            });
+        });
+    });
     
     // Inisialisasi DataTable dengan data source ajax yang merujuk
     // ke local array agar bisa menggunakan fungsi ajax.reload().

@@ -15,7 +15,8 @@
 
     if(isset($_GET['data_nama'])){
         $rowNo = 0;
-        $data = $koneksi->query("SELECT id_pelajar, nama_pelajar FROM tb_pelajar;");
+        $kelas = esc($_GET['kelas']);
+        $data = $koneksi->query("SELECT id_pelajar, nama_pelajar FROM tb_pelajar WHERE kelas_pelajar = '$kelas';");
         $result = array();
         while($pelajar = $data->fetch_assoc()){
             $result[$rowNo] = array();
