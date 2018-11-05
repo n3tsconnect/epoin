@@ -29,9 +29,18 @@
 
     if(isset($_POST['submit_pelanggaran'])){
         $data = $_POST['data'];
+        $id_guru = esc($_SESSION['id']);
+        $setting = new DateTime('NOW', new DateTimeZone('Asia/Jakarta'));
+        $tanggal = $setting->format('Y-m-d H:i:s');
         $str = "";
-        foreach($data as &$pelanggaran){
-            $str .= $pelanggaran[0]." ".$pelanggaran[1]." ".$pelanggaran[2]."\n";
+        foreach($data as $pelanggaran){
+            $lihat          = $koneksi->query("SELECT poin_pelanggaran FROM tb_pelanggaran
+            WHERE id_pelanggaran = '$pelanggaran[2]'");
+            $data           = $lihat->fetch_assoc();
+            $poin           = $data['poin_pelanggaran'];
+
+            $koneksi->query("INSERT INTO tb_datapelanggar (id_pelajar, id_pelanggaran, poin_pelanggaran, id_guru, tanggal_pelanggaran) VALUES ('$pelanggaran[1]', '$pelanggaran[2]', '$poin', '$id_guru', '$tanggal')");
+            $koneksi->query("UPDATE tb_pelajar SET poin_pelajar=(poin_pelajar + $poin) WHERE id_pelajar='$pelanggaran[1]'");
         }
         echo $str;
     }

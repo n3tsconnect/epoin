@@ -111,7 +111,7 @@
                 data: tempData
             },
             success: function(data){
-                console.log(data);
+                alert("SUKSES!");
             }
         });
     }
@@ -163,7 +163,6 @@
                     theme: "bootstrap4",
                     data: namaData
                 });
-                jQuery('#nama-select').select2('focus');
             }
         });
     });
