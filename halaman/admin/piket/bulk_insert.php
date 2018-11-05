@@ -18,7 +18,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                            <input name="nama_pelajar" id="input-nama" class="form-control" placeholder="Nama" autocomplete="off">
+                            <select id='nama-select' name="input-nama" class="form-control">
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -38,7 +39,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button type="button" class="btn btn-sm btn-primary">
+                    <button onclick="submitPelanggaran(tempData)" type="button" class="btn btn-sm btn-primary">
                     <i class="fa fa-check"></i> Submit</button>
                 </div>
             </div>
@@ -92,7 +93,7 @@
         pelanggaranData[2] = formData[2]['value'];
 
         pelanggaranDisplay[0] = jQuery('#kelas-select').select2('data')[0]['text'];
-        pelanggaranDisplay[1] = formData[1]['value'];
+        pelanggaranDisplay[1] = jQuery('#nama-select').select2('data')[0]['text'];
         pelanggaranDisplay[2] = $('#pelanggaran-select option:selected').text();
 
         tempData.push(pelanggaranData);
@@ -100,12 +101,25 @@
 
         $('#tabel-pelanggaran').DataTable().ajax.reload();
     }
+
+    function submitPelanggaran(pelanggaran){
+        $.ajax({
+            type: "POST",
+            url: "api.php?halaman=piket&aksi=bulkinsert",
+            data: {
+                submit_pelanggaran: 1,
+                data: tempData
+            },
+            success: function(data){
+                console.log(data);
+            }
+        });
+    }
     
     // Inisialisasi DataTable dengan data source ajax yang merujuk
     // ke local array agar bisa menggunakan fungsi ajax.reload().
     $(document).ready(function() {
         $('#tabel-pelanggaran').DataTable({
-            order: [[0, "desc"]],
             ajax: function(data, callback, settings){
                 callback({ data: tempDisplay });
             },
@@ -134,6 +148,22 @@
                     data: kelasData
                 });
                 jQuery('#kelas-select').select2('focus');
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "api.php?halaman=piket&aksi=bulkinsert",
+            data: {
+                data_nama: 1
+            },
+            success: function(data){
+                namaData = JSON.parse(data);
+                jQuery('#nama-select').select2({
+                    theme: "bootstrap4",
+                    data: namaData
+                });
+                jQuery('#nama-select').select2('focus');
             }
         });
     });
