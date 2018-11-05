@@ -121,7 +121,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modal-pelanggaran" tabindex="-1" role="dialog" aria-labelledby="pelanggaranLabel" aria-hidden="true">
+<div class="modal" id="modal-pelanggaran" tabindex="-1" role="dialog" aria-labelledby="pelanggaranLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -163,7 +163,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-izin" tabindex="-1" role="dialog" aria-labelledby="izinLabel" aria-hidden="true">
+<div class="modal" id="modal-izin" tabindex="-1" role="dialog" aria-labelledby="izinLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -203,7 +203,7 @@
 </div>
 
 
-<div class="modal fade" id="modal-edit-pelanggaran" tabindex="-1" role="dialog" aria-labelledby="editPelanggaranLabel" aria-hidden="true">
+<div class="modal" id="modal-edit-pelanggaran" tabindex="-1" role="dialog" aria-labelledby="editPelanggaranLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -239,7 +239,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-edit-izin" tabindex="-1" role="dialog" aria-labelledby="editIzinLabel" aria-hidden="true">
+<div class="modal" id="modal-edit-izin" tabindex="-1" role="dialog" aria-labelledby="editIzinLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

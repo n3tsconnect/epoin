@@ -113,6 +113,12 @@
             },
             success: function(data){
                 alert("SUKSES!");
+                
+                // Clear data and display array and refresh table
+                // with empty data.
+                tempData.length = 0;
+                tempDisplay.length = 0;
+                $('#tabel-pelanggaran').DataTable().ajax.reload();
             }
         });
     }
