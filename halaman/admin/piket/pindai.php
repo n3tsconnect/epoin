@@ -1,6 +1,9 @@
 <?php
     $id = (float) esc($_GET['id']);
-    $sql    = $koneksi->query("SELECT * FROM tb_pelajar WHERE id_pelajar = '$id'");
+    $sql    = $koneksi->query("SELECT tb_pelajar.*, tb_kelas.nama_kelas FROM tb_pelajar 
+    INNER JOIN tb_kelas 
+    ON tb_pelajar.kelas_pelajar = tb_kelas.id_kelas 
+    WHERE tb_pelajar.id_pelajar = '$id';");
     $x      = $sql->fetch_assoc();
 
     // NIS bisa diganti dari URL nya.
@@ -53,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">Kelas</label>
-                            <p><?php echo $x['kelas_pelajar'];?></p>
+                            <p><?php echo $x['nama_kelas'];?></p>
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">NIS</label>
