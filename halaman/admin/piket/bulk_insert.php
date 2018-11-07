@@ -53,7 +53,7 @@
                     <table id="tabel-pelanggaran" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>No</th><th>Nama</th><th>Pelanggaran</th>
+                                <th>No</th><th>Nama</th><th>Pelanggaran</th><th>A</th>
                             </tr>
                         </thead>
                     </table>
@@ -82,6 +82,8 @@
     // Array display untuk data source ke tabel pelanggaran.
     var tempDisplay = [];
 
+    // Identifier sementara dalam tabel submit
+    var dataCounter = 0;
 
     function tambahPelanggaran(formId){
         var form = $(formId);
@@ -92,15 +94,46 @@
         pelanggaranData[0] = formData[0]['value'];
         pelanggaranData[1] = formData[1]['value'];
         pelanggaranData[2] = formData[2]['value'];
+        pelanggaranData[4] = dataCounter;
 
         pelanggaranDisplay[0] = jQuery('#kelas-select').select2('data')[0]['text'];
         pelanggaranDisplay[1] = jQuery('#nama-select').select2('data')[0]['text'];
         pelanggaranDisplay[2] = $('#pelanggaran-select option:selected').text();
+        pelanggaranDisplay[4] = dataCounter;
 
         tempData.push(pelanggaranData);
         tempDisplay.push(pelanggaranDisplay);
 
         $('#tabel-pelanggaran').DataTable().ajax.reload();
+        dataCounter++;
+
+        jQuery('#kelas-select').select2('focus');
+        jQuery('#nama-select').val(null).trigger('change');
+    }
+
+    function isItemInArray(array, item) {
+        for (var i = 0; i < array.length; i++) {
+            // This if statement depends on the format of your array
+            if (array[i][0] == item[0][0] && array[i][1] == item[0][1] && array[i][2] == item[0][2] && array[i][4] == item[0][4]) {
+                return i;   // Found it
+            }
+        }
+        return false;   // Not found
+    }
+
+
+    function deletePelanggaran(idPelanggaran){
+        if(confirm("Delete :" + idPelanggaran)){
+            var currData = tempData.filter(d => d[4] == idPelanggaran);
+            var currDataIndex = isItemInArray(tempData, currData);
+            tempData.splice(currDataIndex, 1);
+
+            var currDisplay = tempDisplay.filter(d => d[4] == idPelanggaran);
+            var currDisplayIndex = isItemInArray(tempDisplay, currDisplay);
+            tempDisplay.splice(currDisplayIndex, 1);
+
+            $('#tabel-pelanggaran').DataTable().ajax.reload();
+        }
     }
 
     function submitPelanggaran(pelanggaran){
@@ -150,15 +183,32 @@
     // Inisialisasi DataTable dengan data source ajax yang merujuk
     // ke local array agar bisa menggunakan fungsi ajax.reload().
     $(document).ready(function() {
-        $('#tabel-pelanggaran').DataTable({
+        var tabel_pelanggaran = $('#tabel-pelanggaran').DataTable({
             ajax: function(data, callback, settings){
                 callback({ data: tempDisplay });
             },
+            order: [[4, "desc"]],
             columns: [
                 { title: "Kelas" },
                 { title: "Nama Pelajar" },
-                { title: "Pelanggaran"}
+                { title: "Pelanggaran" }
+            ],
+            "columnDefs": [{
+                    "targets": 3,
+                    "orderable": false,
+                    "defaultContent": '<td><a class="deletePelanggaran" href="#!"><i class="fa fa-trash" style="color:red"></i></a></td>'
+                },
+                {
+                    "targets": 4,
+                    "visible": false,
+                    "searchable": false
+                }
             ]
+        });
+
+        $('#tabel-pelanggaran tbody').on('click', '.deletePelanggaran', function(){
+            var rowData = tabel_pelanggaran.row($(this).parents('tr')).data();
+            deletePelanggaran(rowData[4]);
         });
     });
 
