@@ -74,5 +74,10 @@
                 "defaultContent": '<td><button class="btn btn-sm btn-info lihatPelajar" type="button"><i class="fa fa-eye"></i>  Lihat</button>   <button class="btn btn-sm btn-danger deleteIzin" href="#!"><i class="fa fa-trash"></i></button></td>'
             }]
         });
+
+        $('#tabel-pelajar tbody').on('click', '.lihatPelajar', function(){
+            var rowData = tabel_pelajar.row($(this).parents('tr')).data();
+            window.location.href = "index.php?halaman=pelajar&aksi=lihat&id=" + rowData[0];
+        });
     });
 </script>
