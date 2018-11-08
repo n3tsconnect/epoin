@@ -27,7 +27,13 @@ if (!isset($_SESSION['id'])) {
             if ($aksi == "bulkinsert"){
                 include "halaman/admin/piket/bulk_insert.api.php";
             }
-        } 
+        }
+        
+        if ($halaman == "pelajar"){
+            if ($aksi == "pelajar"){
+                include "halaman/admin/pelajar/pelajar.api.php";
+            }
+        }
     }
 }
 ?>

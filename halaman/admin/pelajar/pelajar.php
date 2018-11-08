@@ -36,41 +36,21 @@
                   <table id="tabel-pelajar" class="table table-striped table-bordered">
                     <thead>
                       <tr>
-                        <th>Foto</th>
+                        <th>ID</th>
+                        <th>Kelas</th>
                         <th>NIS</th>
                         <th>Nama</th>
-                        <th>No telp</th>
-                        <th>Surel</th>
+                        <th>Poin</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
-                    <tbody>
-                <?php
-                $sql  = $koneksi->query("SELECT * FROM tb_pelajar");
-                while ($pelajar = $sql->fetch_assoc()){
-                ?>
-                    <tr>
-                        <td><img src="<?php
-                        if (file_exists('gambar/profil/pelajar/'.$pelajar['foto_pelajar'].'')) { echo 'gambar/profil/pelajar/'.$pelajar['foto_pelajar'].''; } else {echo 'http://placekitten.com/g/200/200';}
-                          ?>"
-                        width="50" height="50"></td>
-                        <td><?php echo $pelajar['nis_pelajar']?></td>
-                        <td><?php echo $pelajar['nama_pelajar']?></td>
-                        <td><?php echo $pelajar['telp_pelajar']?></td>
-                        <td><?php echo $pelajar['surel_pelajar']?></td>
-                        <td>
-                            <a href="?halaman=pelajar&aksi=lihat&id=<?php echo $pelajar['id_pelajar']?>"
-                            class="btn btn-info"><i title="Lihat" class="fa fa-search"></i> Lihat</a>
-                        </td>
-                      </tr>
-                <?php } ?>
-                    </tbody>
                   </table>
                 </div>
             </div>
         </div>
     </div>
-    <script src="web/js/lib/data-table/datatables.min.js"></script>
+
+<script src="web/js/lib/data-table/datatables.min.js"></script>
 <script src="web/js/lib/data-table/dataTables.bootstrap.min.js"></script>
 <script src="web/js/lib/data-table/dataTables.buttons.min.js"></script>
 <script src="web/js/lib/data-table/buttons.bootstrap.min.js"></script>
@@ -85,8 +65,14 @@
 <script type="text/javascript">
     // Initialize data tables
     $(document).ready(function() {
-        $('#tabel-pelajar').DataTable({
-            order: [[2, "asc"]]
+        var tabel_pelajar = $('#tabel-pelajar').DataTable({
+            "ajax": 'api.php?halaman=pelajar&aksi=pelajar&data_tabel-pelajar=1',
+            order: [[3, "asc"]],
+            "columnDefs": [{
+                "targets": 5,
+                "orderable": false,
+                "defaultContent": '<td><button class="btn btn-sm btn-info lihatPelajar" type="button"><i class="fa fa-eye"></i>  Lihat</button>   <button class="btn btn-sm btn-danger deleteIzin" href="#!"><i class="fa fa-trash"></i></button></td>'
+            }]
         });
     });
 </script>
