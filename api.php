@@ -33,6 +33,10 @@ if (!isset($_SESSION['id'])) {
             if ($aksi == "pelajar"){
                 include "halaman/admin/pelajar/pelajar.api.php";
             }
+            
+            if ($aksi == "hapus"){
+                include "halaman/admin/pelajar/hapus.php";
+            }
         }
     }
 }

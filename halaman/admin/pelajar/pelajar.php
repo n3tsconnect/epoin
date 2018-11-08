@@ -50,6 +50,30 @@
         </div>
     </div>
 
+<div class="modal" id="modal-delete-pelajar" tabindex="-1" role="dialog" aria-labelledby="deletePelajarLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePelajarLabel">Delete Pelajar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input id="id_pelajar" type="hidden" name="id_pelajar" />
+                Untuk delete pelajar dengan nama <br /> <br /> 
+                <p class="text-center"><strong id="nama_pelajar"></strong></p> <br />
+                Silahkan konfirmasi nama pelajar tersebut:
+                <input type="text" class="form-control" name="konfirm_nama" id="konfirm_nama">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button onclick='deletePelajar()' type="button" name="delete-pelajar" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="web/js/lib/data-table/datatables.min.js"></script>
 <script src="web/js/lib/data-table/dataTables.bootstrap.min.js"></script>
 <script src="web/js/lib/data-table/dataTables.buttons.min.js"></script>
@@ -63,6 +87,38 @@
 <script src="web/js/lib/data-table/datatables-init.js"></script>
 
 <script type="text/javascript">
+
+    function deletePelajar(){
+        var id_pelajar = $('#id_pelajar').val();
+        var nama_pelajar = $('#nama_pelajar').text();
+        var konfirm_nama = $('#konfirm_nama').val();
+        
+        if(konfirm_nama.toUpperCase() == nama_pelajar.toUpperCase()){
+            $.ajax({
+                type: "POST",
+                url: "api.php?halaman=pelajar&aksi=hapus",
+                data: {
+                    id: id_pelajar
+                },
+                success: function(data){
+                    alert("SUCCESS DELETE " + nama_pelajar);
+                    jQuery('#modal-delete-pelajar').modal('hide');
+                    $("#tabel-pelajar").DataTable().ajax.reload();
+                }
+            });
+        } else {
+            alert("KONFIRMASI NAMA TIDAK SESUAI!");
+        }
+    }
+
+    function displayDeletePelajar(id_pelajar, nama_pelajar){
+        $('#id_pelajar').val(id_pelajar);
+        $('#nama_pelajar').text(nama_pelajar);
+        $('#konfirm_nama').val("");
+
+        jQuery('#modal-delete-pelajar').modal('show');
+    }
+
     // Initialize data tables
     $(document).ready(function() {
         var tabel_pelajar = $('#tabel-pelajar').DataTable({
@@ -71,13 +127,18 @@
             "columnDefs": [{
                 "targets": 5,
                 "orderable": false,
-                "defaultContent": '<td><button class="btn btn-sm btn-info lihatPelajar" type="button"><i class="fa fa-eye"></i>  Lihat</button>   <button class="btn btn-sm btn-danger deleteIzin" href="#!"><i class="fa fa-trash"></i></button></td>'
+                "defaultContent": '<td><button class="btn btn-sm btn-info lihatPelajar" type="button"><i class="fa fa-eye"></i>  Lihat</button>   <button class="btn btn-sm btn-danger deletePelajar" type="button"><i class="fa fa-trash"></i></button></td>'
             }]
         });
 
         $('#tabel-pelajar tbody').on('click', '.lihatPelajar', function(){
             var rowData = tabel_pelajar.row($(this).parents('tr')).data();
             window.location.href = "index.php?halaman=piket&aksi=pindai&id=" + rowData[0] + "&context=lihatPelajar";
+        });
+
+        $('#tabel-pelajar tbody').on('click', '.deletePelajar', function(){
+            var rowData = tabel_pelajar.row($(this).parents('tr')).data();
+            displayDeletePelajar(rowData[0], rowData[3]);
         });
     });
 </script>
