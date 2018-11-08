@@ -77,7 +77,7 @@
 
         $('#tabel-pelajar tbody').on('click', '.lihatPelajar', function(){
             var rowData = tabel_pelajar.row($(this).parents('tr')).data();
-            window.location.href = "index.php?halaman=pelajar&aksi=lihat&id=" + rowData[0];
+            window.location.href = "index.php?halaman=piket&aksi=pindai&id=" + rowData[0] + "&context=lihatPelajar";
         });
     });
 </script>

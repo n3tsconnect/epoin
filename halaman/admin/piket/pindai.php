@@ -85,6 +85,15 @@
                     <button name="izin" type="submit" class="btn btn-success btn-sm" onclick='showModal("#modal-izin")'>
                         <i class="fa fa-plus"></i> Izin
                     </button>
+                    <?php
+                        if($_GET['context'] == "lihatPelajar"){
+                            ?>
+                                <a class="btn btn-primary btn-sm" href="?halaman=pelajar&aksi=ubah&id=<?php echo $id;?>"><i class="fa fa-cogs"></i> Ubah</a>
+                                <a href="?halaman=pelajar&aksi=gantikatasandi&id=<?php echo $id;?>" class="btn btn-info btn-sm"><i class="fa fa-lock"></i> Ganti kata sandi</a>
+                                <a onclick="return confirm ('Hapus data pelajar ini?')" class="btn btn-danger btn-sm" href="?halaman=pelajar&aksi=hapus&id=<?php echo $id;?>"><i class="fa fa-remove"></i> Hapus</a>
+                            <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
@@ -473,7 +482,7 @@
 
         // Definisi action tombol edit untuk tabel pelanggaran dan izin
         $('#tabel-izin tbody').on('click', '.editIzin', function(){
-            var rowData = tabel_izin.row($(this).parents('tr')).data();
+            var rowData = tabel_izin.row($(this).parents('tr')).data();2
             displayEditIzin(rowData);
         });
         $('#tabel-pelanggaran tbody').on('click', '.editPelanggaran', function(){
