@@ -129,7 +129,8 @@
                 "targets": 5,
                 "orderable": false,
                 "defaultContent": '<td><button class="btn btn-sm btn-info lihatPelajar" type="button"><i class="fa fa-eye"></i>  Lihat</button>   <button class="btn btn-sm btn-danger deletePelajar" type="button"><i class="fa fa-trash"></i></button></td>'
-            }]
+            }],
+            "deferRender": true
         });
 
         $('#tabel-pelajar tbody').on('click', '.lihatPelajar', function(){
