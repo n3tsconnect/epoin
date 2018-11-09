@@ -108,6 +108,7 @@
             });
         } else {
             alert("KONFIRMASI NAMA TIDAK SESUAI!");
+            jQuery('#modal-delete-pelajar').modal('hide');
         }
     }
 
