@@ -1,3 +1,6 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="web/css/select2.bootstrap4.min.css">
+
 <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
@@ -26,25 +29,28 @@
                                 <strong class="card-title">Data Pelajar</strong>
                             </div>
                         <div class="card-body">
-                        <div class="col-sm-3">
+                        <div class="col-sm-1">
                             <a href="?halaman=pelajar&aksi=tambah" class="btn btn-primary">Tambah</a>
+                        </div>
+                        <div class="col-sm-1">
+                            <select id="kelas-select"></select>
                         </div>
                         <div class="col-sm-3 text-right float-right">
                             <a href="?halaman=pelajar&aksi=import" class="btn btn-primary">Import</a>
                         </div>
                         <br/><br/>
-                  <table id="tabel-pelajar" class="table table-striped table-bordered">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Kelas</th>
-                        <th>NIS</th>
-                        <th>Nama</th>
-                        <th>Poin</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                  </table>
+                    <table id="tabel-pelajar" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Kelas</th>
+                            <th>NIS</th>
+                            <th>Nama</th>
+                            <th>Poin</th>
+                            <th>Aksi</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
@@ -87,6 +93,8 @@
 <script src="web/js/lib/data-table/datatables-init.js"></script>
 
 <script type="text/javascript">
+     
+    var kelasData = [];
 
     function deletePelajar(){
         var id_pelajar = $('#id_pelajar').val();
@@ -130,7 +138,24 @@
                 "orderable": false,
                 "defaultContent": '<td><button class="btn btn-sm btn-info lihatPelajar" type="button"><i class="fa fa-eye"></i>  Lihat</button>   <button class="btn btn-sm btn-danger deletePelajar" type="button"><i class="fa fa-trash"></i></button></td>'
             }],
-            "deferRender": true
+            "deferRender": true,
+            fnInitComplete: function(){
+                $.ajax({
+                    type: "GET",
+                    url: "api.php?halaman=piket&aksi=bulkinsert",
+                    data: {
+                        data_kelas: 1
+                    },
+                    success: function(data){
+                        kelasData = JSON.parse(data);
+                        jQuery('#kelas-select').select2({
+                            theme: "bootstrap4",
+                            data: kelasData
+                        });
+                        jQuery('#kelas-select').select2('focus');
+                    }
+                });
+            }
         });
 
         $('#tabel-pelajar tbody').on('click', '.lihatPelajar', function(){
@@ -142,5 +167,10 @@
             var rowData = tabel_pelajar.row($(this).parents('tr')).data();
             displayDeletePelajar(rowData[0], rowData[3]);
         });
+
+        jQuery('#kelas-select').on('select2:select', function(e){
+            var kelas = e.params.data.text;
+            tabel_pelajar.columns(1).search(kelas).draw();
+        })
     });
 </script>
