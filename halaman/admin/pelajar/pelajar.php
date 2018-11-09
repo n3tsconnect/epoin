@@ -26,18 +26,17 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data Pelajar</strong>
+                                <div class="col-sm-2">
+                                    <strong class="card-title">Data Pelajar</strong>
+                                </div>
+                                <div class="col-sm-3 text-right float-right">
+                                    <a href="?halaman=pelajar&aksi=tambah" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a>   <a href="?halaman=pelajar&aksi=import" class="btn btn-sm btn-primary"><i class="fa fa-upload"></i> Import</a>
+                                </div>
                             </div>
                         <div class="card-body">
-                        <div class="col-sm-1">
-                            <a href="?halaman=pelajar&aksi=tambah" class="btn btn-primary">Tambah</a>
-                        </div>
-                        <div class="col-sm-1">
-                            <select id="kelas-select"></select>
-                        </div>
-                        <div class="col-sm-3 text-right float-right">
-                            <a href="?halaman=pelajar&aksi=import" class="btn btn-primary">Import</a>
-                        </div>
+                            <div class="col-sm-1">
+                                <label>Filter Kelas: </label><select id="kelas-select"></select>
+                            </div>
                         <br/><br/>
                     <table id="tabel-pelajar" class="table table-striped table-bordered">
                         <thead>
@@ -148,6 +147,7 @@
                     },
                     success: function(data){
                         kelasData = JSON.parse(data);
+                        kelasData.unshift({id: -1, text: "SEMUA"}); // Masukkan opsi semua kelas.
                         jQuery('#kelas-select').select2({
                             theme: "bootstrap4",
                             data: kelasData
@@ -167,10 +167,16 @@
             var rowData = tabel_pelajar.row($(this).parents('tr')).data();
             displayDeletePelajar(rowData[0], rowData[3]);
         });
-
+        
+        // Ketika opsi kelas dipilih, filter tabel.
         jQuery('#kelas-select').on('select2:select', function(e){
             var kelas = e.params.data.text;
-            tabel_pelajar.columns(1).search(kelas).draw();
+            if(kelas != "SEMUA"){
+                tabel_pelajar.columns(1).search('^' + kelas + '$', true, false).draw();
+            } else {
+                tabel_pelajar.columns(1).search("").draw();
+            }
+            
         })
     });
 </script>
