@@ -90,7 +90,7 @@
                             ?>
                                 <a class="btn btn-primary btn-sm" href="?halaman=pelajar&aksi=ubah&id=<?php echo $id;?>"><i class="fa fa-cogs"></i> Ubah</a>
                                 <a href="?halaman=pelajar&aksi=gantikatasandi&id=<?php echo $id;?>" class="btn btn-info btn-sm"><i class="fa fa-lock"></i> Ganti kata sandi</a>
-                                <a onclick="return confirm ('Hapus data pelajar ini?')" class="btn btn-danger btn-sm" href="?halaman=pelajar&aksi=hapus&id=<?php echo $id;?>"><i class="fa fa-remove"></i> Hapus</a>
+                                <a onclick="displayDeletePelajar()" class="btn btn-danger btn-sm" href="#!"><i class="fa fa-remove"></i> Hapus</a>
                             <?php
                         }
                     ?>
@@ -291,6 +291,31 @@
 </div>
 
 
+<div class="modal" id="modal-delete-pelajar" tabindex="-1" role="dialog" aria-labelledby="deletePelajarLabel" aria-hidden="true" data-backdrop="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePelajarLabel">Delete Pelajar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input id="delete_id-pelajar" type="hidden" name="delete_id-pelajar" />
+                Untuk delete pelajar dengan nama <br /> <br /> 
+                <p class="text-center"><strong id="delete_nama-pelajar"></strong></p> <br />
+                Silahkan konfirmasi nama pelajar tersebut:
+                <input type="text" class="form-control" name="delete_konfirm-nama" id="delete_konfirm-nama">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button onclick='deletePelajar()' type="button" name="delete-pelajar" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="web/js/lib/data-table/datatables.min.js"></script>
 <script src="web/js/lib/data-table/dataTables.bootstrap.min.js"></script>
 <script src="web/js/lib/data-table/dataTables.buttons.min.js"></script>
@@ -302,6 +327,41 @@
 <script src="web/js/lib/data-table/buttons.print.min.js"></script>
 <script src="web/js/lib/data-table/buttons.colVis.min.js"></script>
 <script src="web/js/lib/data-table/datatables-init.js"></script>
+
+<script type="text/javascript">
+    function deletePelajar(){
+        var id_pelajar = $('#delete_id-pelajar').val();
+        var nama_pelajar = $('#delete_nama-pelajar').text();
+        var konfirm_nama = $('#delete_konfirm-nama').val();
+        
+        if(konfirm_nama.toUpperCase() == nama_pelajar.toUpperCase()){
+            $.ajax({
+                type: "POST",
+                url: "api.php?halaman=pelajar&aksi=hapus",
+                data: {
+                    id: id_pelajar
+                },
+                success: function(data){
+                    alert("SUCCESS DELETE " + nama_pelajar);
+                    jQuery('#modal-delete-pelajar').modal('hide');
+                }
+            });
+        } else {
+            alert("KONFIRMASI NAMA TIDAK SESUAI!");
+        }
+    }
+
+    function displayDeletePelajar(){
+        let id_pelajar = "<?php echo $id; ?>";
+        let nama_pelajar = "<?php echo $x['nama_pelajar']; ?>";
+
+        $('#delete_id-pelajar').val(id_pelajar);
+        $('#delete_nama-pelajar').text(nama_pelajar);
+        $('#delete_konfirm-nama').val("");
+
+        jQuery('#modal-delete-pelajar').modal('show');
+    }
+</script>
 
 <script type="text/javascript">
     // Untuk reset form yang ada di modal tambah pelanggaran/izin.
@@ -496,4 +556,8 @@
         });
     });
    
+</script>
+
+<script type="text/javascript">
+    
 </script>
