@@ -37,6 +37,10 @@ if (!isset($_SESSION['id'])) {
             if ($aksi == "hapus"){
                 include "halaman/admin/pelajar/hapus.php";
             }
+
+            if ($aksi == "import"){
+                include "halaman/admin/pelajar/import.api.php";
+            }
         }
     }
 }
