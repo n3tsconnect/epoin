@@ -46,7 +46,7 @@
                 ?>
                     <tr>
                         <td><img src="<?php
-                        if (file_exists('gambar/profil/guru/'.$pengguna['foto_pengguna'].'')) { echo 'gambar/profil/guru/'.$pengguna['foto_pengguna'].''; } else {echo 'http://placekitten.com/g/200/200';}
+                        if (file_exists('gambar/profil/guru/'.$pengguna['foto_pengguna'].'')) { echo 'gambar/profil/guru/'.$pengguna['foto_pengguna'].''; } else {echo 'https://placekitten.com/g/200/200';}
                           ?>" height="50px" width="50px"></td>
                         <td><?php echo $pengguna['nama_pengguna']?></td>
                         <td><?php echo $pengguna['telp_pengguna']?></td>

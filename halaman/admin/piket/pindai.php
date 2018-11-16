@@ -46,7 +46,7 @@
                 <div class="card-body">
                     <div class="col-lg-3">
                         <img style="width:150px; height:150px;" src="<?php
-                        if (file_exists('gambar/profil/pelajar/'.$x['foto_pelajar'].'')) { echo 'gambar/profil/pelajar/'.$x['foto_pelajar'].''; } else {echo 'http://placekitten.com/g/200/200';}
+                        if (file_exists('gambar/profil/pelajar/'.$x['foto_pelajar'].'')) { echo 'gambar/profil/pelajar/'.$x['foto_pelajar'].''; } else {echo 'https://placekitten.com/g/200/200';}
                           ?>"/>
                     </div>
                     <div class="col-lg-3">

@@ -38,7 +38,7 @@
                     <button form="form-upload" name="simpan" type="submit" class="btn btn-primary btn-sm">
                         <i class="fa fa-dot-circle-o"></i> Simpan
                     </button>
-                    <button name="download-template" type="button" class="btn btn-info btn-sm">
+                    <button onclick="window.location.href='web/template-import-pelajar.csv'" name="download-template" type="button" class="btn btn-info btn-sm">
                         <i class="fa fa-download"></i> Template
                     </button>
                 </div>

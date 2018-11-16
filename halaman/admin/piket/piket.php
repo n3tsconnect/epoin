@@ -1,22 +1,8 @@
 
 <link rel="stylesheet" type="text/css" href="jquery.ajaxcomplete.css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-   <!-- Including our scripting file. -->
 
-<script type="text/javascript" src="halaman/admin/piket/script.js"></script>
-<script>
-	function Result(element) {
-    var nama = element.textContent;
-	document.getElementById("namapelajar").value = $(nama).selector;
-	$('#display').html('');
-	}
-</script>
-<style>
-#display:empty {
-	display:none;
-}
-</style>
 <div class="content mt-3">
     <div class="row">
         <div class="col-md-6">
@@ -73,3 +59,19 @@
 					</div>
 				</div>
 		</div>
+
+   <!-- Including our scripting file. -->
+
+<script type="text/javascript" src="halaman/admin/piket/script.js"></script>
+<script>
+	function Result(element) {
+    var nama = element.textContent;
+	document.getElementById("namapelajar").value = $(nama).selector;
+	$('#display').html('');
+	}
+</script>
+<style>
+#display:empty {
+	display:none;
+}
+</style>
