@@ -45,9 +45,7 @@
                 while ($pengguna = $sql->fetch_assoc()){
                 ?>
                     <tr>
-                        <td><img src="<?php
-                        if (file_exists('gambar/profil/guru/'.$pengguna['foto_pengguna'].'')) { echo 'gambar/profil/guru/'.$pengguna['foto_pengguna'].''; } else {echo 'https://placekitten.com/g/200/200';}
-                          ?>" height="50px" width="50px"></td>
+                        <td><img src="<?php echo getProfile($pengguna['foto_pengguna']); ?>" height="50px" width="50px"></td>
                         <td><?php echo $pengguna['nama_pengguna']?></td>
                         <td><?php echo $pengguna['telp_pengguna']?></td>
                         <td><?php echo $pengguna['surel_pengguna']?></td>

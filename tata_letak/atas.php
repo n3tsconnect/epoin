@@ -1,3 +1,4 @@
+<?php include('profilepic.php'); ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -116,9 +117,7 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="<?php
-                            if (file_exists('gambar/profil/guru/'.$data['foto_pengguna'].'')) { echo 'gambar/profil/guru/'.$data['foto_pengguna'].''; } else {echo 'https://placekitten.com/g/200/200';}
-                              ?>" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="<?php echo getProfile($data['foto_pengguna']); ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
