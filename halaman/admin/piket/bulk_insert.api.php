@@ -50,4 +50,10 @@
         }
         echo $str;
     }
+
+    if(isset($_GET['nama_kelas'])){
+        $pelajar = esc($_GET['pelajar']);
+        $data = $koneksi->query("SELECT tb_kelas.nama_kelas FROM tb_pelajar JOIN tb_kelas ON tb_kelas.id_kelas = tb_pelajar.kelas_pelajar WHERE id_pelajar = $pelajar;");
+        echo json_encode($data->fetch_assoc()['nama_kelas']);
+    }
 ?>

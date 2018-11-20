@@ -91,24 +91,37 @@
         var pelanggaranData = [];
         var pelanggaranDisplay = [];
         
-        pelanggaranData[0] = formData[0]['value'];
-        pelanggaranData[1] = formData[1]['value'];
-        pelanggaranData[2] = formData[2]['value'];
-        pelanggaranData[4] = dataCounter;
+        // Ajax untuk mendapatkan nama kelas siswa.
+        $.ajax({
+            type: "GET",
+            url: "api.php?halaman=piket&aksi=bulkinsert",
+            data: {
+                nama_kelas: 1,
+                pelajar: formData[1]['value']
+            },
+            success: function(data){
+                kelasPelajar = JSON.parse(data);
 
-        pelanggaranDisplay[0] = jQuery('#kelas-select').select2('data')[0]['text'];
-        pelanggaranDisplay[1] = jQuery('#nama-select').select2('data')[0]['text'];
-        pelanggaranDisplay[2] = $('#pelanggaran-select option:selected').text();
-        pelanggaranDisplay[4] = dataCounter;
+                pelanggaranData[0] = formData[0]['value'];
+                pelanggaranData[1] = formData[1]['value'];
+                pelanggaranData[2] = formData[2]['value'];
+                pelanggaranData[4] = dataCounter;
 
-        tempData.push(pelanggaranData);
-        tempDisplay.push(pelanggaranDisplay);
+                pelanggaranDisplay[0] = kelasPelajar;
+                pelanggaranDisplay[1] = jQuery('#nama-select').select2('data')[0]['text'];
+                pelanggaranDisplay[2] = $('#pelanggaran-select option:selected').text();
+                pelanggaranDisplay[4] = dataCounter;
 
-        $('#tabel-pelanggaran').DataTable().ajax.reload();
-        dataCounter++;
+                tempData.push(pelanggaranData);
+                tempDisplay.push(pelanggaranDisplay);
 
-        jQuery('#kelas-select').select2('focus');
-        jQuery('#nama-select').val(null).trigger('change');
+                $('#tabel-pelanggaran').DataTable().ajax.reload();
+                dataCounter++;
+
+                jQuery('#kelas-select').select2('focus');
+                jQuery('#nama-select').val(null).trigger('change');
+            }
+        });
     }
 
     function isItemInArray(array, item) {
