@@ -63,7 +63,7 @@ if ($_SESSION['id']){
             <div class="row">
               <div class="col-sm-12">
                 <p style="color:white; text-align:center;">Made by:</p>
-                <img style="width:200px;" src="gambar/connect.png">
+                <img style="width:200px; display:block; text-align:center;" src="gambar/connect.png">
               </div>
         </div>
     </div>
