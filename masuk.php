@@ -62,8 +62,8 @@ if ($_SESSION['id']){
             </div>
             <div class="row">
               <div class="col-sm-12">
-                <h4 style="color:white; text-align:center;">Made by:</h4>
-                <h4 style="color:white; text-align:center;">For use by:</h4>
+                <p style="color:white; text-align:center;">Made by:</p>
+                <p style="color:white; text-align:center;">For use by:</p>
               </div>
         </div>
     </div>
