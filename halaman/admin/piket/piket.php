@@ -74,4 +74,7 @@
 #display:empty {
 	display:none;
 }
+#display {
+  z-index: 500;
+}
 </style>
