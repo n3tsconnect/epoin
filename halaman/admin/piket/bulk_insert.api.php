@@ -16,8 +16,12 @@
     if(isset($_GET['data_nama'])){
         $rowNo = 0;
         $kelas = esc($_GET['kelas']);
-        $data = $koneksi->query("SELECT id_pelajar, nama_pelajar FROM tb_pelajar WHERE kelas_pelajar = '$kelas'
-        ORDER BY nama_pelajar ASC;");
+        if($kelas == 0){
+            $data = $koneksi->query("SELECT id_pelajar, nama_pelajar FROM tb_pelajar ORDER BY nama_pelajar ASC;"); // Untuk pilihan semua kelas
+        } else {
+            $data = $koneksi->query("SELECT id_pelajar, nama_pelajar FROM tb_pelajar WHERE kelas_pelajar = '$kelas'
+            ORDER BY nama_pelajar ASC;");
+        }
         $result = array();
         while($pelajar = $data->fetch_assoc()){
             $result[$rowNo] = array();

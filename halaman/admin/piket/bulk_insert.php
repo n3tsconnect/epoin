@@ -224,6 +224,8 @@
             },
             success: function(data){
                 kelasData = JSON.parse(data);
+                kelasData.unshift({'id': 0, 'text': 'SEMUA'}); // Tambah pilihan semua kelas
+                console.log(kelasData);
                 jQuery('#kelas-select').select2({
                     theme: "bootstrap4",
                     data: kelasData
