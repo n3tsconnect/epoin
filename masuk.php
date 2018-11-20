@@ -35,7 +35,7 @@ if ($_SESSION['id']){
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
-<body class="bg-dark">
+<body class="bg-light">
 
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
