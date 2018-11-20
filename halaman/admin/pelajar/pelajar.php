@@ -34,21 +34,18 @@
                                 </div>
                             </div>
                         <div class="card-body">
-                            <div class="col-sm-1">
-                                <label>Filter Kelas: </label><select id="kelas-select"></select>
-                            </div>
-                        <br/><br/>
-                        <div class="col-sm-11">
-                    <table id="tabel-pelajar" class="table table-striped table-bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Kelas</th>
-                            <th>NIS</th>
-                            <th>Nama</th>
-                            <th>Poin</th>
-                            <th>Aksi</th>
-                        </tr>
+                    <div class="col-sm-12">
+                      <label>Filter Kelas: </label><select id="kelas-select"></select>
+                      <table id="tabel-pelajar" class="table table-striped table-bordered">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Kelas</th>
+                              <th>NIS</th>
+                              <th>Nama</th>
+                              <th>Poin</th>
+                              <th>Aksi</th>
+                            </tr>
                         </thead>
                     </table>
                   </div>
