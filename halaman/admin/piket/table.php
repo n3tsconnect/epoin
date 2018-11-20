@@ -12,7 +12,6 @@
         <th>Tanggal</th>
         <th>Petugas</th>
         <th>Waktu Tersisa</th>
-        <th>Control</th>
       </tr>
     </thead>
     <tbody>
@@ -37,7 +36,6 @@
         <td><?php echo date("Y-m-d", strtotime($pelanggaran["tgl_dibuat"]))?></td>
         <td><?php echo $pelanggaran['nama_pengguna']?></td>
         <td><?php if (strtotime($pelanggaran["sampai_kapan"]) >= time()) { echo gmdate("H:i:s", strtotime($pelanggaran["sampai_kapan"]) - time()); } else { echo "<p style='color:red;'><b>HABIS</b></p>"; } ?></td>
-        <td><?php echo "<button class='btn btn-danger'>Revoke</button>" ?></td>
       </tr>
         <?php } ?>
     </tbody>
