@@ -53,7 +53,7 @@
                     <table id="tabel-pelanggaran" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>No</th><th>Nama</th><th>Pelanggaran</th><th>A</th>
+                                <th>No</th><th>Nama</th><th>Pelanggaran</th><th><i class="fa fa-cogs"></i></th>
                             </tr>
                         </thead>
                     </table>
