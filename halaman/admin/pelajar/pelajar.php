@@ -37,7 +37,7 @@
                             <div class="col-sm-1">
                                 <label>Filter Kelas: </label><select id="kelas-select" style="float:none;"></select>
                             </div>
-                        <br/><br/>
+                        <br/><br/><br/><br/>
                     <table id="tabel-pelajar" class="table table-striped table-bordered">
                         <thead>
                         <tr>
