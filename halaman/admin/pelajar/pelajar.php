@@ -35,7 +35,7 @@
                             </div>
                         <div class="card-body">
                             <div class="col-sm-1">
-                                <label>Filter Kelas: </label><select id="kelas-select"></select>
+                                <label>Filter Kelas: </label><select id="kelas-select" style="float:none;"></select>
                             </div>
                         <br/><br/>
                     <table id="tabel-pelajar" class="table table-striped table-bordered">
@@ -66,7 +66,7 @@
             </div>
             <div class="modal-body">
                 <input id="id_pelajar" type="hidden" name="id_pelajar" />
-                Untuk delete pelajar dengan nama <br /> <br /> 
+                Untuk delete pelajar dengan nama <br /> <br />
                 <p class="text-center"><strong id="nama_pelajar"></strong></p> <br />
                 Silahkan konfirmasi nama pelajar tersebut:
                 <input type="text" class="form-control" name="konfirm_nama" id="konfirm_nama">
@@ -92,14 +92,14 @@
 <script src="web/js/lib/data-table/datatables-init.js"></script>
 
 <script type="text/javascript">
-     
+
     var kelasData = [];
 
     function deletePelajar(){
         var id_pelajar = $('#id_pelajar').val();
         var nama_pelajar = $('#nama_pelajar').text();
         var konfirm_nama = $('#konfirm_nama').val();
-        
+
         if(konfirm_nama.toUpperCase() == nama_pelajar.toUpperCase()){
             $.ajax({
                 type: "POST",
@@ -167,7 +167,7 @@
             var rowData = tabel_pelajar.row($(this).parents('tr')).data();
             displayDeletePelajar(rowData[0], rowData[3]);
         });
-        
+
         // Ketika opsi kelas dipilih, filter tabel.
         jQuery('#kelas-select').on('select2:select', function(e){
             var kelas = e.params.data.text;
@@ -176,7 +176,7 @@
             } else {
                 tabel_pelajar.columns(1).search("").draw();
             }
-            
+
         })
     });
 </script>
