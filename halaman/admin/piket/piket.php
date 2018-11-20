@@ -49,7 +49,7 @@
     </div>
 
 		<div class="row">
-				<div class="col-sm-12" style="overflow:auto;">
+				<div class="col-sm-12">
 					<div class="card">
 							<div class="card-header">
 									<strong class="card-title">Izin Valid</strong>
@@ -76,7 +76,7 @@
 }
 #display {
   z-index: 500;
-  height: 500px;
+  max-height: 500px;
   overflow-y: scroll;
 }
 </style>

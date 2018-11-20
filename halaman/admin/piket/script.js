@@ -17,7 +17,7 @@ $(document).ready(function() {
   $("#izin-dynamic").load("halaman/admin/piket/table.php");
   var refreshId = setInterval(function() {
      $("#izin-dynamic").load('halaman/admin/piket/table.php');
-  }, 100);
+  }, 10000);
   $.ajaxSetup({ cache: false });
 
 
