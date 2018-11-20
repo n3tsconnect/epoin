@@ -66,6 +66,7 @@
 <script>
 	function Result(element) {
     var nama = element.textContent;
+    nama = nama.replace(/\./g, '\\\\.');
 	document.getElementById("namapelajar").value = $(nama).selector;
 	$('#display').html('');
 	}
