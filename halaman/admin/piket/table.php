@@ -1,4 +1,5 @@
 <?php include ('../../../konfigurasi/koneksi.php'); ?>
+<div style="overflow:auto;">
 <table id="bootstrap-data-table2" class="table table-striped table-bordered" style="overflow:auto;">
     <thead>
       <tr>
@@ -21,7 +22,7 @@
         WHERE tb_datadispen.id_pelajar = tb_pelajar.id_pelajar
         AND tb_datadispen.id_guru = tb_pengguna.id_pengguna
         AND CURTIME() > tb_datadispen.dari_kapan
-        AND CURTIME() < ADDTIME(tb_datadispen.sampai_kapan, '02:00:00') 
+        AND CURTIME() < ADDTIME(tb_datadispen.sampai_kapan, '02:00:00')
         AND DATE(tb_datadispen.tgl_dibuat) = CURDATE()
         ORDER by tgl_dibuat DESC LIMIT 10");
         while ($pelanggaran = $y->fetch_assoc()){
@@ -41,3 +42,4 @@
         <?php } ?>
     </tbody>
   </table>
+</div>
