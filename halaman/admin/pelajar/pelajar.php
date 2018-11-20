@@ -36,6 +36,7 @@
                         <div class="card-body">
                     <div class="col-sm-12">
                       <label>Filter Kelas: </label><select id="kelas-select"></select>
+                      <br><br>
                       <table id="tabel-pelajar" class="table table-striped table-bordered">
                           <thead>
                             <tr>
