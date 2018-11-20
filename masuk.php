@@ -63,7 +63,9 @@ if ($_SESSION['id']){
             <div class="row">
               <div class="col-sm-12">
                 <p style="color:white; text-align:center; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";">Made by:</p>
-                <img style="width:175px; display:block; text-align:center; margin:auto;" src="gambar/connect.png">
+                <div style="margin:auto;display:block;padding-right: 6px;">
+                  <img style="width: 150px;display:block;text-align:center;margin:auto;/* margin: 0 0 0 0; */" src="gambar/connect.png">
+                </div>
               </div>
         </div>
     </div>
