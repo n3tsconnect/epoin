@@ -76,6 +76,7 @@
 }
 #display {
   z-index: 500;
+  height: 500px;
   overflow-y: scroll;
 }
 </style>
