@@ -1,3 +1,4 @@
+<?php include('profilepic.php'); ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -52,6 +53,7 @@
                     </li>
                     <h3 class="menu-title">Guru</h3><!-- /.menu-title -->
                     <li><a href="?halaman=piket"> <i class="menu-icon fa fa-pencil"></i> Piket</a></li>
+                    <li><a href="?halaman=piket&aksi=bulkinsert"> <i class="menu-icon fa fa-pencil"></i> Bulk Insert</a></li>
                     <h3 class="menu-title">Admin</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Pengguna</a>
@@ -115,9 +117,7 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="<?php
-                            if (file_exists('gambar/profil/guru/'.$data['foto_pengguna'].'')) { echo 'gambar/profil/guru/'.$data['foto_pengguna'].''; } else {echo 'http://placekitten.com/g/200/200';}
-                              ?>" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="<?php echo getProfile($data['foto_pengguna']); ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">

@@ -66,11 +66,11 @@
                                 </form>
 <?php
 if(isset($_POST['simpan'])){
-    $nama           = $_POST['nama'];
-    $username       = $_POST['username'];
-    $surel          = $_POST['surel'];
-    $notelp         = $_POST['notelp'];
-    $level          = $_POST['level'];
+    $nama           = esc($_POST['nama']);
+    $username       = esc($_POST['username']);
+    $surel          = esc($_POST['surel']);
+    $notelp         = esc($_POST['notelp']);
+    $level          = esc($_POST['level']);
     $pass           = password_hash($_POST['pass'], PASSWORD_DEFAULT);
     $foto           = $_FILES['foto']['name'];
     $file           = $_FILES['foto']['tmp_name'];

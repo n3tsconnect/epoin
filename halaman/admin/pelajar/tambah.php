@@ -71,13 +71,13 @@
                                 </form>
 <?php
 if(isset($_POST['simpan'])){
-    $nis        = $_POST['nis'];
-    $nama       = $_POST['nama'];
-    $surel      = $_POST['surel'];
-    $telp       = $_POST['notelp'];
+    $nis        = esc($_POST['nis']);
+    $nama       = esc($_POST['nama']);
+    $surel      = esc($_POST['surel']);
+    $telp       = esc($_POST['notelp']);
     $poin       = "0";
-    $status     = $_POST['status'];
-    $pass       = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+    $status     = esc($_POST['status']);
+    $pass       = password_hash(esc($_POST['pass']), PASSWORD_DEFAULT);
     $foto       = $_FILES['foto']['name'];
     $file       = $_FILES['foto']['tmp_name'];
     $size       = $_FILES['foto']['size'];

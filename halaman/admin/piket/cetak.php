@@ -1,5 +1,5 @@
 <?php
-$id     = $_GET['id'];
+$id     = esc($_GET['id']);
 include ('../../../konfigurasi/koneksi.php');
 $ea = $koneksi->query("SELECT * FROM tb_datadispen, tb_pengguna, tb_pelajar WHERE id_dispen = '$id'
 AND tb_datadispen.id_guru = tb_pengguna.id_pengguna AND tb_datadispen.id_pelajar = tb_pelajar.id_pelajar");

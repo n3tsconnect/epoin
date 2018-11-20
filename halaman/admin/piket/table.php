@@ -1,4 +1,5 @@
 <?php include ('../../../konfigurasi/koneksi.php'); ?>
+<div style="overflow:auto;">
 <table id="bootstrap-data-table2" class="table table-striped table-bordered" style="overflow:auto;">
     <thead>
       <tr>
@@ -11,7 +12,6 @@
         <th>Tanggal</th>
         <th>Petugas</th>
         <th>Waktu Tersisa</th>
-        <th>Control</th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
         WHERE tb_datadispen.id_pelajar = tb_pelajar.id_pelajar
         AND tb_datadispen.id_guru = tb_pengguna.id_pengguna
         AND CURTIME() > tb_datadispen.dari_kapan
-        AND CURTIME() < ADDTIME(tb_datadispen.sampai_kapan, '02:00:00') 
+        AND CURTIME() < ADDTIME(tb_datadispen.sampai_kapan, '02:00:00')
         AND DATE(tb_datadispen.tgl_dibuat) = CURDATE()
         ORDER by tgl_dibuat DESC LIMIT 10");
         while ($pelanggaran = $y->fetch_assoc()){
@@ -36,8 +36,8 @@
         <td><?php echo date("Y-m-d", strtotime($pelanggaran["tgl_dibuat"]))?></td>
         <td><?php echo $pelanggaran['nama_pengguna']?></td>
         <td><?php if (strtotime($pelanggaran["sampai_kapan"]) >= time()) { echo gmdate("H:i:s", strtotime($pelanggaran["sampai_kapan"]) - time()); } else { echo "<p style='color:red;'><b>HABIS</b></p>"; } ?></td>
-        <td><?php echo "<button class='btn btn-danger'>Revoke</button>" ?></td>
       </tr>
         <?php } ?>
     </tbody>
   </table>
+</div>

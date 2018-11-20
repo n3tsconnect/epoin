@@ -18,7 +18,30 @@ if (!isset($_SESSION['id'])) {
             if ($aksi == "terimainput"){
                 include "halaman/admin/piket/terima_input.php";
             }
-        } 
+            if ($aksi == "poin"){
+                include "halaman/admin/piket/poin.api.php";
+            }
+            if ($aksi == "pindai"){
+                include "halaman/admin/piket/pindai.api.php";
+            }
+            if ($aksi == "bulkinsert"){
+                include "halaman/admin/piket/bulk_insert.api.php";
+            }
+        }
+        
+        if ($halaman == "pelajar"){
+            if ($aksi == "pelajar"){
+                include "halaman/admin/pelajar/pelajar.api.php";
+            }
+            
+            if ($aksi == "hapus"){
+                include "halaman/admin/pelajar/hapus.php";
+            }
+
+            if ($aksi == "import"){
+                include "halaman/admin/pelajar/import.api.php";
+            }
+        }
     }
 }
 ?>
