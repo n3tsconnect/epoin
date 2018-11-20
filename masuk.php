@@ -35,7 +35,7 @@ if ($_SESSION['id']){
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
-<body class="bg-secondary">
+<body class="bg-dark">
 
 
     <div class="sufee-login d-flex align-content-center flex-wrap">
@@ -60,6 +60,11 @@ if ($_SESSION['id']){
                     </form>
                 </div>
             </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>Made by:</h4>
+                <h4>For use by:</h4>
+              </div>
         </div>
     </div>
 
