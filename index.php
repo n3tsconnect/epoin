@@ -7,7 +7,7 @@ if (!isset($_SESSION['id'])) {
 }elseif($_SESSION['level'] == 'Pelajar'){
     header("location: pelajar/index.php");
 }else {
-    
+
     if(isset($_SESSION['waktu']) && (time() - $_SESSION['waktu'] > $_SESSION['habis'] )) {
         echo 'Kamu diem aja selama 30 Menit, silahkan <a href="masuk.php">masuk</a> lagi.';
         session_destroy();
@@ -96,6 +96,11 @@ include ('tata_letak/atas.php');
                 if ($aksi == "bulkinsert"){
                     include "halaman/admin/piket/bulk_insert.php";
                 }
+            }
+            if ($halaman == "admin") {
+              if ($aksi == "update") {
+                include "halaman/admin/admin/update.php";
+              }
             }
             ?>
 
