@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['payload'])) {
- print_r($_POST['payload]);
+ print_r($_POST['payload']);
 }
  ?>
 <html>
