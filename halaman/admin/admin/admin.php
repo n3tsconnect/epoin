@@ -1,3 +1,10 @@
+<?php
+if (isset($_POST['update'])) {
+  $output = shell_exec ( "git pull 2>&1" );
+  echo '<script type="text/javascript">',
+  "alert($output)", '</script>';
+}
+?>
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
@@ -21,14 +28,7 @@
           <strong class="card-title">Output</strong>
         </div>
         <div class="card-body">
-          <div class="m-2">
-            <?php
-            if (isset($_POST['update'])) {
-              $output = shell_exec ( "git pull 2>&1" );
-              echo "<pre>$output</pre>";
-            }
-             ?>
-          </div>
+        </div>
       </div>
     </div>
   </div>
