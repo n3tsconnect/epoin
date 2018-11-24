@@ -5,10 +5,7 @@
         $descriptionEsc = esc($description);
         $jsonParams = json_encode($params);
         $timestamp = date('Y-m-d H:i:s');
-        echo $actionEsc;
-        echo $jsonParams;
-        echo $timestamp;
-        echo var_dump(mysqli_error($koneksi));
-        $koneksi->query("INSERT INTO tb_log (`action`, `description`, params, `timestamp`) VALUES ('$actionEsc', '$description', '$jsonParams', '$timestamp')");
+        $user = $_SESSION['id'];
+        $koneksi->query("INSERT INTO tb_log (`action`, `description`, params, `timestamp`, `user`) VALUES ('$actionEsc', '$description', '$jsonParams', '$timestamp', '$user')");
     }
 ?>
