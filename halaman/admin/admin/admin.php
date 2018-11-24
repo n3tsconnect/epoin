@@ -8,6 +8,7 @@
         <div class="card-body m-2">
           Update software E-Poin ke release terbaru dari repositori GitHub.
           <br>
+          <br>
           <form method="post">
             <button name="update" class="btn btn-primary">Update</button>
           </form>
@@ -23,7 +24,7 @@
           <div class="m-2">
             <?php
             if (isset($_POST['update'])) {
-              $output = shell_exec ( "git pull" );
+              $output = shell_exec ( "git pull 2>&1" );
               echo "<pre>$output</pre>";
             }
              ?>
