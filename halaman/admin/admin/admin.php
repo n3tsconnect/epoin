@@ -5,12 +5,12 @@
         <div class="card-header">
           <strong class="card-title">Update</strong>
         </div>
-        <div class="card-body m-2">
+        <div class="card-body m-2 text-center">
           Update software E-Poin ke release terbaru dari repositori GitHub.
           <br>
           <br>
           <form method="post">
-            <button name="update" class="btn btn-warning" style="text-align:center;">Update</button>
+            <button name="update" class="btn btn-warning">Update</button>
           </form>
         </div>
       </div>
