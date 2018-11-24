@@ -1,8 +1,13 @@
+<script type="text/javascript">>
+outputfunction() {
+  alert($output)
+}
+
 <?php
 if (isset($_POST['update'])) {
   $output = shell_exec ( "git pull 2>&1" );
   echo '<script type="text/javascript">',
-  "alert($output)", '</script>';
+  'outputfunction()', '</script>';
 }
 ?>
 <div class="container">
