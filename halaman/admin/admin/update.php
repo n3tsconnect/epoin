@@ -12,3 +12,4 @@ if (isset($_POST['updatebutton'])) {
      <?php echo $output; ?>
    </pre>
  </body>
+ </html>
