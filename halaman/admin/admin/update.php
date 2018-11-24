@@ -1,6 +1,7 @@
 <?php
 if (isset($_POST['payload'])) {
- print_r($_POST['payload']);
+ $shell = exec("git pull", $result);
+ print_r($result);
 }
  ?>
 <html>
