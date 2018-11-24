@@ -1,10 +1,4 @@
 <?php
   $output = shell_exec ( "/usr/bin/git pull" );
+  echo "<pre>$output</pre>";
  ?>
- <html>
- <body>
-   <pre>
-     <?php echo $output; ?>
-   </pre>
- </body>
- </html>
