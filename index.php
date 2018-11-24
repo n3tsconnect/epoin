@@ -98,7 +98,7 @@ include ('tata_letak/atas.php');
                 }
             }
             if ($halaman == "admin") {
-                include "halaman/admin/admin/update.php";
+                include "halaman/admin/admin/admin.php";
             }
             ?>
 
