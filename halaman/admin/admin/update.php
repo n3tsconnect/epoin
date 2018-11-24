@@ -1,13 +1,11 @@
 <?php
 if (isset($_POST['payload'])) {
- exec("git pull",$out);
-	foreach($out as $key => $value)	{
-	    echo $key." ".$value."<br>";
-	}
+ $out = shell_exec("git pull");
+ echo "<pre>$output</pre>";
 }
  ?>
 <html>
 <body>
-<p> This is an update page, please ignore.</p>
+<p> v2 This is an update page, please ignore.</p>
 </body>
 </html>
