@@ -1,9 +1,3 @@
-<?php
-if (isset($_POST['update'])) {
-  $output = shell_exec ( "git pull" );
-}
- ?>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-6">
@@ -13,6 +7,8 @@ if (isset($_POST['update'])) {
         </div>
         <div class="card-body">
           Update software E-Poin ke release terbaru dari repositori GitHub.
+          <br>
+          <br>
           <form method="post">
             <button name="update" class="btn btn-primary">Update</button>
           </form>
@@ -26,7 +22,12 @@ if (isset($_POST['update'])) {
         </div>
         <div class="card-body">
           <div class="m-2">
-            <?php echo "<pre>$output</pre>"; ?>
+            <?php
+            if (isset($_POST['update'])) {
+              $output = shell_exec ( "git pull" );
+              echo "<pre>$output</pre>";
+            }
+             ?>
           </div>
       </div>
     </div>
