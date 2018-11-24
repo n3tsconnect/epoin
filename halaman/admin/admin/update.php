@@ -1,4 +1,15 @@
 <?php
-  $output = shell_exec ( "git pull 2>&1" );
-  echo "<pre>$output</pre>";
+if (isset($_POST['updatebutton'])) {
+  $output = shell_exec ( "ls -a" );
+}
  ?>
+ <html>
+ <body>
+   <form method="post">
+     <button name="updatebutton">Update</button>
+   </form>
+   <pre>
+     <?php echo $output; ?>
+   </pre>
+ </body>
+ </html>
