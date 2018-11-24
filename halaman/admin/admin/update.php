@@ -1,5 +1,5 @@
 <?php
-echo var_dump(getallheaders());
+echo var_dump($_SERVER);
  ?>
 <html>
 <body>
