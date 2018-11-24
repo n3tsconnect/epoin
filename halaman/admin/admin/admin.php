@@ -14,7 +14,7 @@ if (isset($_POST['update'])) {
         <div class="card-body">
           Update software E-Poin ke release terbaru dari repositori GitHub.
           <form method="post">
-            <button name="update">Update</button>
+            <button name="update" class="btn btn-primary">Update</button>
           </form>
         </div>
       </div>
