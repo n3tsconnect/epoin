@@ -6,6 +6,6 @@ if (isset($_POST['payload'])) {
  ?>
 <html>
 <body>
-<p> v2 This is an update page, please ignore.</p>
+<p> v3 This is an update page, please ignore.</p>
 </body>
 </html>
