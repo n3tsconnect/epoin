@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['updatebutton'])) {
-  $output = shell_exec ( "ls -a" );
+  $output = shell_exec ( "git pull" );
 }
  ?>
  <html>
