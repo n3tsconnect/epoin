@@ -10,7 +10,7 @@
           <br>
           <br>
           <form method="post">
-            <button name="update" class="btn btn-primary" style="text-align:center;">Update</button>
+            <button name="update" class="btn btn-warning" style="text-align:center;">Update</button>
           </form>
         </div>
       </div>
