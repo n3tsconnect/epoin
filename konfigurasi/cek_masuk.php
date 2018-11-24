@@ -29,7 +29,7 @@
 				$_SESSION['habis'] 		= 30 * 60;
 			// Jika password cocok dengan yang di database.
 			// Cek level.
-				action("Login", "Username: ".$username, array("id" => $id_pelogin));
+				action("Login", array("id" => $id_pelogin), "Username: ".$username);
 			if($level_pelogin == 'Admin'){
 					header('location:../index.php');
 				}elseif($level_pelogin == 'Guru'){

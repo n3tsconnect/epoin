@@ -18,6 +18,7 @@
         $koneksi->query("UPDATE tb_pelajar SET poin_pelajar=(poin_pelajar + $poin) WHERE id_pelajar='$id_pelajar'");
 
         $currentPoin = $koneksi->query("SELECT poin_pelajar FROM tb_pelajar WHERE id_pelajar='$id_pelajar'");
+        action("Tambah pelanggaran", array("pelajar" => $id_pelajar, "keterangan" => $keterangan, "pelanggaran" => $id_pelanggaran));
         echo $currentPoin->fetch_assoc()['poin_pelajar'];
     }
 

@@ -1,5 +1,5 @@
 <?php
-    function action($action, $description = null, $params = array()){
+    function action($action, $params = array(), $description = null){
         global $koneksi;
         $actionEsc = esc($action);
         $descriptionEsc = esc($description);
