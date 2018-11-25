@@ -6,6 +6,8 @@
         $jsonParams = json_encode($params);
         $timestamp = date('Y-m-d H:i:s');
         $user = $_SESSION['id'];
-        $koneksi->query("INSERT INTO tb_log (`action`, `description`, params, `timestamp`, `user`) VALUES ('$actionEsc', '$description', '$jsonParams', '$timestamp', '$user')");
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; // Bisa diubah sesuai dengan keadaan server. 
+        $koneksi->query("INSERT INTO tb_log (`action`, `description`, params, `timestamp`, `user`, ip)
+         VALUES ('$actionEsc', '$description', '$jsonParams', '$timestamp', '$user', '$ip')");
     }
 ?>
