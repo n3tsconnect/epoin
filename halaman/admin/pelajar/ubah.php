@@ -91,7 +91,7 @@ if(isset($_POST['simpan'])){
     ?>
     <script type="text/javascript">
     alert("Berhasil memperbarui data pelajar");
-    window.location.href = "?halaman=pelajar&aksi=lihat&id=<?php echo $id_pelajar;?>";
+    window.location.href = "index.php?halaman=piket&aksi=pindai&id=<?php echo $id_pelajar;?>&context=lihatPelajar";
     </script>
     <?php
 
