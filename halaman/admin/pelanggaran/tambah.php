@@ -57,6 +57,8 @@ if(isset($_POST['simpan'])){
 
     // Jika berhasil disimpan.
     if($sql){
+        action("JENIS_PELANGGARAN_TAMBAH", array('nama' => $nama, 'deskripsi' => $desk, 'poin' => $poin));
+        ?>
         ?>
         <script type="text/javascript">
         alert("Data berhasil disimpan!");

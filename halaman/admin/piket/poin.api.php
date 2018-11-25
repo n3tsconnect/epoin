@@ -18,6 +18,7 @@
         $koneksi->query("UPDATE tb_pelajar SET poin_pelajar=(poin_pelajar + $poin) WHERE id_pelajar='$id_pelajar'");
 
         $currentPoin = $koneksi->query("SELECT poin_pelajar FROM tb_pelajar WHERE id_pelajar='$id_pelajar'");
+        action("PELANGGARAN_TAMBAH", array("pelajar" => $id_pelajar, "keterangan" => $keterangan, "pelanggaran" => $id_pelanggaran));
         echo $currentPoin->fetch_assoc()['poin_pelajar'];
     }
 
@@ -34,6 +35,7 @@
         $koneksi->query("INSERT INTO tb_datadispen (id_pelajar, nama_dispen, deskripsi_dispen,
         id_guru, dari_kapan, sampai_kapan, tgl_dibuat)
         VALUES ('$id_pelajar', '$nama', '$desk', '$id_guru', '$darikapan', '$sampaikapan', '$tanggal')");
+        action("IZIN_TAMBAH", array("pelajar" => $id_pelajar, "nama" => $nama, "deskripsi" => $desk, "dari" => $darikapan, "sampai" => $sampaikapan));
     }
     
 
@@ -53,12 +55,14 @@
         $koneksi->query("UPDATE tb_pelajar SET poin_pelajar = (poin_pelajar - '$poin') WHERE id_pelajar='$id_pelajar'");
 
         $currentPoin = $koneksi->query("SELECT poin_pelajar FROM tb_pelajar WHERE id_pelajar='$id_pelajar'");
+        action("PELANGGARAN_DELETE", array("pelajar" => $id_pelajar, "idPelanggaran" => $id_pelanggaran));
         echo $currentPoin->fetch_assoc()['poin_pelajar'];
     }
 
     if(isset($_POST['delete_izin'])){
         $id_izin = esc($_POST['id_izin']);
         $sql = $koneksi->query("DELETE FROM tb_datadispen WHERE id_dispen = '$id_izin'");
+        action("IZIN_DELETE", array("idIzin" => $id_izin));
     }
 
 
@@ -72,6 +76,7 @@
         // Data dimasukan ke table data dispensasi.
         $koneksi->query("UPDATE tb_datadispen SET nama_dispen = '$nama', deskripsi_dispen = '$desk', 
         dari_kapan = '$darikapan', sampai_kapan = '$sampaikapan' WHERE id_dispen = '$id_izin'");
+        action("IZIN_UPDATE", array("idIzin" => $id_izin, "nama" => $nama, "deskripsi" => $desk, "dari" => $darikapan, "sampai" => $sampaikapan));
     }
 
     if(isset($_POST['edit_pelanggaran'])){
@@ -79,5 +84,6 @@
         $keterangan_pelanggaran = esc($_POST['keterangan-pelanggaran']);
         // Data dimasukan ke table data pelanggar.
         $koneksi->query("UPDATE tb_datapelanggar SET keterangan_pelanggaran = '$keterangan_pelanggaran' WHERE id = '$id_pelanggaran'");
+        action("PELANGGARAN_UPDATE", array("idPelanggaran" => $id_pelanggaran, "keterangan" => $keterangan_pelanggaran));
     }
 ?>

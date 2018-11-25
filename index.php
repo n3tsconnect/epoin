@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ('konfigurasi/koneksi.php');
+include ('logger.php');
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
     header("location: masuk.php");
@@ -83,6 +84,9 @@ include ('tata_letak/atas.php');
                 }
                 if ($aksi == "tambah"){
                     include "halaman/admin/pelanggaran/tambah.php";
+                }
+                if ($aksi == "hapus"){
+                    include "halaman/admin/pelanggaran/hapus.php";
                 }
             }
             // Untuk halaman guru saja.

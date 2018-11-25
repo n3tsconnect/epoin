@@ -54,7 +54,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Foto</label>
-                                                <input name="foto" type="file" class="form-control">
+                                                <input name="foto" type="file" class="form-control" disabled>
                                             </div>
                                         </div>
                                     <div class="card-footer">
@@ -72,13 +72,26 @@ if(isset($_POST['simpan'])){
     $notelp         = esc($_POST['notelp']);
     $level          = esc($_POST['level']);
     $pass           = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-    $foto           = $_FILES['foto']['name'];
+    /*$foto           = $_FILES['foto']['name'];
     $file           = $_FILES['foto']['tmp_name'];
     $size           = $_FILES['foto']['size'];
     $tipe           = $_FILES['foto']['type'];
     $folder         = "gambar/profil/guru/";
-    $saring         = array('gif','png' ,'jpg');
-    if (strlen($foto)){
+    $saring         = array('gif','png' ,'jpg');*/
+
+    // UPDATE tb_pengguna sesuai ID nya.
+    $koneksi->query("INSERT INTO tb_pengguna (username_pengguna, nama_pengguna, surel_pengguna,
+    telp_pengguna, level_pengguna, pass_pengguna)
+    VALUES('$username', '$nama', '$surel', '$notelp', '$level', '$pass')");
+    action("PENGGUNA_TAMBAH", array("nama" => $nama, "level" => $level));
+    ?>
+    <script type="text/javascript">
+    alert("Berhasil menambahkan guru/admin baru");
+    window.location.href = "?halaman=guru";
+    </script>
+    <?php
+
+    /*if (strlen($foto)){
         // Cek format foto.
         $ext = pathinfo($foto, PATHINFO_EXTENSION);
         if(in_array($ext, $saring)){
@@ -130,6 +143,6 @@ if(isset($_POST['simpan'])){
         alert("Fotonya mana ?!");
         </script>
         <?php
-    }
+    }*/
 }
 ?>

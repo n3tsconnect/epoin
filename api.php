@@ -1,6 +1,7 @@
 <?php
 session_start();
 include ('konfigurasi/koneksi.php');
+include ('logger.php');
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
     header("location: masuk.php");
