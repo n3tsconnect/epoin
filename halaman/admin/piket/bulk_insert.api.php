@@ -47,6 +47,7 @@
 
             $koneksi->query("INSERT INTO tb_datapelanggar (id_pelajar, id_pelanggaran, poin_pelanggaran, id_guru, tanggal_pelanggaran) VALUES ('$pelanggaran[1]', '$pelanggaran[2]', '$poin', '$id_guru', '$tanggal')");
             $koneksi->query("UPDATE tb_pelajar SET poin_pelajar=(poin_pelajar + $poin) WHERE id_pelajar='$pelanggaran[1]'");
+            action("PELANGGARAN_TAMBAH_BULK", array("pelajar" => $pelanggaran[1], "pelanggaran" => $pelanggaran[2]));
         }
         echo $str;
     }
