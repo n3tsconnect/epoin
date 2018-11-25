@@ -85,6 +85,9 @@ include ('tata_letak/atas.php');
                 if ($aksi == "tambah"){
                     include "halaman/admin/pelanggaran/tambah.php";
                 }
+                if ($aksi == "hapus"){
+                    include "halaman/admin/pelanggaran/hapus.php";
+                }
             }
             // Untuk halaman guru saja.
             if ($halaman == "piket"){
