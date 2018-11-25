@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Ganti foto</label>
-                                                <input name="gantifoto" type="file" class="form-control col-sm-3">
+                                                <input name="gantifoto" type="file" class="form-control col-sm-3" disabled>
                                             </div>
                                         </div>
                                     <div class="card-footer">
@@ -76,13 +76,26 @@ if(isset($_POST['simpan'])){
     $surel      = esc($_POST['surel']);
     $telp       = esc($_POST['notelp']);
     $status     = esc($_POST['status']);
-    $foto       = $_FILES['gantifoto']['name'];
+    /*$foto       = $_FILES['gantifoto']['name'];
     $file       = $_FILES['gantifoto']['tmp_name'];
     $size       = $_FILES['gantifoto']['size'];
     $tipe       = $_FILES['gantifoto']['type'];
     $folder     = "gambar/profil/pelajar/";
-    $saring     = array('gif','png' ,'jpg');
-    if (strlen($foto)){
+    $saring     = array('gif','png' ,'jpg');*/
+
+    // UPDATE tb_pelajar sesuai ID nya.
+    $koneksi->query("UPDATE tb_pelajar SET nis_pelajar='$nis', nama_pelajar='$nama',
+    surel_pelajar='$surel', telp_pelajar='$telp', status_pelajar='$status'
+     WHERE id_pelajar='$id_pelajar'");
+    action('PELAJAR_UPDATE', array('idPelajar' => $id_pelajar, 'nama' => $nama, 'nis' => $nis, 'surel' => $surel, 'telp' => $telp, 'status' => $status));
+    ?>
+    <script type="text/javascript">
+    alert("Berhasil memperbarui data pelajar");
+    window.location.href = "?halaman=pelajar&aksi=lihat&id=<?php echo $id_pelajar;?>";
+    </script>
+    <?php
+
+    /*if (strlen($foto)){
         // Cek format foto.
         $ext = pathinfo($foto, PATHINFO_EXTENSION);
         if(in_array($ext, $saring)){
@@ -137,6 +150,6 @@ if(isset($_POST['simpan'])){
         window.location.href = "?halaman=pelajar&aksi=lihat&id=<?php echo $id_pelajar;?>";
         </script>
         <?php
-    }
+    }*/
 }
 ?>
