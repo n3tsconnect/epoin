@@ -46,16 +46,8 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-                    <div class="header-left">
-                    <div class="dropdown for-notification">
-                          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="modal" data-target="#rafiModal">
-                            <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">1</span>
-                          </button>
-                          </div>
-                            <b>Terakhir masuk</b> <?php echo $data['terakhir_masuk'];?>
-                        </div>
+                    
+
                     </div>
 
                 <!-- Rafi Priatna -->
