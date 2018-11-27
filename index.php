@@ -102,7 +102,12 @@ include ('tata_letak/atas.php');
                 }
             }
             if ($halaman == "admin") {
+                if($_SESSION['level'] == 'Admin'){
                 include "halaman/admin/admin/admin.php";
+                }
+                else {
+                echo "Permission Denied";
+                }
             }
             ?>
 
