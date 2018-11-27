@@ -17,7 +17,7 @@ $_SESSION['waktu'] = time();
 $id_pelajar = $_SESSION['id'];
 $sql = $koneksi->query("SELECT * FROM tb_pelajar WHERE id_pelajar = $id_pelajar;");
 $pelajar = $sql->fetch_assoc();
-include ('tata_letak/atas.php');
+include ('tata_letak_pelajar/atas.php');
 ?>
         <!-- Halaman dinamis -->
             <?php
@@ -35,7 +35,7 @@ include ('tata_letak/atas.php');
     <!-- Right Panel -->
 </body>
 <?php
-include ('tata_letak/bawah.php')
+include ('tata_letak_pelajar/bawah.php')
 ?>
 </html>
 <?php
