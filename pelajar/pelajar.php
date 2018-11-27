@@ -10,7 +10,7 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="?halaman=pelajar">Pelajar</a></li>
+                            <li>Pelajar</li>
                             <li class="active">Lihat pelajar</li>
                         </ol>
                     </div>
