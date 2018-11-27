@@ -1,8 +1,8 @@
 <?php
     $id = (float) esc($_SESSION['id']);
-    $sql    = $koneksi->query("SELECT tb_pelajar.*, tb_kelas.nama_kelas FROM tb_pelajar 
-    INNER JOIN tb_kelas 
-    ON tb_pelajar.kelas_pelajar = tb_kelas.id_kelas 
+    $sql    = $koneksi->query("SELECT tb_pelajar.*, tb_kelas.nama_kelas FROM tb_pelajar
+    INNER JOIN tb_kelas
+    ON tb_pelajar.kelas_pelajar = tb_kelas.id_kelas
     WHERE tb_pelajar.id_pelajar = '$id';");
     $x      = $sql->fetch_assoc();
 
@@ -30,7 +30,6 @@
     <div class="col-sm-8">
         <div class="page-header float-right">
             <ol class="breadcrumb text-right">
-                <li><a href="?halaman=piket">Piket</a></li>
                 <li class="active">Pelajar</li>
             </ol>
         </div>
