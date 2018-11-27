@@ -76,7 +76,7 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="<?php if ($pelajar['foto_pelajar'] == "") { echo 'https://placekitten.com/g/200/200';; } else { echo '../gambar/profil/pelajar/'.$pelajar['foto_pelajar'].'';} ?>" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="<?php echo getProfile($pelajar['foto_pelajar']); ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
