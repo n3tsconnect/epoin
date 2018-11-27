@@ -45,7 +45,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Foto</label>
-                                                <input name="foto" type="file" class="form-control" required>
+                                                <input name="foto" type="file" class="form-control" disabled>
                                             </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Status</label>
@@ -78,13 +78,23 @@ if(isset($_POST['simpan'])){
     $poin       = "0";
     $status     = esc($_POST['status']);
     $pass       = password_hash(esc($_POST['pass']), PASSWORD_DEFAULT);
-    $foto       = $_FILES['foto']['name'];
-    $file       = $_FILES['foto']['tmp_name'];
-    $size       = $_FILES['foto']['size'];
-    $tipe       = $_FILES['foto']['type'];
-    $folder     = "gambar/profil/pelajar/";
-    $saring     = array('gif','png' ,'jpg');
-    if (strlen($foto)){
+    //$foto       = $_FILES['foto']['name'];
+    //$file       = $_FILES['foto']['tmp_name'];
+    //$size       = $_FILES['foto']['size'];
+    //$tipe       = $_FILES['foto']['type'];
+    //$folder     = "gambar/profil/pelajar/";
+    //$saring     = array('gif','png' ,'jpg');
+    $koneksi->query("INSERT INTO tb_pelajar (nis_pelajar, nama_pelajar, pass_pelajar,
+        telp_pelajar, surel_pelajar, status_pelajar, poin_pelajar, level_pelajar)
+        VALUES('$nis', '$nama', '$pass', '$telp', '$surel', '$status', '$poin', 'Pelajar')");
+        action("PELAJAR_TAMBAH", array("nama" => $nama));
+        ?>
+        <script type="text/javascript">
+        alert("Berhasil memperbarui data pelajar");
+        window.location.href = "?halaman=pelajar";
+        </script>
+        <?php
+    /*if (strlen($foto)){
         // Cek format foto.
         $ext = pathinfo($foto, PATHINFO_EXTENSION);
         if(in_array($ext, $saring)){
@@ -98,6 +108,7 @@ if(isset($_POST['simpan'])){
                     $koneksi->query("INSERT INTO tb_pelajar (nis_pelajar, nama_pelajar, pass_pelajar,
                     telp_pelajar, surel_pelajar, foto_pelajar, status_pelajar, poin_pelajar)
                     VALUES('$nis', '$nama', '$pass', '$telp', '$surel', '$img', '$status', '$poin')");
+                    action("PELAJAR_TAMBAH", array("nama" => $nama));
                     ?>
                     <script type="text/javascript">
                     alert("Berhasil memperbarui data pelajar");
@@ -129,12 +140,11 @@ if(isset($_POST['simpan'])){
             <?php
         }
     }else{
-        // Jika tidak ada foto.
         ?>
         <script type="text/javascript">
-        alert("Fotonya mana ?!");
+        alert("Gambarnya mana?!");
         </script>
         <?php
-    }
+    } */
 }
 ?>

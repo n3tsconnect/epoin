@@ -47,7 +47,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Ganti foto</label>
-                                                <input name="gantifoto" type="file" class="form-control col-sm-3">
+                                                <input name="gantifoto" type="file" class="form-control col-sm-3" disabled>
                                             </div>
                                         </div>
                                     <div class="card-footer">
@@ -62,13 +62,25 @@ if(isset($_POST['simpan'])){
     $nama       = esc($_POST['nama']);
     $username   = esc($_POST['username']);
     $surel      = esc($_POST['surel']);
-    $foto       = $_FILES['gantifoto']['name'];
+    /*$foto       = $_FILES['gantifoto']['name'];
     $file       = $_FILES['gantifoto']['tmp_name'];
     $size       = $_FILES['gantifoto']['size'];
     $tipe       = $_FILES['gantifoto']['type'];
     $folder     = "gambar/profil/guru/";
-    $saring     = array('gif','png' ,'jpg');
-    if (strlen($foto)){
+    $saring     = array('gif','png' ,'jpg');*/
+
+    // UPDATE tb_pengguna sesuai ID nya.
+    $koneksi->query("UPDATE tb_pengguna SET nama_pengguna='$nama', username_pengguna='$username',
+    surel_pengguna='$surel' WHERE id_pengguna='$id_pengguna'");
+    action("PENGGUNA_UPDATE", array("idPengguna" => $id_pengguna, "nama" => $nama, "username" => $username, "surel" => $surel));
+    ?>
+    <script type="text/javascript">
+    alert("Berhasil memperbarui data guru");
+    window.location.href = "?halaman=guru";
+    </script>
+    <?php
+
+    /*if (strlen($foto)){
         // Cek format foto.
         $ext = pathinfo($foto, PATHINFO_EXTENSION);
         if(in_array($ext, $saring)){
@@ -122,6 +134,6 @@ if(isset($_POST['simpan'])){
         window.location.href = "?halaman=guru";
         </script>
         <?php
-    }
+    }*/
 }
 ?>

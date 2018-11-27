@@ -15,8 +15,6 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="?halaman=pelajar">Pelajar</a></li>
-                            <li><a href="?halaman=pelajar&aksi=lihat&id=<?php echo $id_pelajar;?>">Lihat pelajar</a></li>
                             <li class="active">Ganti kata sandi pelajar</li>
                         </ol>
                     </div>
@@ -66,7 +64,7 @@ if(isset($_POST['simpan'])){
             ?>
             <script type='text/javascript'>
             alert('Berhasil ganti kata sandi!');
-            window.location.href = "?halaman=pelajar&aksi=lihat&id=<?php echo $id_pelajar;?>";
+            window.history.go(-2);
             </script>
             <?php
         }else{

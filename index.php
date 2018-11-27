@@ -1,13 +1,14 @@
 <?php
 session_start();
 include ('konfigurasi/koneksi.php');
+include ('logger.php');
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
     header("location: masuk.php");
 }elseif($_SESSION['level'] == 'Pelajar'){
     header("location: pelajar/index.php");
 }else {
-    
+
     if(isset($_SESSION['waktu']) && (time() - $_SESSION['waktu'] > $_SESSION['habis'] )) {
         echo 'Kamu diem aja selama 30 Menit, silahkan <a href="masuk.php">masuk</a> lagi.';
         session_destroy();
@@ -38,6 +39,7 @@ include ('tata_letak/atas.php');
                 }
             }
             if ($halaman == "guru"){
+                if($_SESSION['level'] == 'Admin'){
                 if ($aksi == ""){
                     include "halaman/admin/guru/guru.php";
                 }
@@ -50,8 +52,14 @@ include ('tata_letak/atas.php');
                 if ($aksi == "hapus"){
                     include "halaman/admin/guru/hapus.php";
                 }
+             }
+                else {
+                  echo '<script type="text/javascript">alert("Access Denied");</script>';
+                  include "halaman/beranda/beranda.php";
+                }
             }
             if ($halaman == "pelajar"){
+                if($_SESSION['level'] == 'Admin'){
                 if ($aksi == ""){
                     include "halaman/admin/pelajar/pelajar.php";
                 }
@@ -73,8 +81,14 @@ include ('tata_letak/atas.php');
                 if ($aksi == "gantikatasandi"){
                     include "halaman/admin/pelajar/gantipass.php";
                 }
+             }
+                else {
+                  echo '<script type="text/javascript">alert("Access Denied");</script>';
+                  include "halaman/beranda/beranda.php";
+                }
             }
             if ($halaman == "pelanggaran"){
+                if($_SESSION['level'] == 'Admin'){
                 if ($aksi == ""){
                     include "halaman/admin/pelanggaran/pelanggaran.php";
                 }
@@ -83,6 +97,14 @@ include ('tata_letak/atas.php');
                 }
                 if ($aksi == "tambah"){
                     include "halaman/admin/pelanggaran/tambah.php";
+                }
+                if ($aksi == "hapus"){
+                    include "halaman/admin/pelanggaran/hapus.php";
+                }
+             }
+                else {
+                  echo '<script type="text/javascript">alert("Access Denied");</script>';
+                  include "halaman/beranda/beranda.php";
                 }
             }
             // Untuk halaman guru saja.
@@ -95,6 +117,15 @@ include ('tata_letak/atas.php');
                 }
                 if ($aksi == "bulkinsert"){
                     include "halaman/admin/piket/bulk_insert.php";
+                }
+            }
+            if ($halaman == "admin") {
+                if($_SESSION['level'] == 'Admin'){
+                include "halaman/admin/admin/admin.php";
+                }
+                else {
+                echo '<script type="text/javascript">alert("Access Denied");</script>';
+                include "halaman/beranda/beranda.php";
                 }
             }
             ?>

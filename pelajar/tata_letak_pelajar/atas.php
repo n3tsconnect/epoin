@@ -32,39 +32,7 @@
 <body>
 
 
-        <!-- Left Panel -->
 
-    <aside id="left-panel" class="left-panel">
-        <nav class="navbar navbar-expand-sm navbar-default">
-
-            <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="./"><img src="gambar/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="gambar/logo2.png" alt="Logo"></a>
-            </div>
-
-            <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.php"> <i class="menu-icon fa fa-dashboard"></i>Beranda </a>
-                    </li>
-                    <h3 class="menu-title">Guru</h3><!-- /.menu-title -->
-                    <li><a href="?halaman=piket"> <i class="menu-icon fa fa-pencil"></i> Piket</a></li>
-                    <h3 class="menu-title">Admin</h3><!-- /.menu-title -->
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Pengguna</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-user"></i><a href="?halaman=guru">Guru</a></li>
-                            <li><i class="fa fa-users"></i><a href="?halaman=pelajar">Pelajar</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="?halaman=pelanggaran"> <i class="menu-icon fa fa-warning"></i> Pelanggaran</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </aside><!-- /#left-panel -->
 
     <!-- Left Panel -->
 
@@ -78,16 +46,8 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-                    <div class="header-left">
-                    <div class="dropdown for-notification">
-                          <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="modal" data-target="#rafiModal">
-                            <i class="fa fa-bell"></i>
-                            <span class="count bg-danger">1</span>
-                          </button>
-                          </div>
-                            <b>Terakhir masuk</b> <?php echo $data['terakhir_masuk'];?>
-                        </div>
+                  <a href="../pelajar/index.php" class="btn btn-primary"><i class="fa fa-home" aria-hidden="true"></i></a>
+
                     </div>
 
                 <!-- Rafi Priatna -->
@@ -116,11 +76,10 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="gambar/profil/guru/<?php echo $data['foto_pengguna']?>" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="<?php echo getProfile($pelajar['foto_pelajar']); ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="?halaman=profil"><i class="fa fa- user"></i>Profil saya</a>
                                 <a class="nav-link" href="keluar.php"><i class="fa fa-power -off"></i>Keluar</a>
                         </div>
                     </div>

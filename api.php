@@ -1,11 +1,16 @@
 <?php
 session_start();
 include ('konfigurasi/koneksi.php');
+include ('logger.php');
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
     header("location: masuk.php");
 }elseif($_SESSION['level'] == 'Pelajar'){
-    header("location: pelajar/index.php");
+    $halaman = isset($_GET['halaman']) ? $_GET['halaman'] : "";
+    $aksi    = isset($_GET['aksi']) ? $_GET['aksi'] : "";
+    if ($aksi == "pindai"){
+        include "halaman/admin/piket/pindai.api.php";
+    }
 }else {
     if(isset($_SESSION['waktu']) && (time() - $_SESSION['waktu'] > $_SESSION['habis'] )) {
         echo 'Kamu diem aja selama 30 Menit, silahkan <a href="masuk.php">masuk</a> lagi.';

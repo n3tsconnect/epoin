@@ -342,6 +342,7 @@
                 success: function(data){
                     alert("SUCCESS DELETE " + nama_pelajar);
                     jQuery('#modal-delete-pelajar').modal('hide');
+                    window.location.href = "index.php?halaman=pelajar";
                 }
             });
         } else {
