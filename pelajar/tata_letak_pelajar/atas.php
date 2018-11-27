@@ -46,7 +46,7 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                  <a href="../pelajar/index.php" class="btn btn-primary">Home</a>
+                  <a href="../pelajar/index.php" class="btn btn-primary"><i class="fa fa-home" aria-hidden="true"></i></a>
 
                     </div>
 
