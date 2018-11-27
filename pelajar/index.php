@@ -4,7 +4,7 @@ include ('konfigurasi/koneksi.php');
 include ('logger.php');
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
-    header("location: masuk.php");
+    header("location: ../masuk.php");
 }elseif($_SESSION['level'] == 'Pelajar'){
     header("location: pelajar/index.php");
 }else {
