@@ -80,7 +80,6 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="?halaman=profil"><i class="fa fa- user"></i>Profil saya</a>
                                 <a class="nav-link" href="keluar.php"><i class="fa fa-power -off"></i>Keluar</a>
                         </div>
                     </div>
