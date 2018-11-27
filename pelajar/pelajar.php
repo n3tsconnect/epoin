@@ -57,9 +57,6 @@
                                         </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <a href="?halaman=pelajar&aksi=gantikatasandi&id=<?php echo $id_pelajar;?>" class="btn btn-info btn-sm"><i class="fa fa-lock"></i> Ganti kata sandi</a>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -136,16 +133,6 @@
                                     <?php } ?>
                                 </tbody>
                               </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data penghargaan</strong>
-                            </div>
-                            <div class="card-body card-block">
-                            Segera hadir!
                             </div>
                         </div>
                     </div>
