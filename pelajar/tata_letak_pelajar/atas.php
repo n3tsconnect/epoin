@@ -46,7 +46,7 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-
+                  <a href="../pelajar/index.php"><i class="fas fa-home"></i></a>
 
                     </div>
 
