@@ -54,7 +54,8 @@ include ('tata_letak/atas.php');
                 }
              }
                 else {
-                    echo "Permission Denied";
+                  echo '<script type="text/javascript">alert("Access Denied");</script>';
+                  include "halaman/beranda/beranda.php";
                 }
             }
             if ($halaman == "pelajar"){
@@ -82,7 +83,8 @@ include ('tata_letak/atas.php');
                 }
              }
                 else {
-                    echo "Permission Denied";
+                  echo '<script type="text/javascript">alert("Access Denied");</script>';
+                  include "halaman/beranda/beranda.php";
                 }
             }
             if ($halaman == "pelanggaran"){
@@ -101,7 +103,8 @@ include ('tata_letak/atas.php');
                 }
              }
                 else {
-                    echo "Permission Denied";
+                  echo '<script type="text/javascript">alert("Access Denied");</script>';
+                  include "halaman/beranda/beranda.php";
                 }
             }
             // Untuk halaman guru saja.
