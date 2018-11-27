@@ -39,6 +39,7 @@ include ('tata_letak/atas.php');
                 }
             }
             if ($halaman == "guru"){
+                if($_SESSION['level'] == 'Admin'){
                 if ($aksi == ""){
                     include "halaman/admin/guru/guru.php";
                 }
@@ -51,8 +52,13 @@ include ('tata_letak/atas.php');
                 if ($aksi == "hapus"){
                     include "halaman/admin/guru/hapus.php";
                 }
+             }
+                else {
+                    echo "Permission Denied";
+                }
             }
             if ($halaman == "pelajar"){
+                if($_SESSION['level'] == 'Admin'){
                 if ($aksi == ""){
                     include "halaman/admin/pelajar/pelajar.php";
                 }
@@ -74,8 +80,13 @@ include ('tata_letak/atas.php');
                 if ($aksi == "gantikatasandi"){
                     include "halaman/admin/pelajar/gantipass.php";
                 }
+             }
+                else {
+                    echo "Permission Denied";
+                }
             }
             if ($halaman == "pelanggaran"){
+                if($_SESSION['level'] == 'Admin'){
                 if ($aksi == ""){
                     include "halaman/admin/pelanggaran/pelanggaran.php";
                 }
@@ -87,6 +98,10 @@ include ('tata_letak/atas.php');
                 }
                 if ($aksi == "hapus"){
                     include "halaman/admin/pelanggaran/hapus.php";
+                }
+             }
+                else {
+                    echo "Permission Denied";
                 }
             }
             // Untuk halaman guru saja.
