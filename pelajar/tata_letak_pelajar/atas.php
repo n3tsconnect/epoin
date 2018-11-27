@@ -32,7 +32,7 @@
 <body>
 
 
-        
+
 
     <!-- Left Panel -->
 
@@ -46,7 +46,7 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                    
+
 
                     </div>
 
@@ -76,7 +76,7 @@
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" style="width:35px; height:35px;" src="gambar/profil/guru/<?php echo $data['foto_pengguna']?>" alt="User Avatar">
+                            <?php if (file_exists('../gambar/profil/pelajar/'.$pelajar['foto_pelajar'].'')) { echo '../gambar/profil/pelajar/'.$pelajar['foto_pelajar'].''; } else {echo 'https://placekitten.com/g/200/200';} ?>"/>
                         </a>
 
                         <div class="user-menu dropdown-menu">

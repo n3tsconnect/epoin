@@ -26,7 +26,7 @@
                             </div>
                             <div class="card-body card-block">
                                 <div class="col-lg-3">
-                                <img style="width:150px; height:150px;" src="<?php if (file_exists('gambar/profil/pelajar/'.$pelajar['foto_pelajar'].'')) { echo '../gambar/profil/pelajar/'.$pelajar['foto_pelajar'].''; } else {echo 'https://placekitten.com/g/200/200';} ?>"/>
+                                <img style="width:150px; height:150px;" src="<?php if (file_exists('../gambar/profil/pelajar/'.$pelajar['foto_pelajar'].'')) { echo '../gambar/profil/pelajar/'.$pelajar['foto_pelajar'].''; } else {echo 'https://placekitten.com/g/200/200';} ?>"/>
                                 </div>
                                 <div class="col-lg-3">
                                         <div class="form-group">
