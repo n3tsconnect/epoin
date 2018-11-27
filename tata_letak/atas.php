@@ -54,16 +54,19 @@
                     <h3 class="menu-title">Guru</h3><!-- /.menu-title -->
                     <li><a href="?halaman=piket"> <i class="menu-icon fa fa-pencil"></i> Piket</a></li>
                     <li><a href="?halaman=piket&aksi=bulkinsert"> <i class="menu-icon fa fa-pencil"></i> Bulk Insert</a></li>
-                    <h3 class="menu-title">Admin</h3><!-- /.menu-title -->
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Pengguna</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-user"></i><a href="?halaman=guru">Guru</a></li>
-                            <li><i class="fa fa-users"></i><a href="?halaman=pelajar">Pelajar</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="?halaman=pelanggaran"> <i class="menu-icon fa fa-warning"></i> Pelanggaran</a></li>
-                </ul>
+                    <?php 
+                    if($_SESSION['level'] == 'Admin'){
+                    echo '<h3 class="menu-title">Admin</h3><!-- /.menu-title -->';
+                    echo '<li class="menu-item-has-children dropdown">';
+                        echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user-o"></i>Pengguna</a>';
+                        echo '<ul class="sub-menu children dropdown-menu">';
+                            echo '<li><i class="fa fa-user"></i><a href="?halaman=guru">Guru</a></li>';
+                            echo '<li><i class="fa fa-users"></i><a href="?halaman=pelajar">Pelajar</a></li>';
+                        echo '</ul>';
+                    echo '</li>';
+                    echo '<li><a href="?halaman=pelanggaran"> <i class="menu-icon fa fa-warning"></i> Pelanggaran</a></li>';
+                echo '</ul>';
+                 } ?>
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->
