@@ -65,7 +65,8 @@
                                 <strong class="card-title">Data pelanggaran</strong>
                             </div>
                             <div class="card-body card-block">
-                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <div style="overflow:auto;">
+                            <table id="bootstrap-data-table2" class="table table-striped table-bordered">
                                 <thead>
                                   <tr>
                                     <th>No</th>
@@ -97,6 +98,7 @@
                                 </tbody>
                               </table>
                             </div>
+                          </div>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -105,6 +107,7 @@
                                 <strong class="card-title">Data dispensasi</strong>
                             </div>
                             <div class="card-body card-block">
+                            <div style="overflow:auto;">
                             <table id="bootstrap-data-table2" class="table table-striped table-bordered">
                                 <thead>
                                   <tr>
@@ -134,6 +137,7 @@
                                 </tbody>
                               </table>
                             </div>
+                          </div>
                         </div>
                     </div>
                 </div>
