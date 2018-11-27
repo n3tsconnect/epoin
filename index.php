@@ -121,7 +121,7 @@ include ('tata_letak/atas.php');
                 include "halaman/admin/admin/admin.php";
                 }
                 else {
-                echo "Permission Denied";
+                echo '<script type="text/javascript"> alert(\'Hi\'); </script>'
                 }
             }
             ?>
