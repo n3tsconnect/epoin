@@ -1,167 +1,140 @@
 <?php
 session_start();
-include ('../konfigurasi/koneksi.php');
-include ('tata_letak_pelajar/atas.php');
+include ('konfigurasi/koneksi.php');
+include ('logger.php');
+$judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
-  session_destroy();
-  header( "location:../masuk.php" );
-}
-$id_pelajar = $_SESSION['id'];
-$sql = $koneksi->query("SELECT * FROM tb_pelajar WHERE id_pelajar = $id_pelajar;");
-$pelajar = $sql->fetch_assoc();
-?>
-<div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Pelajar</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="?halaman=pelajar">Pelajar</a></li>
-                            <li class="active">Lihat pelajar</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
+    header("location: masuk.php");
+}elseif($_SESSION['level'] == 'Pelajar'){
+    header("location: pelajar/index.php");
+}else {
 
-        <div class="content mt-3">
-            <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data pelajar</strong>
-                            </div>
-                            <div class="card-body card-block">
-                                <div class="col-lg-3">
-                                <img style="width:150px; height:150px;" src="../gambar/profil/pelajar/<?php echo $pelajar['foto_pelajar'];?>"/>
-                                </div>
-                                <div class="col-lg-3">
-                                        <div class="form-group">
-                                                <label class=" form-control-label">NIS</label>
-                                                <p><?php echo $pelajar['nis_pelajar'];?></p>
-                                        </div>
-                                        <div class="form-group">
-                                                <label class=" form-control-label">Nama</label>
-                                                <p><?php echo $pelajar['nama_pelajar'];?></p>
-                                        </div>
-                                        <div class="form-group">
-                                                <label class=" form-control-label">No Telp</label>
-                                                <p><?php echo $pelajar['telp_pelajar'];?></p>
-                                        </div>
-                                </div>
-                                <div class="col-lg-3">
-                                        <div class="form-group">
-                                                <label class=" form-control-label">Surel</label>
-                                                <p><?php echo $pelajar['surel_pelajar'];?></p>
-                                        </div>
-                                        <div class="form-group">
-                                                <label class=" form-control-label">Status</label>
-                                                <p id="status"><?php echo $pelajar['status_pelajar'];?></p>
-                                        </div>
-                                        <div class="form-group">
-                                                <label class=" form-control-label">Poin</label>
-                                                <p><?php echo $pelajar['poin_pelajar'];?></p>
-                                        </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <a href="?halaman=pelajar&aksi=gantikatasandi&id=<?php echo $id_pelajar;?>" class="btn btn-info btn-sm"><i class="fa fa-lock"></i> Ganti kata sandi</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data pelanggaran</strong>
-                            </div>
-                            <div class="card-body card-block">
-                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                <thead>
-                                  <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Deskripsi</th>
-                                    <th>Poin</th>
-                                    <th>Tanggal</th>
-                                    <th>Petugas</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $no   = 1;
-                                    $x  = $koneksi->query("SELECT * FROM tb_datapelanggar, tb_pelanggaran, tb_pengguna
-                                    WHERE tb_datapelanggar.id_pelajar = '$id_pelajar'
-                                    AND tb_datapelanggar.id_pelanggaran = tb_pelanggaran.id_pelanggaran
-                                    AND tb_datapelanggar.id_guru = tb_pengguna.id_pengguna");
-                                    while ($pelanggaran = $x->fetch_assoc()){
-                                    ?>
-                                <tr>
-                                    <td><?php echo $no++;?></td>
-                                    <td><?php echo $pelanggaran['nama_pelanggaran']?></td>
-                                    <td><?php echo $pelanggaran['deskripsi_pelanggaran']?></td>
-                                    <td><?php echo $pelanggaran['poin_pelanggaran']?></td>
-                                    <td><?php echo $pelanggaran['tanggal_pelanggaran']?></td>
-                                    <td><?php echo $pelanggaran['nama_pengguna']?></td>
-                                  </tr>
-                                    <?php } ?>
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data dispensasi</strong>
-                            </div>
-                            <div class="card-body card-block">
-                            <table id="bootstrap-data-table2" class="table table-striped table-bordered">
-                                <thead>
-                                  <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Deskripsi</th>
-                                    <th>Tanggal</th>
-                                    <th>Petugas</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $no   = 1;
-                                    $y  = $koneksi->query("SELECT * FROM tb_datadispen, tb_pengguna
-                                    WHERE tb_datadispen.id_pelajar = '$id_pelajar'
-                                    AND tb_datadispen.id_guru = tb_pengguna.id_pengguna");
-                                    while ($pelanggaran = $y->fetch_assoc()){
-                                    ?>
-                                <tr>
-                                    <td><?php echo $no++;?></td>
-                                    <td><?php echo $pelanggaran['nama_dispen']?></td>
-                                    <td><?php echo $pelanggaran['deskripsi_dispen']?></td>
-                                    <td><?php echo $pelanggaran['tgl_dibuat']?></td>
-                                    <td><?php echo $pelanggaran['nama_pengguna']?></td>
-                                  </tr>
-                                    <?php } ?>
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data penghargaan</strong>
-                            </div>
-                            <div class="card-body card-block">
-                            Segera hadir!
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    if(isset($_SESSION['waktu']) && (time() - $_SESSION['waktu'] > $_SESSION['habis'] )) {
+        echo 'Kamu diem aja selama 30 Menit, silahkan <a href="masuk.php">masuk</a> lagi.';
+        session_destroy();
+    }else {
+// Tiap masuk ke halaman, akan selalu di refresh waktu nya.
+// Jik pengguna diem aja sampai waktu habis, maka akan di matikan session nya.
+$_SESSION['waktu'] = time();
+$sessionId = esc($_SESSION['id']);
+$sql               = $koneksi->query("SELECT * FROM tb_pengguna WHERE id_pengguna = '$sessionId'");
+$data              = $sql->fetch_assoc();
+include ('tata_letak/atas.php');
+?>
+        <!-- Halaman dinamis -->
+            <?php
+            $halaman = isset($_GET['halaman']) ? $_GET['halaman'] : "";
+            $aksi    = isset($_GET['aksi']) ? $_GET['aksi'] : "";
+            if ($halaman == ""){
+                if ($aksi == ""){
+                    include "halaman/beranda/beranda.php";
+                }
+            }
+            if ($halaman == "profil"){
+                if ($aksi == ""){
+                    include "halaman/profil/profil.php";
+                }
+                if ($aksi == "gantikatasandi"){
+                    include "halaman/profil/gantikatasandi.php";
+                }
+            }
+            if ($halaman == "guru"){
+                if($_SESSION['level'] == 'Admin'){
+                if ($aksi == ""){
+                    include "halaman/admin/guru/guru.php";
+                }
+                if ($aksi == "ubah"){
+                    include "halaman/admin/guru/ubah.php";
+                }
+                if ($aksi == "tambah"){
+                    include "halaman/admin/guru/tambah.php";
+                }
+                if ($aksi == "hapus"){
+                    include "halaman/admin/guru/hapus.php";
+                }
+             }
+                else {
+                    echo "Permission Denied";
+                }
+            }
+            if ($halaman == "pelajar"){
+                if($_SESSION['level'] == 'Admin'){
+                if ($aksi == ""){
+                    include "halaman/admin/pelajar/pelajar.php";
+                }
+                if ($aksi == "lihat"){
+                    include "halaman/admin/pelajar/lihat.php";
+                }
+                if ($aksi == "ubah"){
+                    include "halaman/admin/pelajar/ubah.php";
+                }
+                if ($aksi == "tambah"){
+                    include "halaman/admin/pelajar/tambah.php";
+                }
+                if ($aksi == "import"){
+                    include "halaman/admin/pelajar/import.php";
+                }
+                if ($aksi == "hapus"){
+                    include "halaman/admin/pelajar/hapus.php";
+                }
+                if ($aksi == "gantikatasandi"){
+                    include "halaman/admin/pelajar/gantipass.php";
+                }
+             }
+                else {
+                    echo "Permission Denied";
+                }
+            }
+            if ($halaman == "pelanggaran"){
+                if($_SESSION['level'] == 'Admin'){
+                if ($aksi == ""){
+                    include "halaman/admin/pelanggaran/pelanggaran.php";
+                }
+                if ($aksi == "ubah"){
+                    include "halaman/admin/pelanggaran/ubah.php";
+                }
+                if ($aksi == "tambah"){
+                    include "halaman/admin/pelanggaran/tambah.php";
+                }
+                if ($aksi == "hapus"){
+                    include "halaman/admin/pelanggaran/hapus.php";
+                }
+             }
+                else {
+                    echo "Permission Denied";
+                }
+            }
+            // Untuk halaman guru saja.
+            if ($halaman == "piket"){
+                if ($aksi == ""){
+                    include "halaman/admin/piket/piket.php";
+                }
+                if ($aksi == "pindai"){
+                    include "halaman/admin/piket/pindai.php";
+                }
+                if ($aksi == "bulkinsert"){
+                    include "halaman/admin/piket/bulk_insert.php";
+                }
+            }
+            if ($halaman == "admin") {
+                if($_SESSION['level'] == 'Admin'){
+                include "halaman/admin/admin/admin.php";
+                }
+                else {
+                echo "Permission Denied";
+                }
+            }
+            ?>
+
+    </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+</body>
 <?php
-include('tata_letak_pelajar/bawah.php');
+include ('tata_letak/bawah.php')
+?>
+</html>
+<?php
+    }
+}
 ?>
