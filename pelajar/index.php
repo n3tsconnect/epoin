@@ -29,6 +29,11 @@ include ('tata_letak_pelajar/atas.php');
                     include "pelajar.php";
                 }
             }
+            if ($halaman == "pelajar"){
+                if ($aksi == "gantikatasandi"){
+                    include "../halaman/admin/pelajar/gantipass.php";
+                }
+             }
             ?>
 
     </div><!-- /#right-panel -->

@@ -76,6 +76,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-footer">
+                    <a href="?halaman=pelajar&aksi=gantikatasandi&id=<?php echo $id;?>" class="btn btn-info btn-sm"><i class="fa fa-lock"></i> Ganti kata sandi</a>
+                </div>
             </div>
         </div>
         <div class="col-md-12">
