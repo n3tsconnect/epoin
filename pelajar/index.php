@@ -79,7 +79,7 @@ $pelajar = $sql->fetch_assoc();
                                 <strong class="card-title">Data pelanggaran</strong>
                             </div>
                             <div class="card-body card-block">
-                            <div style="overflow:auto;>
+                            <div style="overflow:auto;">
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                 <thead>
                                   <tr>
@@ -121,7 +121,7 @@ $pelajar = $sql->fetch_assoc();
                                 <strong class="card-title">Data dispensasi</strong>
                             </div>
                             <div class="card-body card-block">
-                            <div style="overflow:auto;>                           
+                            <div style="overflow:auto;">                           
                             <table id="bootstrap-data-table2" class="table table-striped table-bordered">
                                 <thead>
                                   <tr>
