@@ -2,6 +2,7 @@
     session_start();
     include ('../konfigurasi/koneksi.php');
     include ('../profilepic.php');
+    include ('../logger.php');
     include ('tata_letak_pelajar/atas.php');
 
     $id_pelajar     = (int) esc($_SESSION['id_pending']);
@@ -24,6 +25,10 @@
     </div>
     <div class="card-body card-block">
         <form method="POST" enctype="multipart/form-data">
+            <div class='form-group'>
+                <label class='form-control-label'>Nama Lengkap</label>
+                <input name='nama_pelajar' type='text' class='form-control'/>
+            </div>
             <div class="form-group">
                 <label class=" form-control-label">Password baru</label>
                 <input name="baru" type="password" class="form-control">
@@ -43,6 +48,7 @@
 <?php include ('tata_letak_pelajar/bawah.php')?>
 <?php
 if(isset($_POST['simpan'])){
+    $nama_pelajar = esc($_POST['nama_pelajar']);
     $pass_baru    = esc($_POST['baru']);
     $konfirmpass  = esc($_POST['konfirm']);
     // Hash katasandi yang baru.
@@ -58,10 +64,12 @@ if(isset($_POST['simpan'])){
     // Jika pass baru sama konfirmasi nya cocok.
         if($pass_baru == $konfirmpass){
             $koneksi->query("UPDATE tb_pelajar SET pass_pelajar='$passfix' WHERE id_pelajar='$id_pelajar'");
+            action('PELAJAR_SELF_REGISTER', array('idPelajar' => $id_pelajar, 'nama' => $nama_pelajar));
             ?>
             <script type='text/javascript'>
-            alert('Berhasil ganti kata sandi!');
-            <?php session_start();
+            alert('Berhasil self register!');
+            <?php     
+            session_start();
             $_SESSION['id_pending'] = null; ?>
             window.location.href='../masuk.php';
             </script>
