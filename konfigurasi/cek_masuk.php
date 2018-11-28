@@ -61,6 +61,10 @@
 					if($level_pelajar == 'Pelajar'){
 							header('location:../pelajar/index.php');
 						}
+					}elseif($x['pass_pelajar'] == null){ // Cek apa pelajar sudah punya password
+						session_start();
+						$_SESSION['id_pending'] = $x['id_pelajar'];
+						echo "<script type='text/javascript'>alert('Password tidak ada!'); window.location.href='../pelajar/passbaru.php';</script>";
 					}else{
 					// Jika password dan username tidak cocok dengan yang di database.
 						echo "<script type='text/javascript'>alert('Username atau password salah!'); window.location.href='../masuk.php';</script>";
