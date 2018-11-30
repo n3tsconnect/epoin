@@ -86,6 +86,7 @@
                     <strong class="card-title"> Riwayat Pelanggaran</strong>
                 </div>
                 <div class="card-body">
+                  <div style="overflow:auto;">
                     <table id="tabel-pelanggaran" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -94,6 +95,7 @@
                         </thead>
                     </table>
                 </div>
+                 </div>
             </div>
         </div>
         <div class="col-md-12">
@@ -102,6 +104,7 @@
                     <strong class="card-title">Riwayat Izin</strong>
                 </div>
                 <div class="card-body">
+                    <div style="overflow:auto;">
                     <table id="tabel-izin" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -110,6 +113,7 @@
                         </thead>
                     </table>
                 </div>
+                    </div>
             </div>
         </div>
     </div>
