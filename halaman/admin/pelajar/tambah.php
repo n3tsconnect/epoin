@@ -34,11 +34,22 @@
                                                 <input name="nama" type="text" class="form-control" required>
                                             </div>
                                             <div class="form-group">
-                                                <label class=" form-control-label">Surel</label>
-                                                <input name="surel" type="email" class="form-control" required>
+                                                <label class="form-control-label">Kelas</label>
+                                                <select id="kelas-select" name="kelas" class="form-control">
+                                                    <?php
+                                                        $sql = $koneksi->query("SELECT * FROM tb_kelas");
+                                                        while($kelas = $sql->fetch_assoc()){
+                                                            echo '<option value="'.$kelas['id_kelas'].'">'.$kelas['nama_kelas'].'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
                                             </div>
                                     </div>
                                     <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Surel</label>
+                                                <input name="surel" type="email" class="form-control" required>
+                                            </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Telp</label>
                                                 <input name="notelp" type="number" class="form-control" required>
@@ -46,13 +57,6 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label">Foto</label>
                                                 <input name="foto" type="file" class="form-control" disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class=" form-control-label">Status</label>
-                                                    <select name="status" class="form-control" required>
-                                                        <option value="Aktif">Aktif</option>
-                                                        <option value="Nonaktif">Nonaktif</option>
-                                                    </select>
                                             </div>
                                     </div>
                                     <div class="col-lg-3">
@@ -75,6 +79,7 @@ if(isset($_POST['simpan'])){
     $nama       = esc($_POST['nama']);
     $surel      = esc($_POST['surel']);
     $telp       = esc($_POST['notelp']);
+    $kelas      = esc($_POST['kelas']);
     $poin       = "0";
     $status     = esc($_POST['status']);
     $pass       = password_hash(esc($_POST['pass']), PASSWORD_DEFAULT);
@@ -85,8 +90,8 @@ if(isset($_POST['simpan'])){
     //$folder     = "gambar/profil/pelajar/";
     //$saring     = array('gif','png' ,'jpg');
     $koneksi->query("INSERT INTO tb_pelajar (nis_pelajar, nama_pelajar, pass_pelajar,
-        telp_pelajar, surel_pelajar, status_pelajar, poin_pelajar, level_pelajar)
-        VALUES('$nis', '$nama', '$pass', '$telp', '$surel', '$status', '$poin', 'Pelajar')");
+        telp_pelajar, surel_pelajar, status_pelajar, poin_pelajar, kelas_pelajar, level_pelajar)
+        VALUES('$nis', '$nama', '$pass', '$telp', '$surel', 'Aktif', '$poin', '$kelas', 'Pelajar')");
         action("PELAJAR_TAMBAH", array("nama" => $nama));
         ?>
         <script type="text/javascript">
