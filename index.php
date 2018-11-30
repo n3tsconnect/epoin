@@ -121,20 +121,11 @@ include ('tata_letak/atas.php');
             }
             if ($halaman == "admin") {
                 if($_SESSION['level'] == 'Admin'){
-                    include "halaman/admin/admin/admin.php";
+                include "halaman/admin/admin/admin.php";
                 }
                 else {
-                    echo '<script type="text/javascript">alert("Access Denied");</script>';
-                    include "halaman/beranda/beranda.php";
-                }
-            }
-            if ($halaman == "log"){
-                if($_SESSION['level'] == 'Admin'){
-                    include "halaman/admin/admin/log.php";
-                }
-                else {
-                    echo '<script type="text/javascript">alert("Access Denied");</script>';
-                    include "halaman/beranda/beranda.php";
+                echo '<script type="text/javascript">alert("Access Denied");</script>';
+                include "halaman/beranda/beranda.php";
                 }
             }
             ?>

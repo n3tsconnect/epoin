@@ -65,7 +65,6 @@
                         echo '</ul>';
                     echo '</li>';
                     echo '<li><a href="?halaman=pelanggaran"> <i class="menu-icon fa fa-warning"></i> Pelanggaran</a></li>';
-                    echo '<li><a href="?halaman=log"> <i class="menu-icon fa fa-database"></i> Log</a></li>';
                 echo '</ul>';
                  } ?>
             </div><!-- /.navbar-collapse -->

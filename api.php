@@ -47,15 +47,6 @@ if (!isset($_SESSION['id'])) {
                 include "halaman/admin/pelajar/import.api.php";
             }
         }
-        
-        if ($halaman == "log"){
-            if($_SESSION['level'] == 'Admin'){
-                include "halaman/admin/admin/log.api.php";
-            }
-            else {
-                echo 'ACCESS DENIED';
-            }
-        }
     }
 }
 ?>
