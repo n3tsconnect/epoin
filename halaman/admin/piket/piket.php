@@ -54,8 +54,10 @@
 							<div class="card-header">
 									<strong class="card-title">Izin Valid</strong>
 							</div>
+              <div style="overflow:auto;">
 							<div class="card-body card-block" id="izin-dynamic">
 							</div>
+            </div>
 					</div>
 				</div>
 		</div>

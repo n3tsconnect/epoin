@@ -1,8 +1,8 @@
 <?php
     $id = (float) esc($_GET['id']);
-    $sql    = $koneksi->query("SELECT tb_pelajar.*, tb_kelas.nama_kelas FROM tb_pelajar 
-    INNER JOIN tb_kelas 
-    ON tb_pelajar.kelas_pelajar = tb_kelas.id_kelas 
+    $sql    = $koneksi->query("SELECT tb_pelajar.*, tb_kelas.nama_kelas FROM tb_pelajar
+    INNER JOIN tb_kelas
+    ON tb_pelajar.kelas_pelajar = tb_kelas.id_kelas
     WHERE tb_pelajar.id_pelajar = '$id';");
     $x      = $sql->fetch_assoc();
 
@@ -101,6 +101,7 @@
                     <strong class="card-title"> Riwayat Pelanggaran</strong>
                 </div>
                 <div class="card-body">
+                  <div style="overflow:auto;">
                     <table id="tabel-pelanggaran" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -108,6 +109,7 @@
                             </tr>
                         </thead>
                     </table>
+                  </div>
                 </div>
             </div>
         </div>
@@ -117,6 +119,7 @@
                     <strong class="card-title">Riwayat Izin</strong>
                 </div>
                 <div class="card-body">
+                  <div style="overflow:auto;">
                     <table id="tabel-izin" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -124,6 +127,7 @@
                             </tr>
                         </thead>
                     </table>
+                  </div>
                 </div>
             </div>
         </div>
@@ -300,7 +304,7 @@
             </div>
             <div class="modal-body">
                 <input id="delete_id-pelajar" type="hidden" name="delete_id-pelajar" />
-                Untuk delete pelajar dengan nama <br /> <br /> 
+                Untuk delete pelajar dengan nama <br /> <br />
                 <p class="text-center"><strong id="delete_nama-pelajar"></strong></p> <br />
                 Silahkan konfirmasi nama pelajar tersebut:
                 <input type="text" class="form-control" name="delete_konfirm-nama" id="delete_konfirm-nama">
@@ -331,7 +335,7 @@
         var id_pelajar = $('#delete_id-pelajar').val();
         var nama_pelajar = $('#delete_nama-pelajar').text();
         var konfirm_nama = $('#delete_konfirm-nama').val();
-        
+
         if(konfirm_nama.toUpperCase() == nama_pelajar.toUpperCase()){
             $.ajax({
                 type: "POST",
@@ -464,7 +468,7 @@
         $('#edit_id-dispen').val(izin[0]);
         $('#edit_nama-dispen').val(izin[1]);
         $('#edit_deskripsi-dispen').val(izin[2]);
-        
+
         // Ambil dalam format 00:00
         var dari_jam = izin[3].substring(0,5);
         var sampai_jam = izin[4].substring(0,5);
@@ -473,7 +477,7 @@
         $('#edit_finish-dispen').val(sampai_jam);
         jQuery('#modal-edit-izin').modal('show');
     }
-    
+
     function deletePelanggaran(id_pelanggaran){
         if(confirm("Delete pelanggaran dengan id " + id_pelanggaran + "?")){
             $.ajax({
@@ -491,7 +495,7 @@
             });
         }
     }
-    
+
     function deleteIzin(id_izin){
         if(confirm("Delete izin dengan id " + id_izin + "?")){
             $.ajax({
@@ -555,9 +559,9 @@
             window.open("halaman/admin/piket/cetak.php?id=" + rowData[0], '_blank');
         });
     });
-   
+
 </script>
 
 <script type="text/javascript">
-    
+
 </script>
