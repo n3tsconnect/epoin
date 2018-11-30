@@ -29,6 +29,7 @@
                         <div class="col-sm-3">
                             <a href="?halaman=pelanggaran&aksi=tambah" class="btn btn-primary">Tambah</a>
                         </div><br/><br/>
+                        <div style="overflow:auto;">
                   <table id="bootstrap-data-table" class="table table-striped table-bordered">
                     <thead>
                       <tr>
@@ -60,6 +61,7 @@
                 <?php } ?>
                     </tbody>
                   </table>
+                </div>
                 </div>
             </div>
         </div>

@@ -39,6 +39,22 @@
                                                 <input name="nama" type="text" class="form-control" value="<?php echo $pelajar['nama_pelajar'];?>">
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-control-label">Kelas</label>
+                                                <select id="kelas-select" name="kelas" class="form-control">
+                                                    <?php
+                                                        $kelas_asal = $koneksi->query("SELECT kelas_pelajar FROM tb_pelajar WHERE id_pelajar = '$id_pelajar'")->fetch_assoc();
+                                                        $semua_kelas = $koneksi->query("SELECT * FROM tb_kelas");
+                                                        while($kelas = $semua_kelas->fetch_assoc()){
+                                                            if($kelas_asal['kelas_pelajar'] == $kelas['id_kelas']){ // Cek jika opsi kelas saat ini adalah kelas asal pelajar.
+                                                                echo '<option value="'.$kelas['id_kelas'].'" selected>'.$kelas['nama_kelas'].'</option>';
+                                                            } else {
+                                                                echo '<option value="'.$kelas['id_kelas'].'">'.$kelas['nama_kelas'].'</option>';
+                                                            }
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class=" form-control-label">Surel</label>
                                                 <input name="surel" type="email" class="form-control" value="<?php echo $pelajar['surel_pelajar'];?>">
                                             </div>
@@ -73,6 +89,7 @@
 if(isset($_POST['simpan'])){
     $nis        = esc($_POST['nis']);
     $nama       = esc($_POST['nama']);
+    $kelas      = esc($_POST['kelas']);
     $surel      = esc($_POST['surel']);
     $telp       = esc($_POST['notelp']);
     $status     = esc($_POST['status']);
@@ -81,13 +98,13 @@ if(isset($_POST['simpan'])){
     $size       = $_FILES['gantifoto']['size'];
     $tipe       = $_FILES['gantifoto']['type'];
     $folder     = "gambar/profil/pelajar/";
-    $saring     = array('gif','png' ,'jpg');*/
+    $saring     = array('gif','png' ,'jpg');*/ 
 
     // UPDATE tb_pelajar sesuai ID nya.
     $koneksi->query("UPDATE tb_pelajar SET nis_pelajar='$nis', nama_pelajar='$nama',
-    surel_pelajar='$surel', telp_pelajar='$telp', status_pelajar='$status'
+    surel_pelajar='$surel', telp_pelajar='$telp', status_pelajar='$status', kelas_pelajar='$kelas'
      WHERE id_pelajar='$id_pelajar'");
-    action('PELAJAR_UPDATE', array('idPelajar' => $id_pelajar, 'nama' => $nama, 'nis' => $nis, 'surel' => $surel, 'telp' => $telp, 'status' => $status));
+    action('PELAJAR_UPDATE', array('idPelajar' => $id_pelajar, 'nama' => $nama, 'kelas' => $kelas, 'nis' => $nis, 'surel' => $surel, 'telp' => $telp, 'status' => $status));
     ?>
     <script type="text/javascript">
     alert("Berhasil memperbarui data pelajar");

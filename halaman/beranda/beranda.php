@@ -59,6 +59,7 @@
                               <strong class="card-title">Pelanggaran Terbaru</strong>
                           </div>
                           <div class="card-body card-block" style="overflow:auto;">
+                          <div style="overflow:auto;">
                           <table id="bootstrap-data-table" class="table table-striped table-bordered">
                               <thead>
                                 <tr>
@@ -93,6 +94,7 @@
                               </tbody>
                             </table>
                           </div>
+                        </div>
                       </div>
                   </div>
                 </div>
@@ -103,6 +105,7 @@
                               <strong class="card-title">Izin Terbaru</strong>
                           </div>
                           <div class="card-body card-block">
+                          <div style="overflow:auto;">
                           <table id="bootstrap-data-table2" class="table table-striped table-bordered">
                               <thead>
                                 <tr>
@@ -138,6 +141,7 @@
                               </tbody>
                             </table>
                           </div>
+                        </div>
                       </div>
                   </div>
                 </div>
