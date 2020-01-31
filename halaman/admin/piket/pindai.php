@@ -405,7 +405,7 @@
             type: 'POST',
             url: 'api.php?halaman=piket&aksi=poin',
             data: form.serialize(),
-            ajaxStart: function() {
+            beforeSend: function() {
                 jQuery('#modal-pelanggaran').modal('hide');
             },
             success: function(data){
