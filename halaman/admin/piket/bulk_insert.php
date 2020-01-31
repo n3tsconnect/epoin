@@ -90,7 +90,6 @@
         var formData = form.serializeArray();
         var pelanggaranData = [];
         var pelanggaranDisplay = [];
-        $("#submitPelanggaran").hide();
         
         // Ajax untuk mendapatkan nama kelas siswa.
         $.ajax({
@@ -100,7 +99,10 @@
                 nama_kelas: 1,
                 pelajar: formData[1]['value']
             },
-            
+            ajaxStart: function() {
+                $("#submitPelanggaran").hide(1000)
+            },
+
             success: function(data){
                 kelasPelajar = JSON.parse(data);
 
@@ -122,7 +124,6 @@
 
                 jQuery('#kelas-select').select2('focus');
                 jQuery('#nama-select').val(null).trigger('change');
-                $("#submitPelanggaran").show();
             }
         });
     }
