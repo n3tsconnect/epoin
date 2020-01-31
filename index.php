@@ -3,14 +3,14 @@ session_start();
 
 include ('konfigurasi/koneksi.php');
 include ('logger.php');
-
+require_once('NonceUtil.php');
 
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
     header("location: masuk.php");
-}elseif($_SESSION['level'] == 'Pelajar'){
+} elseif($_SESSION['level'] == 'Pelajar'){
     header("location: pelajar/index.php");
-}else {
+} else {
 
     if(isset($_SESSION['waktu']) && (time() - $_SESSION['waktu'] > $_SESSION['habis'] )) {
         echo 'Kamu diem aja selama 30 Menit, silahkan <a href="masuk.php">masuk</a> lagi.';
