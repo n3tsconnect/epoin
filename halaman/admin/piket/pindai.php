@@ -6,7 +6,6 @@
     WHERE tb_pelajar.id_pelajar = '$id';");
     $x      = $sql->fetch_assoc();
 
-
     // NIS bisa diganti dari URL nya.
     // Cek nis lagi.
     $cek    = $sql->num_rows;
@@ -19,6 +18,7 @@
         <?php
     }
 ?>
+
 <div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
