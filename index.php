@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once("nonce.php");
+$n = new Nonce;
 include ('konfigurasi/koneksi.php');
 include ('logger.php');
 

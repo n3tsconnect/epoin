@@ -6,16 +6,6 @@
     WHERE tb_pelajar.id_pelajar = '$id';");
     $x      = $sql->fetch_assoc();
 
-    require_once("nonce.php");
-    $n = new Nonce;
-
-    if($n->isFormPosted()){
-        try{
-          $msg = $n->validateForm();
-        }catch (Exception $e){
-          $msg = $e->getMessage(); 
-        }
-    }
 
     // NIS bisa diganti dari URL nya.
     // Cek nis lagi.
