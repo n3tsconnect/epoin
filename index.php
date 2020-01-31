@@ -3,8 +3,7 @@ session_start();
 
 include ('konfigurasi/koneksi.php');
 include ('logger.php');
-require_once("nonce.php");
-$n = new Nonce;
+
 
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
