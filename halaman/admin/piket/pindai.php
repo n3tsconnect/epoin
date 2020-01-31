@@ -19,7 +19,7 @@
         <?php
     }
 ?>
-<?php require_once('../../../nonce.php'); ?>
+<?php require_once('nonce.php'); ?>
 
 <div class="breadcrumbs">
     <div class="col-sm-4">
@@ -169,7 +169,6 @@
                         <label class="form-control-label">Poin</label>
                         <p name="poin" id="previewPoin"></p>
                     </div>
-                    <?php $n->generateFormFields() ?>
                 </form>
             </div>
             <div class="modal-footer">
