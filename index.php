@@ -25,7 +25,6 @@ include ('tata_letak/atas.php');
 ?>
         <!-- Halaman dinamis -->
             <?php
-            require_once('NonceUtil.php');
             $halaman = isset($_GET['halaman']) ? $_GET['halaman'] : "";
             $aksi    = isset($_GET['aksi']) ? $_GET['aksi'] : "";
             if ($halaman == ""){
