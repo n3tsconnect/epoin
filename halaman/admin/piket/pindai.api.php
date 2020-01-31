@@ -1,7 +1,4 @@
 <?php
-include '../../../nonce.php';
-$n = new Nonce;
-if($n->validateForm()); {
     if(isset($_GET['data_tabel-pelanggaran'])){
         $id_pelajar = esc($_GET['id_pelajar']);
         $rowNo = 0;
@@ -25,7 +22,6 @@ if($n->validateForm()); {
 
         echo json_encode($result);
     }
-}
     if(isset($_GET['data_tabel-izin'])){
         $id_pelajar = esc($_GET['id_pelajar']);
         $rowNo = 0;

@@ -1,6 +1,4 @@
 <?php
-    require_once("nonce.php");
-
     if(isset($_POST['tambah-pelanggaran'])){
         $id_pelajar = esc($_POST['id_pelajar']);
         $id_pelanggaran = esc($_POST['jenis-pelanggaran']);
