@@ -19,7 +19,7 @@
         <?php
     }
 ?>
-<?php require_once('NonceUtil.php'); ?>
+<?php require_once('nonce.php'); ?>
 
 <div class="breadcrumbs">
     <div class="col-sm-4">
