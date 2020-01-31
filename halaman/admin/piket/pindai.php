@@ -421,8 +421,10 @@
             type: 'POST',
             url: 'api.php?halaman=piket&aksi=poin',
             data: form.serialize(),
-            success: function(data){
+            beforeSend: function() {
                 jQuery('#modal-izin').modal('hide');
+            },
+            success: function(data){
                 $("#tabel-izin").DataTable().ajax.reload();
             }
         });
