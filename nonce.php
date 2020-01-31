@@ -39,7 +39,7 @@ class Nonce
    *
    * @var string
    **/
-  private $secret = "89798789078907980798798798253987392857985675";
+  private $secret = "";
   
   /**
    * The hashing type used to create the nonce. 
@@ -75,7 +75,7 @@ class Nonce
    *
    * @var string
    **/
-  private $db_pass = "itsSoIntense!1";
+  private $db_pass = "";
   
   /**
    * The database name. Only used if $store is set to true.
