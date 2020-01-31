@@ -405,8 +405,10 @@
             type: 'POST',
             url: 'api.php?halaman=piket&aksi=poin',
             data: form.serialize(),
-            success: function(data){
+            ajaxStart: function() {
                 jQuery('#modal-pelanggaran').modal('hide');
+            },
+            success: function(data){
                 $('#poin-pelajar').text(data);
                 $("#tabel-pelanggaran").DataTable().ajax.reload();
             }

@@ -158,9 +158,7 @@
                 submit_pelanggaran: 1,
                 data: tempData
             },
-            ajaxStart: function() {
-                $("#submitPelanggaran").hide();
-            },
+            
 
             success: function(data){
                 alert("SUKSES!");
@@ -170,7 +168,7 @@
                 tempData.length = 0;
                 tempDisplay.length = 0;
                 $('#tabel-pelanggaran').DataTable().ajax.reload();
-                $('#submitPelanggaran').show();
+                
             }
         });
     }
