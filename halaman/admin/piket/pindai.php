@@ -6,7 +6,7 @@
     WHERE tb_pelajar.id_pelajar = '$id';");
     $x      = $sql->fetch_assoc();
 
-    include 'nonce.php';
+    require_once("nonce.php");
     $n = new Nonce;
 
     if($n->isFormPosted()){
