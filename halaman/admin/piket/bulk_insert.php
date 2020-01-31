@@ -91,8 +91,6 @@
         var pelanggaranData = [];
         var pelanggaranDisplay = [];
         
-        $("#submitPelanggaran").hide(1000);
-
         // Ajax untuk mendapatkan nama kelas siswa.
         $.ajax({
             type: "GET",
