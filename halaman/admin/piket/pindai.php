@@ -19,6 +19,7 @@
         <?php
     }
 ?>
+<?php require_once('NonceUtil.php'); ?>
 
 <div class="breadcrumbs">
     <div class="col-sm-4">
