@@ -22,6 +22,7 @@ $sessionId = esc($_SESSION['id']);
 $sql               = $koneksi->query("SELECT * FROM tb_pengguna WHERE id_pengguna = '$sessionId'");
 $data              = $sql->fetch_assoc();
 include ('tata_letak/atas.php');
+require_once('NonceUtil.php');
 ?>
         <!-- Halaman dinamis -->
             <?php
