@@ -3,7 +3,6 @@ session_start();
 
 include ('konfigurasi/koneksi.php');
 include ('logger.php');
-require_once('NonceUtil.php');
 
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
@@ -26,6 +25,7 @@ include ('tata_letak/atas.php');
 ?>
         <!-- Halaman dinamis -->
             <?php
+            require_once('NonceUtil.php');
             $halaman = isset($_GET['halaman']) ? $_GET['halaman'] : "";
             $aksi    = isset($_GET['aksi']) ? $_GET['aksi'] : "";
             if ($halaman == ""){
