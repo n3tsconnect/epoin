@@ -1,4 +1,5 @@
 <?php
+if($n->isFormPosted()) {
     if(isset($_POST['tambah-pelanggaran'])){
         $id_pelajar = esc($_POST['id_pelajar']);
         $id_pelanggaran = esc($_POST['jenis-pelanggaran']);
@@ -21,6 +22,7 @@
         action("PELANGGARAN_TAMBAH", array("pelajar" => $id_pelajar, "keterangan" => $keterangan, "pelanggaran" => $id_pelanggaran));
         echo $currentPoin->fetch_assoc()['poin_pelajar'];
     }
+}
 
     if(isset($_POST['tambah-izin'])){
         $id_pelajar = esc($_POST['id_pelajar']);

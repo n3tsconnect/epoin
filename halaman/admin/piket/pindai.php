@@ -167,6 +167,7 @@
                         <label class="form-control-label">Poin</label>
                         <p name="poin" id="previewPoin"></p>
                     </div>
+                    <?php $n->generateFormFields() ?>
                 </form>
             </div>
             <div class="modal-footer">
