@@ -39,7 +39,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button onclick="submitPelanggaran(tempData)" type="button" class="btn btn-sm btn-primary">
+                    <button id="submitPelanggaran" onclick="submitPelanggaran(tempData)" type="button" class="btn btn-sm btn-primary">
                     <i class="fa fa-check"></i> Submit</button>
                 </div>
             </div>
@@ -99,6 +99,10 @@
                 nama_kelas: 1,
                 pelajar: formData[1]['value']
             },
+            ajaxStart: function() {
+                $("#submitPelanggaran").hide();
+            },
+
             success: function(data){
                 kelasPelajar = JSON.parse(data);
 
