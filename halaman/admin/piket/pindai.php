@@ -146,13 +146,9 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-pelanggaran">
-                    <?php 
-                    if(!isset($_SESSION['csrf_tokens'][$token])) {
-                    $token = getCSRFToken();
-                    echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
-                    }
+                    <?php  
+                    echo '<input type="hidden" name="csrf_token" value="' . getCSRFToken() . '"/>';
                     ?>
-                    
                     <input type="hidden" name="tambah-pelanggaran" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
