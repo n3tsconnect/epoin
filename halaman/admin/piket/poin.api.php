@@ -6,6 +6,7 @@
         }
         return false;
     }
+    
     $token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
     $valid = !empty($token) && validateCSRFToken($token);
     if (!$valid) {

@@ -1,13 +1,4 @@
 <?php
-    function getCSRFToken() {
-        $generator = (new \RandomLib\Factory())->getMediumStrengthGenerator();
-        $nonce = $generator->generateString(64);
-        if (empty($_SESSION['csrf_tokens'])) {
-            $_SESSION['csrf_tokens'] = array();
-        }
-        $_SESSION['csrf_tokens'][$nonce] = true;
-        return $nonce;
-      }      
 
     $id = (float) esc($_GET['id']);
     $sql    = $koneksi->query("SELECT tb_pelajar.*, tb_kelas.nama_kelas FROM tb_pelajar
