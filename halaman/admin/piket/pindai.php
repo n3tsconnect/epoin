@@ -146,9 +146,12 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-pelanggaran">
+                    <?php 
+                    $token = getCSRFToken(); 
+                    echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
+                    ?>
                     <input type="hidden" name="tambah-pelanggaran" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
-                    <input type="hidden" name="nonce" value=<?php echo getCSRFToken() ?> />
                     <div class="form-group">
                         <label class="form-control-label">Jenis Pelanggaran</label>
                         <select name="jenis-pelanggaran" class="form-control" onClick="previewPoin(this)">
