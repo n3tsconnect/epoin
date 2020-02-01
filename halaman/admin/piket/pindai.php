@@ -563,17 +563,17 @@
             var rowData = tabel_izin.row($(this).parents('tr')).data();
             window.open("halaman/admin/piket/cetak.php?id=" + rowData[0], '_blank');
         });
-    });
 
-    jQuery(document).ready(function() {
-  jQuery("form").each(function() {
+        jQuery("form").each(function() {
     var tokenElement = jQuery(document.createElement('input'));
     tokenElement.attr('type', 'hidden');
-    tokenElement.attr('name', 'csrf_token');
+    tokenElement.attr('name', 'token');
     tokenElement.val(<?= $token ?>);
     jQuery(this).append(tokenElement);
-  });
-});
+    });
+    });
+
+    
 </script>
 
 <script type="text/javascript">
