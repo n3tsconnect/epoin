@@ -1,4 +1,11 @@
 <?php
+    function validateCSRFToken($token) {
+        if (isset($_SESSION['csrf_tokens'][$token])) {
+            unset($_SESSION['csrf_tokens'][$token]);
+            return true;
+        }
+        return false;
+      }
     $token = isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '';
     $valid = !empty($token) && validateCSRFToken($token);
     if (!$valid) {
