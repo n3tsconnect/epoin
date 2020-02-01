@@ -1,4 +1,5 @@
 <?php
+include_once("../../../csrf.php");
 if (validateCSRFToken()) {
     if(isset($_POST['tambah-pelanggaran'])){
         $id_pelajar = esc($_POST['id_pelajar']);
@@ -21,7 +22,7 @@ if (validateCSRFToken()) {
         $currentPoin = $koneksi->query("SELECT poin_pelajar FROM tb_pelajar WHERE id_pelajar='$id_pelajar'");
         action("PELANGGARAN_TAMBAH", array("pelajar" => $id_pelajar, "keterangan" => $keterangan, "pelanggaran" => $id_pelanggaran));
         echo $currentPoin->fetch_assoc()['poin_pelajar'];
-    }
+}
 
     if(isset($_POST['tambah-izin'])){
         $id_pelajar = esc($_POST['id_pelajar']);
