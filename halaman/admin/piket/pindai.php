@@ -146,6 +146,9 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-pelanggaran">
+                    <?php 
+                    echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
+                    ?>
                     <input type="hidden" name="tambah-pelanggaran" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
