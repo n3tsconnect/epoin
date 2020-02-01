@@ -1,4 +1,5 @@
 <?php
+
     if(isset($_GET['data_tabel-pelanggaran'])){
         $id_pelajar = esc($_GET['id_pelajar']);
         $rowNo = 0;
