@@ -1,11 +1,19 @@
 <?php
+    function getCSRFToken() {
+        $generator = (new \RandomLib\Factory())->getMediumStrengthGenerator();
+        $nonce = $generator->generateString(64);
+        if (empty($_SESSION['csrf_tokens'])) {
+            $_SESSION['csrf_tokens'] = array();
+        }
+        $_SESSION['csrf_tokens'][$nonce] = true;
+        return $nonce;
+    }
     $id = (float) esc($_GET['id']);
     $sql    = $koneksi->query("SELECT tb_pelajar.*, tb_kelas.nama_kelas FROM tb_pelajar
     INNER JOIN tb_kelas
     ON tb_pelajar.kelas_pelajar = tb_kelas.id_kelas
     WHERE tb_pelajar.id_pelajar = '$id';");
     $x      = $sql->fetch_assoc();
-
     // NIS bisa diganti dari URL nya.
     // Cek nis lagi.
     $cek    = $sql->num_rows;
