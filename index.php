@@ -1,11 +1,10 @@
 <?php
 session_start();
-require_once 'vendor/autoload.php';
+
 include ('konfigurasi/koneksi.php');
 include ('logger.php');
-include ('csrf.php');
+
 $judul  = "e-Poin";
-$token = getCSRFToken();
 if (!isset($_SESSION['id'])) {
     header("location: masuk.php");
 } elseif($_SESSION['level'] == 'Pelajar'){
