@@ -570,7 +570,7 @@
     var tokenElement = jQuery(document.createElement('input'));
     tokenElement.attr('type', 'hidden');
     tokenElement.attr('name', 'csrf_token');
-    tokenElement.val(<?= $token ?>);
+    tokenElement.attr('value', <?= $token ?>);
     jQuery(this).append(tokenElement);
         });
     });
