@@ -6,7 +6,6 @@
     WHERE tb_pelajar.id_pelajar = '$id';");
     $x      = $sql->fetch_assoc();
 
-    echo getCSRFToken();
     // NIS bisa diganti dari URL nya.
     // Cek nis lagi.
     $cek    = $sql->num_rows;
