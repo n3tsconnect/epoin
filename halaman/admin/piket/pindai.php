@@ -145,11 +145,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form-pelanggaran" action="generate.php">
-                    <?php
-                    echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
-                    ?>
-                    
+                <form method="POST" id="form-pelanggaran">
                     <input type="hidden" name="tambah-pelanggaran" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
@@ -192,12 +188,8 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-izin">
-                    <?php
-                    echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
-                    ?>
                     <input type="hidden" name="tambah-izin" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
-                    
                     <div class="form-group">
                         <label class=" form-control-label">Nama dispen</label>
                         <input name="nama_dispen" type="text" class="form-control" placeholder="Misalnya : Pulang ke rumah, Barang tertinggal, dsb" required/>
@@ -236,9 +228,6 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-edit-pelanggaran">
-                    <?php
-                    echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
-                    ?>
                     <input type="hidden" name="edit_pelanggaran" value=1 />
                     <input id="edit_id-pelanggaran" type="hidden" name="id-pelanggaran" />
                     <div class="form-group">
@@ -275,9 +264,6 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-edit-izin">
-                    <?php
-                    echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
-                    ?>
                     <input type="hidden" name="edit_izin" value=1 />
                     <input id="edit_id-dispen" type="hidden" name="id_izin" />
                     <div class="form-group">
@@ -427,6 +413,7 @@
                 $("#tabel-pelanggaran").DataTable().ajax.reload();
             }
         });
+
     }
 
     function tambahIzin(formId){
@@ -578,6 +565,15 @@
         });
     });
 
+    jQuery(document).ready(function() {
+  jQuery("form").each(function() {
+    var tokenElement = jQuery(document.createElement('input'));
+    tokenElement.attr('type', 'hidden');
+    tokenElement.attr('name', 'csrf_token');
+    tokenElement.val(<?= $token ?>);
+    jQuery(this).append(tokenElement);
+  });
+});
 </script>
 
 <script type="text/javascript">
