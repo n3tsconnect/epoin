@@ -167,7 +167,6 @@
                         <label class="form-control-label">Poin</label>
                         <p name="poin" id="previewPoin"></p>
                     </div>
-                    <input type="hidden" name="nonce" value ="<?php echo getCSRFToken() ?>" > 
                 </form>
             </div>
             <div class="modal-footer">
