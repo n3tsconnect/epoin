@@ -145,7 +145,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form-pelanggaran">
+                <form method="POST" id="form-pelanggaran" action="generate.php">
                     <?php
                     echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
                     ?>
@@ -418,18 +418,6 @@
                 regenerate();
             }
         });
-
-        function regenerate() {
-            $.ajax({
-        type:"POST",
-        url:"generate.php",
-        cache:false,
-        success: function(data)
-        {
-              //do something else;
-        }
-        });   
-        }
     }
 
     function tambahIzin(formId){
