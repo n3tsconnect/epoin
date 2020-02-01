@@ -39,6 +39,17 @@ include ('tata_letak_pelajar/atas.php');
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
+    <script>
+    jQuery(document).ready(function() {
+    jQuery("form").each(function() {
+    var tokenElement = jQuery(document.createElement('input'));
+    tokenElement.attr('type', 'hidden');
+    tokenElement.attr('name', 'token');
+    tokenElement.val(<?= $token ?>);
+    jQuery(this).append(tokenElement);
+  });
+});
+    </script>
 </body>
 <?php
 include ('tata_letak_pelajar/bawah.php')

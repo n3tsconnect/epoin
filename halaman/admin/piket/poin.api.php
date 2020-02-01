@@ -1,6 +1,7 @@
 <?php
     function validateCSRFToken($token) {
         if (isset($_SESSION['csrf_tokens'][$token])) {
+            unset($_SESSION['csrf_tokens'][$token]);
             return true;
         }
         return false;
