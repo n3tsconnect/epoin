@@ -146,9 +146,10 @@
             </div>
             <div class="modal-body">
                 <form method="POST" id="form-pelanggaran">
-                    <?php  
-                    echo '<input type="hidden" name="csrf_token" value="' . getCSRFToken() . '"/>';
+                    <?php
+                    echo '<input type="hidden" name="csrf_token" value="' . $token . '"/>';
                     ?>
+                    
                     <input type="hidden" name="tambah-pelanggaran" value=1 />
                     <input type="hidden" name="id_pelajar" value=<?php echo $id ?> />
                     <div class="form-group">
@@ -414,8 +415,21 @@
             success: function(data){
                 $('#poin-pelajar').text(data);
                 $("#tabel-pelanggaran").DataTable().ajax.reload();
+                regenerate();
             }
         });
+
+        function regenerate() {
+            $.ajax({
+        type:"POST",
+        url:"generate.php",
+        cache:false,
+        success: function(data)
+        {
+              //do something else;
+        }
+        });   
+        }
     }
 
     function tambahIzin(formId){
