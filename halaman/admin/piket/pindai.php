@@ -425,7 +425,6 @@
             success: function(data){
                 $('#poin-pelajar').text(data);
                 $("#tabel-pelanggaran").DataTable().ajax.reload();
-                regenerate();
             }
         });
     }
