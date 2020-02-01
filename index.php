@@ -4,6 +4,7 @@ require_once 'vendor/autoload.php';
 include ('konfigurasi/koneksi.php');
 include ('logger.php');
 include ('csrf.php');
+$token = getCSRFToken();
 $judul  = "e-Poin";
 if (!isset($_SESSION['id'])) {
     header("location: masuk.php");
