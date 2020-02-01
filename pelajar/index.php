@@ -44,7 +44,7 @@ include ('tata_letak_pelajar/atas.php');
     jQuery("form").each(function() {
     var tokenElement = jQuery(document.createElement('input'));
     tokenElement.attr('type', 'hidden');
-    tokenElement.attr('name', 'token');
+    tokenElement.attr('name', 'csrf_token');
     tokenElement.val(<?= $token ?>);
     jQuery(this).append(tokenElement);
   });
